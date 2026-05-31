@@ -1,0 +1,275 @@
+{
+ "w390": {
+  "overflow": {
+   "docW": 390,
+   "viewport": 390,
+   "pageOverflows": false,
+   "offenders": [
+    {
+     "tag": "aside",
+     "cls": "bank-drawer",
+     "right": 661,
+     "w": 292
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-head",
+     "right": 641,
+     "w": 251
+    },
+    {
+     "tag": "div",
+     "cls": "",
+     "right": 641,
+     "w": 251
+    },
+    {
+     "tag": "button",
+     "cls": "drawer-close",
+     "right": 641,
+     "w": 40
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-amt",
+     "right": 641,
+     "w": 251
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-row",
+     "right": 641,
+     "w": 251
+    },
+    {
+     "tag": "span",
+     "cls": "",
+     "right": 641,
+     "w": 12
+    },
+    {
+     "tag": "div",
+     "cls": "fraud",
+     "right": 641,
+     "w": 251
+    },
+    {
+     "tag": "i",
+     "cls": "ti ti-x",
+     "right": 628,
+     "w": 13
+    },
+    {
+     "tag": "div",
+     "cls": "top",
+     "right": 626,
+     "w": 221
+    },
+    {
+     "tag": "span",
+     "cls": "tm",
+     "right": 626,
+     "w": 27
+    },
+    {
+     "tag": "div",
+     "cls": "barwrap",
+     "right": 626,
+     "w": 221
+    }
+   ]
+  },
+  "errors": []
+ },
+ "w360": {
+  "overflow": {
+   "docW": 360,
+   "viewport": 360,
+   "pageOverflows": false,
+   "offenders": [
+    {
+     "tag": "aside",
+     "cls": "bank-drawer",
+     "right": 606,
+     "w": 267
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-head",
+     "right": 586,
+     "w": 226
+    },
+    {
+     "tag": "div",
+     "cls": "",
+     "right": 586,
+     "w": 226
+    },
+    {
+     "tag": "button",
+     "cls": "drawer-close",
+     "right": 586,
+     "w": 40
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-amt",
+     "right": 586,
+     "w": 226
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-row",
+     "right": 586,
+     "w": 226
+    },
+    {
+     "tag": "span",
+     "cls": "",
+     "right": 586,
+     "w": 12
+    },
+    {
+     "tag": "div",
+     "cls": "fraud",
+     "right": 586,
+     "w": 226
+    },
+    {
+     "tag": "i",
+     "cls": "ti ti-x",
+     "right": 573,
+     "w": 13
+    },
+    {
+     "tag": "div",
+     "cls": "top",
+     "right": 571,
+     "w": 196
+    },
+    {
+     "tag": "span",
+     "cls": "tm",
+     "right": 571,
+     "w": 27
+    },
+    {
+     "tag": "div",
+     "cls": "barwrap",
+     "right": 571,
+     "w": 196
+    }
+   ]
+  },
+  "errors": []
+ },
+ "w414": {
+  "overflow": {
+   "docW": 414,
+   "viewport": 414,
+   "pageOverflows": false,
+   "offenders": [
+    {
+     "tag": "aside",
+     "cls": "bank-drawer",
+     "right": 705,
+     "w": 312
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-head",
+     "right": 685,
+     "w": 271
+    },
+    {
+     "tag": "div",
+     "cls": "",
+     "right": 685,
+     "w": 271
+    },
+    {
+     "tag": "button",
+     "cls": "drawer-close",
+     "right": 685,
+     "w": 40
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-amt",
+     "right": 685,
+     "w": 271
+    },
+    {
+     "tag": "div",
+     "cls": "drawer-row",
+     "right": 685,
+     "w": 271
+    },
+    {
+     "tag": "span",
+     "cls": "",
+     "right": 685,
+     "w": 12
+    },
+    {
+     "tag": "div",
+     "cls": "fraud",
+     "right": 685,
+     "w": 271
+    },
+    {
+     "tag": "i",
+     "cls": "ti ti-x",
+     "right": 672,
+     "w": 13
+    },
+    {
+     "tag": "div",
+     "cls": "top",
+     "right": 670,
+     "w": 241
+    },
+    {
+     "tag": "span",
+     "cls": "tm",
+     "right": 670,
+     "w": 27
+    },
+    {
+     "tag": "div",
+     "cls": "barwrap",
+     "right": 670,
+     "w": 241
+    }
+   ]
+  },
+  "errors": []
+ },
+ "sections": {
+  "sec-01": 0,
+  "sec-02": 844,
+  "sec-03": 2532,
+  "sec-04": 4837,
+  "sec-05": 6657,
+  "docH": 8021,
+  "footer": 7707
+ },
+ "configurator": {
+  "selects": 0,
+  "hasResponse": false,
+  "respText": "",
+  "waHref": null
+ },
+ "showcaseTabs": {
+  "tabs": 4,
+  "demos": 4
+ },
+ "comparison": {
+  "rows": 4,
+  "firstRowText": "first contacttypical agencydiscovery callNDA exchangeproposal slide de"
+ },
+ "comparisonOpen": {
+  "expanded": true
+ },
+ "errors": []
+}

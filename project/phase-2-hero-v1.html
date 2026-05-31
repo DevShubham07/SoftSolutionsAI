@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SofSolutionsAI — phase 02 · hero + mercury zoom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<template id="__bundler_thumbnail" data-bg-color="#0e0e10">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0e0e10"/>
+    <!-- laptop silhouette with mercury zoom context -->
+    <rect x="240" y="200" width="720" height="480" rx="16" fill="none" stroke="#f5f1e8" stroke-opacity="0.22" stroke-width="4"/>
+    <!-- chrome bar -->
+    <line x1="240" y1="280" x2="960" y2="280" stroke="#f5f1e8" stroke-opacity="0.18" stroke-width="3"/>
+    <circle cx="282" cy="240" r="8" fill="#f5f1e8" fill-opacity="0.28"/>
+    <circle cx="330" cy="240" r="8" fill="#f5f1e8" fill-opacity="0.28"/>
+    <circle cx="378" cy="240" r="8" fill="#f5f1e8" fill-opacity="0.28"/>
+    <!-- ambient glow behind (mercury environment) -->
+    <ellipse cx="600" cy="250" rx="280" ry="220" fill="#EF9F27" fill-opacity="0.08" filter="blur(8)"/>
+    <!-- configurator hints: two dashed underlines -->
+    <line x1="320" y1="420" x2="520" y2="420" stroke="#EF9F27" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+    <line x1="660" y1="420" x2="880" y2="420" stroke="#EF9F27" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+    <!-- amber dot accent -->
+    <circle cx="600" cy="680" r="20" fill="#EF9F27" opacity="0.9"/>
+    <!-- caption -->
+    <text x="600" y="750" font-family="Space Mono, monospace" font-size="24" fill="#8a857b" letter-spacing="2" text-anchor="middle" opacity="0.8">phase 02 · mercury zoom</text>
+  </svg>
+</template>
+<style>
+  /* ============================================================
+     PHASE 1 STYLES — inherited verbatim
+     ============================================================ */
+  :root {
+    --bg-dark: #0e0e10;
+    --bg-cream: #f5f1e8;
+    --accent-amber: #EF9F27;
+    --accent-amber-2: #BA7517;
+    --text-on-dark: #f5f1e8;
+    --text-on-light: #1a1a1a;
+    --muted-on-dark: #8a857b;
+    --muted-on-light: #6a655c;
+    --border-dark: rgba(245, 241, 232, 0.12);
+    --border-light: rgba(26, 26, 26, 0.10);
+    --border-dark-strong: rgba(245, 241, 232, 0.22);
+    --border-light-strong: rgba(26, 26, 26, 0.22);
+
+    --font-sans: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+
+    --container: 1200px;
+    --pad: 32px;
+    --section-pad: 120px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-pill: 999px;
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent-amber); color: #1a1a1a; }
+
+  .surface { position: relative; padding: var(--section-pad) 0; overflow: hidden; }
+  .surface--dark { background: var(--bg-dark); color: var(--text-on-dark); }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); position: relative; }
+
+  .tex-noise::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity: .035; mix-blend-mode: screen;
+  }
+  .tex-dots-dark::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(245,241,232,1) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: .015;
+  }
+
+  /* Typography */
+  .h1-display { font-size: 64px; line-height: 1.05; font-weight: 500; letter-spacing: -0.025em; margin: 0; }
+  .h1 { font-size: 48px; line-height: 1.08; font-weight: 500; letter-spacing: -0.02em; margin: 0; }
+  .h2 { font-size: 32px; line-height: 1.15; font-weight: 500; letter-spacing: -0.015em; margin: 0; }
+  .h3 { font-size: 22px; line-height: 1.25; font-weight: 500; margin: 0; }
+  .body-lg { font-size: 18px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .body   { font-size: 16px; line-height: 1.60; font-weight: 400; margin: 0; }
+  .body-sm{ font-size: 14px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .mono   { font-family: var(--font-mono); }
+  .mono-label { font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: lowercase; }
+  .mono-tag   { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; text-transform: lowercase; }
+  .muted-dark  { color: var(--muted-on-dark); }
+
+  /* Eyebrow */
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: lowercase; color: var(--muted-on-dark); }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block; }
+
+  /* Wordmark */
+  .wordmark { font-family: var(--font-sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1; }
+  .wordmark .sof { color: var(--accent-amber); }
+  .wordmark-mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border: 1px solid currentColor; border-radius: var(--r-sm);
+    font-family: var(--font-sans); font-weight: 500; font-size: 18px; letter-spacing: -0.02em;
+  }
+  .wordmark-mark .s { color: var(--accent-amber); }
+
+  /* Page header */
+  .page-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; gap: 24px; }
+  .page-header .nav { display: flex; gap: 28px; align-items: center; }
+  .page-header .nav a,
+  .hero-header .nav a { color: var(--muted-on-dark); text-decoration: none; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; transition: color 200ms var(--ease); }
+  .page-header .nav a:hover,
+  .hero-header .nav a:hover { color: var(--text-on-dark); }
+
+  /* Layout helpers */
+  .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .stack { display: flex; flex-direction: column; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans); font-weight: 500; font-size: 14px;
+    padding: 10px 18px; border-radius: var(--r-pill);
+    border: 1px solid transparent; cursor: pointer; text-decoration: none;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease), background-color 200ms var(--ease);
+    user-select: none; line-height: 1; white-space: nowrap;
+  }
+  .btn--sm { padding: 6px 12px; font-size: 13px; }
+  .btn .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .9; }
+  .btn--primary { background: var(--accent-amber); color: #1a1a1a; border-color: var(--accent-amber); }
+  .btn--primary:hover { transform: translateY(-1px); border-color: var(--accent-amber-2); }
+  .btn--ghost-dark { background: transparent; color: var(--text-on-dark); border-color: var(--border-dark-strong); }
+  .btn--ghost-dark:hover { transform: translateY(-1px); border-color: var(--text-on-dark); }
+  .btn .ti { font-size: 14px; }
+
+  /* Tags */
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: lowercase;
+    padding: 4px 9px; border-radius: var(--r-sm);
+    border: 1px solid var(--border-dark-strong); background: transparent; line-height: 1.2;
+    color: var(--muted-on-dark);
+  }
+  .tag--status {
+    color: var(--accent-amber); border-color: rgba(239,159,39,0.45);
+    background: rgba(239,159,39,0.08);
+  }
+
+  /* Cards */
+  .card {
+    border-radius: var(--r-lg); border: 1px solid var(--border-dark); padding: 24px;
+    background: #131316; transition: transform 220ms var(--ease), border-color 220ms var(--ease);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  /* Inline select */
+  .inline-select {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    border-bottom: 1px dashed var(--accent-amber);
+    color: var(--accent-amber);
+    font: inherit; padding: 0 4px;
+    cursor: pointer; position: relative;
+  }
+  .inline-select select {
+    background: transparent; border: 0; color: inherit; font: inherit;
+    padding: 0 16px 0 0; cursor: pointer; appearance: none; -webkit-appearance: none;
+    letter-spacing: inherit;
+  }
+  .inline-select select option { color: var(--text-on-light); background: var(--bg-cream); }
+  .inline-select .ti { font-size: 0.55em; opacity: .85; position: absolute; right: 2px; top: 50%; transform: translateY(-40%); pointer-events: none; }
+  .inline-select:hover { border-bottom-color: var(--accent-amber-2); }
+
+  /* Frame / chrome */
+  .frame {
+    position: relative; border: 1px solid var(--border-dark); border-radius: var(--r-lg);
+    background: #131316;
+    overflow: hidden;
+  }
+  .chrome {
+    height: 36px; display: flex; align-items: center; gap: 14px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--border-dark);
+    background: rgba(255,255,255,0.02);
+  }
+  .lights { display: flex; gap: 6px; }
+  .lights span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-dark-strong); }
+  .url {
+    flex: 1; height: 22px; border-radius: var(--r-sm);
+    display: flex; align-items: center; padding: 0 10px; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-on-dark);
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border-dark);
+  }
+
+  /* Journey thread (inherited) */
+  .journey {
+    position: fixed; right: 28px; top: 0; bottom: 0; width: 14px;
+    display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 50;
+  }
+  .journey .line {
+    position: absolute; top: 80px; bottom: 80px; width: 1px; background: var(--accent-amber);
+    opacity: 0.25; left: 50%; transform: translateX(-50%);
+  }
+  .journey .nodes { position: relative; flex: 1; width: 14px; }
+  .journey .node {
+    position: absolute; left: 0; width: 14px; height: 14px; border-radius: 50%;
+    border: 1px solid var(--accent-amber); background: var(--bg-dark);
+    transform: translateY(-50%);
+    transition: background 200ms var(--ease), box-shadow 200ms var(--ease);
+    pointer-events: auto;
+  }
+  .journey .node.filled { background: var(--accent-amber); }
+  .journey .node.active { box-shadow: 0 0 0 4px rgba(239, 159, 39, 0.15); }
+  .journey .node .lbl {
+    position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: lowercase;
+    color: var(--muted-on-dark); white-space: nowrap; opacity: 0; transition: opacity 200ms var(--ease);
+  }
+  .journey .node:hover .lbl, .journey .node.active .lbl { opacity: 1; }
+
+  /* ============================================================
+     PHASE 2 STYLES — new for this phase only
+     ============================================================ */
+
+  /* Zoom container — drives the Mercury laptop-zoom mechanic.
+     220vh tall so that 120vh of scroll runway exists below the
+     initial 100vh hero. .zoom-sticky pins the hero composition
+     to the viewport while scroll progress drives the JS transform. */
+  .zoom-wrap {
+    position: relative;
+    height: 220vh;
+    background: var(--bg-dark);
+  }
+  .zoom-sticky {
+    position: sticky; top: 0;
+    height: 100vh; width: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .zoom-sticky::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity: .035; mix-blend-mode: screen; z-index: 0;
+  }
+
+  /* 3D scene with environmental context */
+  .scene {
+    position: absolute; inset: 0; z-index: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .scene { transition: opacity 60ms linear; will-change: opacity; }
+  .ambient {
+    position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+    width: 1200px; height: 1200px;
+    background: radial-gradient(circle at center, rgba(239,159,39,0.06) 0%, rgba(239,159,39,0) 50%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .desk {
+    position: absolute; bottom: 0; left: -10%; right: -10%;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(245,241,232,0.025), transparent);
+    transform: perspective(800px) rotateX(60deg);
+    transform-origin: top center;
+    pointer-events: none;
+  }
+
+  .zoom-sticky > *:not(.scene) { position: relative; z-index: 1; }
+  .scene { z-index: 0; }
+
+  /* Hero header (top of zoom-sticky) */
+  .hero-header {
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .hero-header .container {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding-top: 0; padding-bottom: 0;
+  }
+
+  /* Hero stage — eyebrow + h2 + laptop + caption.
+     justify-content: flex-start so overflow always spills downward
+     (where .zoom-sticky's overflow:hidden clips it cleanly) instead
+     of pushing hero-text up under the header on short viewports. */
+  .hero-stage {
+    flex: 1 1 auto; min-height: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: 28px var(--pad) 32px;
+    gap: 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-text { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 800px; }
+  .hero-caption { margin-top: 12px; max-width: 720px; }
+
+  /* The laptop — sized larger than Phase 1 cards, capped */
+  .laptop-stage {
+    width: 100%; max-width: 880px;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 60ms linear;
+  }
+  .laptop {
+    /* uses .frame structure */
+    width: 100%;
+    transition: opacity 120ms linear;
+    box-shadow: 0 60px 80px -40px rgba(0,0,0,0.6);
+    transform: rotateX(-3deg);
+    transform-origin: center;
+  }
+  .laptop .chrome { transition: opacity 120ms linear; }
+  .laptop-body {
+    padding: 40px 36px 32px;
+    background: #131316;
+    transition: background-color 120ms linear;
+    position: relative;
+    overflow: hidden;
+    min-height: 460px;
+  }
+
+  /* Screen layers — hero drives height (in-flow), target overlays absolutely.
+     Crossfade is opacity-only so layout stays stable. */
+  .screen-layer {
+    display: flex; flex-direction: column; justify-content: flex-start;
+    transition: opacity 60ms linear;
+  }
+  .screen-layer--hero {
+    position: relative; z-index: 2;
+    opacity: 1;
+    gap: 32px;
+  }
+  .screen-layer--target {
+    position: absolute; inset: 0; z-index: 1;
+    opacity: 0;
+    gap: 16px;
+    padding: 40px 36px 32px;
+    background: #131316;
+  }
+  .screen-layer--target .eyebrow { color: var(--muted-on-dark); }
+  .screen-layer--target .h1 { color: var(--text-on-dark); margin-bottom: 12px; }
+  .screen-layer--target .body-lg { color: var(--muted-on-dark); }
+
+  /* The configurator sentence */
+  .configurator {
+    font-size: 30px; line-height: 1.25; font-weight: 500; letter-spacing: -0.015em;
+    text-align: center; color: var(--text-on-dark); margin: 8px 0;
+    text-wrap: balance;
+  }
+  .configurator .inline-select { font: inherit; color: var(--accent-amber); }
+  .configurator .inline-select select { font: inherit; }
+
+  /* Response panel — full-width inside laptop body */
+  .response {
+    border-top: 1px dashed var(--border-dark);
+    padding-top: 28px;
+    display: flex; flex-direction: column; gap: 18px;
+    text-align: left;
+  }
+  .response-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.10em; text-transform: lowercase; color: var(--muted-on-dark);
+  }
+  .response-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block; }
+  .response-copy { color: var(--text-on-dark); }
+  .response-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .response-cta-row { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 6px; align-items: center; }
+
+  /* Update flicker — barely visible flash on selection change */
+  .response.updating { opacity: 0.5; }
+  .response { transition: opacity 140ms var(--ease); }
+
+  /* Section 3 placeholder */
+  .section-3 {
+    min-height: 100vh; display: flex; align-items: center;
+  }
+  .section-3 .inner {
+    max-width: 880px; padding: 0 var(--pad);
+    margin: 0 auto;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+
+  /* Short-viewport adjustments: trim spacing + laptop size so the
+     full hero composition still fits without the header overlapping. */
+  @media (min-width: 901px) and (max-height: 800px) {
+    .hero-stage { gap: 14px; padding: 20px var(--pad) 24px; }
+    .hero-text { gap: 10px; }
+    .h2 { font-size: 24px; }
+    .laptop-body { padding: 28px 28px 24px; min-height: 360px; }
+    .configurator { font-size: 24px; }
+    .response { padding-top: 20px; gap: 14px; }
+    .hero-caption { margin-top: 4px; }
+  }
+  @media (min-width: 901px) and (max-height: 680px) {
+    .hero-stage { gap: 10px; padding: 14px var(--pad) 18px; }
+    .h2 { font-size: 20px; }
+    .laptop-stage { max-width: 720px; }
+    .laptop-body { padding: 22px 24px 20px; min-height: 300px; }
+    .configurator { font-size: 20px; }
+    .response { padding-top: 16px; gap: 12px; }
+    .response .body-lg { font-size: 15px; }
+    .hero-caption { display: none; }
+  }
+
+  /* ----------------------------------------------------------
+     Mobile: skip zoom entirely. Hero stacks normally, no sticky.
+     ---------------------------------------------------------- */
+  @media (max-width: 900px) {
+    :root { --section-pad: 80px; --pad: 20px; }
+    .h1-display { font-size: 40px; }
+    .h1 { font-size: 32px; }
+    .h2 { font-size: 24px; }
+    .configurator { font-size: 22px; }
+
+    .zoom-wrap { height: auto; }
+    .zoom-sticky { position: static; height: auto; min-height: 100vh; padding-bottom: 64px; }
+
+    .hero-header .container { flex-wrap: wrap; gap: 12px; }
+    .hero-header .nav { display: none; }
+    .hero-stage { padding: 24px 20px 40px; }
+
+    .laptop-stage {
+      /* On mobile we don't zoom — and we narrow the frame to phone-ish width. */
+      max-width: 360px;
+      transform: none !important;
+    }
+    .laptop .chrome { opacity: 1 !important; }
+    .laptop-body { padding: 24px 20px; gap: 24px; }
+
+    .journey { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Journey thread — right rail, inherited from Phase 1 -->
+<div class="journey" aria-hidden="true">
+  <span class="line"></span>
+  <div class="nodes" id="journey-nodes"></div>
+</div>
+
+<!-- ============================================================
+     SECTION 1 + 2 — Hero composition with sticky zoom mechanic
+     - .zoom-wrap is 220vh tall (100vh hero + 120vh scroll runway)
+     - .zoom-sticky pins the hero composition to the viewport
+     - The laptop scales 1.0 → 7.0 driven by scrollY via rAF
+     ============================================================ -->
+<section class="zoom-wrap" id="hero" data-screen-label="01 Hero">
+  <div class="zoom-sticky" id="zoom-sticky">
+
+    <!-- Header bar -->
+    <div class="hero-header">
+      <div class="container">
+        <div class="row" style="gap:14px;">
+          <span class="wordmark-mark"><span class="s">S</span></span>
+          <span class="wordmark"><span class="sof">Sof</span>SolutionsAI</span>
+        </div>
+        <nav class="nav">
+          <a href="#">services</a>
+          <a href="#">work</a>
+          <a href="#">how we work</a>
+          <a href="#">about</a>
+        </nav>
+        <button class="btn btn--primary" id="header-whatsapp"><span class="dot"></span>WhatsApp</button>
+      </div>
+    </div>
+
+    <!-- Hero stage: eyebrow, h2, laptop, caption -->
+    <div class="hero-stage">
+
+      <div class="hero-text">
+        <span class="eyebrow">● software studio · bengaluru + remote</span>
+        <h2 class="h2">Your business problem. Our software solution. Edit the sentence.</h2>
+      </div>
+
+      <!-- 3D scene with environmental context -->
+      <div class="scene">
+        <div class="ambient" id="ambient"></div>
+        <div class="desk"></div>
+      </div>
+
+      <!-- The laptop — sticky scales this whole element -->
+      <div class="laptop-stage" id="laptop-stage">
+        <div class="frame laptop" id="laptop">
+          <div class="chrome" id="laptop-chrome">
+            <div class="lights"><span></span><span></span><span></span></div>
+            <div class="url"><i class="ti ti-lock"></i>sofsolutionsai.com/configure</div>
+            <i class="ti ti-arrows-maximize" style="color:var(--muted-on-dark);font-size:14px;"></i>
+          </div>
+
+          <div class="laptop-body">
+
+            <!-- Screen layer 1: hero configurator (fades out during zoom) -->
+            <div class="screen-layer screen-layer--hero" id="screen-hero">
+              <!-- Configurator sentence -->
+              <p class="configurator">
+                I run a
+                <span class="inline-select">
+                  <select id="cfg-business" aria-label="business">
+                    <option value="restaurant chain">restaurant chain</option>
+                    <option value="bank">bank</option>
+                    <option value="clinic">clinic</option>
+                    <option value="logistics company">logistics company</option>
+                    <option value="saas startup">saas startup</option>
+                    <option value="retail store">retail store</option>
+                  </select>
+                  <i class="ti ti-chevron-down"></i>
+                </span>
+                and I need
+                <span class="inline-select">
+                  <select id="cfg-need" aria-label="need">
+                    <option value="a mobile ordering app">a mobile ordering app</option>
+                    <option value="a web dashboard">a web dashboard</option>
+                    <option value="an ai support agent">an ai support agent</option>
+                    <option value="an appointment booker">an appointment booker</option>
+                    <option value="a whole platform">a whole platform</option>
+                  </select>
+                  <i class="ti ti-chevron-down"></i>
+                </span>.
+              </p>
+
+              <!-- Response panel — updated by JS on selection change -->
+              <div class="response" id="response">
+                <span class="response-eyebrow" id="response-eyebrow">↳ here's what we'd ship</span>
+                <p class="body-lg response-copy" id="response-copy"></p>
+                <div class="response-tags" id="response-tags"></div>
+                <div class="response-cta-row">
+                  <button class="btn btn--primary" id="cta-whatsapp"><span class="dot"></span>WhatsApp us about this</button>
+                  <button class="btn btn--ghost-dark">See a similar build<i class="ti ti-arrow-right"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen layer 2: section 3 target (fades in during zoom, then seamless transition) -->
+            <div class="screen-layer screen-layer--target" id="screen-target">
+              <span class="eyebrow">● 03 · what we ship</span>
+              <h1 class="h1-display" style="margin-top: 8px; margin-bottom: 16px;">Four things we ship well enough to stake our name on.</h1>
+              <p class="body-lg">Restaurant ordering. Banking dashboards. AI support. Healthcare portals. Each one built by the same people who'd take your call.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <p class="body-sm muted-dark hero-caption">
+        Edit the sentence. We'll tell you what we'd build, who we'd put on it, and how long it'd take — no form, no sales call, no slide deck.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — placeholder destination after the zoom
+     Must EXACTLY MATCH what's visible at zoom-end
+     ============================================================ -->
+<section class="surface surface--dark tex-dots-dark" id="section-3" data-screen-label="03 What we ship">
+  <div class="section-3 inner-wrap">
+    <div class="inner">
+      <span class="eyebrow">● 03 · what we ship</span>
+      <h1 class="h1-display" style="margin-top: 8px; margin-bottom: 16px;">Four things we ship well enough to stake our name on.</h1>
+      <p class="body-lg muted-dark">
+        Restaurant ordering. Banking dashboards. AI support. Healthcare portals. Each one built by the same people who'd take your call.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+/* =================================================================
+   Mercury laptop-zoom mechanic (revised)
+   - Reads scrollY on each frame via requestAnimationFrame
+   - Normalizes progress over a 120vh runway starting at top of #hero
+   - Uses quadratic ease-in: eased = p * p
+   - Drives 6 values: scale, ambient opacity, chrome opacity, hero opacity, 
+     target opacity, frame/body opacity
+   - Disabled below 900px viewport
+   ================================================================= */
+(function () {
+  const stage = document.getElementById('laptop-stage');
+  const laptop = document.getElementById('laptop');
+  const chrome = document.getElementById('laptop-chrome');
+  const scene  = document.querySelector('.scene');
+  const body   = laptop.querySelector('.laptop-body');
+  const heroLayer = document.getElementById('screen-hero');
+  const targetLayer = document.getElementById('screen-target');
+  const hero   = document.getElementById('hero');
+
+  if (!stage || !laptop || !hero) return;
+
+  let ticking = false;
+
+  function isDesktop() { return window.innerWidth > 900; }
+
+  function easeInQuad(p) { return p * p; }
+
+  function update() {
+    if (!isDesktop()) {
+      stage.style.transform = '';
+      chrome.style.opacity = '';
+      if (scene) scene.style.opacity = '';
+      laptop.style.opacity = '';
+      body.style.backgroundColor = '';
+      body.style.borderColor = '';
+      heroLayer.style.opacity = '1';
+      targetLayer.style.opacity = '0';
+      ticking = false;
+      return;
+    }
+
+    const vh = window.innerHeight;
+    const heroTop = hero.offsetTop;
+    const runway = vh * 1.2;
+    const raw = (window.scrollY - heroTop) / runway;
+    const p = Math.max(0, Math.min(1, raw));
+    const eased = easeInQuad(p);
+
+    // Scale: 1 → 7.0 (eased)
+    const scale = 1 + eased * 6;
+    stage.style.transform = `scale(${scale})`;
+
+    // Scene (environment) fades 1 → 0 between scale 1.5 → 3 — you're moving toward the screen
+    const scaleScene = (3 - scale) / 1.5;
+    const sceneOp = Math.max(0, Math.min(1, scaleScene));
+    if (scene) scene.style.opacity = sceneOp.toFixed(3);
+
+    // Chrome fades 1 → 0 between scale 2.5 → 4
+    const scaleChrome = (4 - scale) / 1.5;
+    const chromeOp = Math.max(0, Math.min(1, scaleChrome));
+    chrome.style.opacity = chromeOp.toFixed(3);
+
+    // Hero content fades 1 → 0 between scale 2.5 → 4.5
+    const scaleHero = (4.5 - scale) / 2;
+    const heroOp = Math.max(0, Math.min(1, scaleHero));
+    heroLayer.style.opacity = heroOp.toFixed(3);
+
+    // Target content fades 0 → 1 between scale 3.5 → 5.5
+    const scaleTarget = (scale - 3.5) / 2;
+    const targetOp = Math.max(0, Math.min(1, scaleTarget));
+    targetLayer.style.opacity = targetOp.toFixed(3);
+
+    // Frame border + background fade 1 → 0 between scale 5 → 7
+    const scaleFrame = (7 - scale) / 2;
+    const frameOp = Math.max(0, Math.min(1, scaleFrame));
+    laptop.style.opacity = frameOp.toFixed(3);
+    body.style.backgroundColor = `rgba(19, 19, 22, ${frameOp.toFixed(3)})`;
+    laptop.style.borderColor = `rgba(245, 241, 232, ${(0.12 * frameOp).toFixed(3)})`;
+
+    // Disable pointer events at the very end of the zoom
+    if (p > 0.92) {
+      stage.style.pointerEvents = 'none';
+    } else {
+      stage.style.pointerEvents = '';
+    }
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();
+
+
+/* =================================================================
+   Configurator — reads two <select>s, updates the response panel
+   in real time. Builds a wa.me URL for both WhatsApp CTAs.
+   ================================================================= */
+(function () {
+  const business = document.getElementById('cfg-business');
+  const need     = document.getElementById('cfg-need');
+  const responseEl = document.getElementById('response');
+  const copyEl     = document.getElementById('response-copy');
+  const tagsEl     = document.getElementById('response-tags');
+  const eyebrowEl  = document.getElementById('response-eyebrow');
+  const ctaWA      = document.getElementById('cta-whatsapp');
+  const headerWA   = document.getElementById('header-whatsapp');
+
+  if (!business || !need) return;
+
+  // Curated business × need response table.
+  // Keys are `business|need`. Fallback applies otherwise.
+  const responses = {
+    'restaurant chain|a mobile ordering app': {
+      copy: "Mobile apps for F&B are our sweet spot — 8 shipped this year. We'd start with the order flow, wire up Stripe + WhatsApp ordering, sync to your kitchen display, and have something in your hands by week 4.",
+      tags: ['react native','stripe','postgres','whatsapp'],
+      status: '~14 weeks · ₹18–25L'
+    },
+    'restaurant chain|a web dashboard': {
+      copy: "A POS-grade dashboard for F&B operators — table turn, item velocity, kitchen lag, voids. We'd plug into your existing POS first, then add the layer you actually need.",
+      tags: ['next.js','postgres','clickhouse'],
+      status: '~10 weeks · ₹14–20L'
+    },
+    'bank|a web dashboard': {
+      copy: "Banking dashboards are core to what we do. We'd start with the transaction pipeline, layer in real-time fraud signals, build the reconciliation flow, and ship an ops view your auditors will trust.",
+      tags: ['typescript','kafka','redis','postgres'],
+      status: '~16 weeks · ₹25–40L'
+    },
+    'bank|an ai support agent': {
+      copy: "An LLM-backed agent inside your existing support stack — RAG over your policies, scoped to your data, escalates when it shouldn't guess. We've put 11 of these in front of real customers since 2023.",
+      tags: ['openai','pgvector','fastapi','python'],
+      status: '~12 weeks · ₹18–28L'
+    },
+    'clinic|an appointment booker': {
+      copy: "Healthcare booking flows are HIPAA-touched, ABDM-friendly. We'd build the booking engine, sync doctor availability, send SMS confirmations through Twilio, and a patient portal that doesn't feel like a webview.",
+      tags: ['next.js','mongodb','twilio','express'],
+      status: '~12 weeks · ₹14–22L'
+    },
+    'logistics company|a mobile ordering app': {
+      copy: "Last-mile driver apps with offline-first sync. Route optimization, hub dashboards, signature capture, and a back-office that doesn't fall over on Diwali.",
+      tags: ['react native','go','postgis','websockets'],
+      status: '~14 weeks · ₹20–30L'
+    },
+    'saas startup|a whole platform': {
+      copy: "A whole-stack build from auth to billing to dashboards. We move in 2-week sprints, deploy every Friday, and you'll have a working v1 long before any agency would have finished their wireframes.",
+      tags: ['next.js','typescript','stripe','supabase'],
+      status: '~16 weeks · ₹30–50L'
+    }
+  };
+
+  function fallback(b, n) {
+    return {
+      copy: `We haven't shipped exactly this combination yet, but ${b} × ${n} is in our range. Send the sentence to us on WhatsApp — we'll spend 30 minutes on a call and come back with a scope, a team, and a timeline you can plan around.`,
+      tags: ['typescript','postgres','open-stack'],
+      status: 'scoped on a 30-min call'
+    };
+  }
+
+  function render() {
+    const b = business.value;
+    const n = need.value;
+    const key = b + '|' + n;
+    const data = responses[key] || fallback(b, n);
+
+    // Brief flicker on change
+    responseEl.classList.add('updating');
+    setTimeout(() => responseEl.classList.remove('updating'), 80);
+
+    copyEl.textContent = data.copy;
+
+    // Tags: tech chips + status pill
+    tagsEl.innerHTML = '';
+    data.tags.forEach(t => {
+      const el = document.createElement('span');
+      el.className = 'tag';
+      el.textContent = t;
+      tagsEl.appendChild(el);
+    });
+    const status = document.createElement('span');
+    status.className = 'tag tag--status';
+    status.textContent = data.status;
+    tagsEl.appendChild(status);
+
+    // Build wa.me URL with pre-filled message
+    const msg = `Hi! I run a ${b} and I need ${n}. Saw your configurator — what would you build for us?`;
+    const url = `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
+    ctaWA.dataset.href = url;
+    if (headerWA) headerWA.dataset.href = url;
+  }
+
+  business.addEventListener('change', render);
+  need.addEventListener('change', render);
+
+  // CTAs open WhatsApp in new tab using the latest URL
+  function openWA(e) {
+    const href = e.currentTarget.dataset.href;
+    if (href) window.open(href, '_blank', 'noopener');
+  }
+  ctaWA.addEventListener('click', openWA);
+  if (headerWA) headerWA.addEventListener('click', openWA);
+
+  // Prevent the inline-select from feeling like a default <select> on Safari —
+  // forcing color inheritance on the option list isn't possible cross-browser,
+  // but at least the trigger row stays cohesive.
+
+  render();
+})();
+
+
+/* =================================================================
+   Journey thread — copied from Phase 1, scoped to the two sections
+   here. Fills first node within Hero, second when crossing Section 3.
+   ================================================================= */
+(function () {
+  const nodesWrap = document.getElementById('journey-nodes');
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!nodesWrap || !sections.length) return;
+
+  const labelMap = {
+    'hero': '01 · hero',
+    'section-3': '03 · what we ship'
+  };
+
+  const nodeEls = sections.map((s, i) => {
+    const el = document.createElement('span');
+    el.className = 'node';
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = labelMap[s.id] || String(i+1).padStart(2,'0');
+    el.appendChild(lbl);
+    nodesWrap.appendChild(el);
+    return el;
+  });
+
+  function position() {
+    // Distribute nodes by their offsetTop ratio across the journey track.
+    const track = nodesWrap.getBoundingClientRect();
+    const docH = document.documentElement.scrollHeight;
+    sections.forEach((s, i) => {
+      const pct = Math.min(1, Math.max(0, s.offsetTop / docH));
+      nodeEls[i].style.top = (pct * track.height) + 'px';
+    });
+  }
+
+  function update() {
+    const mid = window.scrollY + window.innerHeight * 0.45;
+    let activeIdx = 0;
+    sections.forEach((s, i) => {
+      if (s.offsetTop <= mid) activeIdx = i;
+      if (s.offsetTop <= window.scrollY + window.innerHeight * 0.55) {
+        nodeEls[i].classList.add('filled');
+      } else {
+        nodeEls[i].classList.remove('filled');
+      }
+    });
+    nodeEls.forEach((el, i) => el.classList.toggle('active', i === activeIdx));
+  }
+
+  position(); update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { position(); update(); }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { position(); update(); });
+})();
+</script>
+
+</body>
+</html>

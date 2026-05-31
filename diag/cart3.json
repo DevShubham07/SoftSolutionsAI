@@ -1,0 +1,31 @@
+{
+ "badge": "1",
+ "before": {
+  "cls": "shop-cart open",
+  "transform": "none",
+  "visibility": "visible",
+  "display": "flex",
+  "pointer": "auto",
+  "html": 905
+ },
+ "cartBtnBox": {
+  "x": 325,
+  "y": 348.84375,
+  "vis": true
+ },
+ "afterTap": {
+  "cls": "shop-cart",
+  "open": false,
+  "transform": "matrix(1, 0, 0, 1, 299.266, 0)",
+  "left": 369,
+  "right": 668,
+  "withinFrame": false,
+  "rows": 0,
+  "htmlLen": 905,
+  "snippet": "Your cart cart is empty Chambray shirtsize M · ₹2,450×1 free shipping unlocked ✓"
+ },
+ "afterClick": {
+  "open": true
+ },
+ "errors": []
+}

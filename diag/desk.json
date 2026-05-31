@@ -1,0 +1,109 @@
+{
+ "showcase": {
+  "top": 0,
+  "h": 3600,
+  "vh": 900
+ },
+ "activeDemo": [
+  {
+   "i": "0",
+   "active": true,
+   "op": "1",
+   "pe": "auto"
+  },
+  {
+   "i": "1",
+   "active": false,
+   "op": "0",
+   "pe": "none"
+  },
+  {
+   "i": "2",
+   "active": false,
+   "op": "0",
+   "pe": "none"
+  },
+  {
+   "i": "3",
+   "active": false,
+   "op": "0",
+   "pe": "none"
+  }
+ ],
+ "heroBleed": {
+  "hero": {
+   "pos": "relative",
+   "z": "auto",
+   "op": "1",
+   "vis": "visible",
+   "shadow": "none",
+   "top": -270,
+   "bot": 1530
+  },
+  "heroSticky": {
+   "pos": "sticky",
+   "z": "2",
+   "op": "1",
+   "vis": "visible",
+   "shadow": "none",
+   "top": 0,
+   "bot": 900
+  },
+  "sec01": {
+   "pos": "static",
+   "z": "auto",
+   "op": "1",
+   "vis": "visible",
+   "shadow": "none",
+   "top": -270,
+   "bot": 1530
+  },
+  "sec02": {
+   "pos": "relative",
+   "z": "1",
+   "op": "1",
+   "vis": "visible",
+   "shadow": "none",
+   "top": 630,
+   "bot": 4230
+  },
+  "showcaseSticky": {
+   "pos": "sticky",
+   "z": "auto",
+   "op": "1",
+   "vis": "visible",
+   "shadow": "none",
+   "top": 630,
+   "bot": 1530
+  }
+ },
+ "rowBox": {
+  "x": 723.4512329101562,
+  "y": 1101.4368896484375
+ },
+ "afterOpen": {
+  "open": false
+ },
+ "closeProbe": {
+  "btnRect": {
+   "x": 1104,
+   "y": 914,
+   "w": 20,
+   "h": 20
+  },
+  "cx": 1114,
+  "cy": 924,
+  "topEl": null,
+  "reachesBtn": false,
+  "btnPE": "auto",
+  "drawerPE": "auto"
+ },
+ "afterCloseClick": {
+  "open": false
+ },
+ "dispatch": {
+  "afterBtnClick": true,
+  "afterIClick": true
+ },
+ "errors": []
+}

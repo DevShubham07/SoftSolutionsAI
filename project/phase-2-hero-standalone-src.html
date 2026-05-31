@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SofSolutionsAI — phase 02 · scroll-scrub hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<!-- Lifted out of inline JS so the bundler can inline the MP4 as a blob. -->
+<meta name="ext-resource-dependency" content="./hero-scrub-lg.mp4" data-resource-id="heroVideo" />
+<template id="__bundler_thumbnail" data-bg-color="#13121a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#13121a"/>
+    <rect x="180" y="180" width="840" height="440" rx="8" fill="#1d1c25"/>
+    <rect x="180" y="180" width="840" height="32" fill="#13121a"/>
+    <circle cx="600" cy="400" r="60" fill="#EF9F27" opacity="0.85"/>
+    <polygon points="588,376 588,424 624,400" fill="#13121a"/>
+    <text x="600" y="730" font-family="Space Mono, monospace" font-size="22" fill="#8a857b" letter-spacing="2" text-anchor="middle" opacity="0.8">phase 02 · scroll-scrub hero</text>
+  </svg>
+</template>
+<style>
+  /* ============================================================
+     PHASE 1 TOKENS + BASE — inherited verbatim
+     ============================================================ */
+  :root {
+    --bg-dark: #13121a;
+    --bg-cream: #f5f1e8;
+    --accent-amber: #EF9F27;
+    --accent-amber-2: #BA7517;
+    --text-on-dark: #f5f1e8;
+    --text-on-light: #1a1a1a;
+    --muted-on-dark: #8a8595;
+    --muted-on-light: #6a655c;
+    --border-dark: rgba(245, 241, 232, 0.10);
+    --border-light: rgba(26, 26, 26, 0.10);
+    --border-dark-strong: rgba(245, 241, 232, 0.22);
+    --border-light-strong: rgba(26, 26, 26, 0.22);
+
+    --font-sans: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+
+    --container: 1200px;
+    --pad: 32px;
+    --section-pad: 120px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-pill: 999px;
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent-amber); color: #1a1a1a; }
+
+  .surface { position: relative; padding: var(--section-pad) 0; overflow: hidden; }
+  .surface--dark { background: var(--bg-dark); color: var(--text-on-dark); }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); position: relative; }
+
+  .tex-dots-dark::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(245,241,232,1) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: .015;
+  }
+
+  /* Typography */
+  .h1-display { font-size: 64px; line-height: 1.05; font-weight: 500; letter-spacing: -0.025em; margin: 0; }
+  .h1 { font-size: 48px; line-height: 1.08; font-weight: 500; letter-spacing: -0.02em; margin: 0; }
+  .h2 { font-size: 32px; line-height: 1.15; font-weight: 500; letter-spacing: -0.015em; margin: 0; }
+  .h3 { font-size: 22px; line-height: 1.25; font-weight: 500; margin: 0; }
+  .body-lg { font-size: 18px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .body   { font-size: 16px; line-height: 1.60; font-weight: 400; margin: 0; }
+  .body-sm{ font-size: 14px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .mono   { font-family: var(--font-mono); }
+  .mono-label { font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: lowercase; }
+  .mono-tag   { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; text-transform: lowercase; }
+  .muted-dark  { color: var(--muted-on-dark); }
+
+  /* Eyebrow */
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: lowercase; color: var(--muted-on-dark); }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block; }
+
+  /* Wordmark */
+  .wordmark { font-family: var(--font-sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1; }
+  .wordmark .sof { color: var(--accent-amber); }
+  .wordmark-mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border: 1px solid currentColor; border-radius: var(--r-sm);
+    font-family: var(--font-sans); font-weight: 500; font-size: 18px; letter-spacing: -0.02em;
+  }
+  .wordmark-mark .s { color: var(--accent-amber); }
+
+  /* Page header */
+  .page-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 0; gap: 24px;
+  }
+  .page-header .nav { display: flex; gap: 28px; align-items: center; }
+  .page-header .nav a {
+    color: var(--text-on-dark); text-decoration: none;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+    transition: color 200ms var(--ease);
+  }
+  .page-header .nav a:hover { color: var(--accent-amber); }
+
+  /* Layout helpers */
+  .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .stack { display: flex; flex-direction: column; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans); font-weight: 500; font-size: 14px;
+    padding: 10px 18px; border-radius: var(--r-pill);
+    border: 1px solid transparent; cursor: pointer; text-decoration: none;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease), background-color 200ms var(--ease);
+    user-select: none; line-height: 1; white-space: nowrap;
+  }
+  .btn .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .9; }
+  .btn--primary { background: var(--accent-amber); color: #1a1a1a; border-color: var(--accent-amber); }
+  .btn--primary:hover { transform: translateY(-1px); border-color: var(--accent-amber-2); }
+  .btn--ghost-dark { background: transparent; color: var(--text-on-dark); border-color: var(--border-dark-strong); }
+  .btn--ghost-dark:hover { transform: translateY(-1px); border-color: var(--text-on-dark); }
+  .btn .ti { font-size: 14px; }
+
+  /* Tags */
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: lowercase;
+    padding: 4px 9px; border-radius: var(--r-sm);
+    border: 1px solid var(--border-dark-strong); background: transparent; line-height: 1.2;
+    color: var(--muted-on-dark);
+  }
+  .tag--status {
+    color: var(--accent-amber); border-color: rgba(239,159,39,0.45);
+    background: rgba(239,159,39,0.08);
+  }
+
+  /* Inline select */
+  .inline-select {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    border-bottom: 1px dashed var(--accent-amber);
+    color: var(--accent-amber);
+    font: inherit; padding: 0 4px;
+    cursor: pointer; position: relative;
+  }
+  .inline-select select {
+    background: transparent; border: 0; color: inherit; font: inherit;
+    padding: 0 16px 0 0; cursor: pointer; appearance: none; -webkit-appearance: none;
+    letter-spacing: inherit;
+  }
+  .inline-select select option { color: var(--text-on-light); background: var(--bg-cream); }
+  .inline-select .ti { font-size: 0.55em; opacity: .85; position: absolute; right: 2px; top: 50%; transform: translateY(-40%); pointer-events: none; }
+  .inline-select:hover { border-bottom-color: var(--accent-amber-2); }
+
+  /* Journey thread (inherited from Phase 1) */
+  .journey {
+    position: fixed; right: 28px; top: 0; bottom: 0; width: 14px;
+    display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 50;
+  }
+  .journey .line {
+    position: absolute; top: 80px; bottom: 80px; width: 1px; background: var(--accent-amber);
+    opacity: 0.25; left: 50%; transform: translateX(-50%);
+  }
+  .journey .nodes { position: relative; flex: 1; width: 14px; }
+  .journey .node {
+    position: absolute; left: 0; width: 14px; height: 14px; border-radius: 50%;
+    border: 1px solid var(--accent-amber); background: var(--bg-dark);
+    transform: translateY(-50%);
+    transition: background 200ms var(--ease), box-shadow 200ms var(--ease);
+    pointer-events: auto;
+  }
+  .journey .node.filled { background: var(--accent-amber); }
+  .journey .node.active { box-shadow: 0 0 0 4px rgba(239, 159, 39, 0.15); }
+  .journey .node .lbl {
+    position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: lowercase;
+    color: var(--muted-on-dark); white-space: nowrap; opacity: 0; transition: opacity 200ms var(--ease);
+  }
+  .journey .node:hover .lbl, .journey .node.active .lbl { opacity: 1; }
+
+  /* ============================================================
+     PHASE 2 — Hero scrubbing section
+     ============================================================ */
+  .hero-scrub {
+    position: relative;
+    height: 200vh;            /* scroll runway for the 6.4s scrub */
+    background: var(--bg-dark);
+  }
+  .hero-sticky {
+    position: sticky; top: 0;
+    height: 100vh; width: 100%;
+    overflow: hidden;
+  }
+  #hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center center;
+    background: #13121a;
+    will-change: opacity;
+  }
+  /* Header bar sits on top of the video; no chrome until scrolled */
+  .hero-header-overlay {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 10;
+    transition: background-color 240ms var(--ease), backdrop-filter 240ms var(--ease), border-color 240ms var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  body.hero-scrolled .hero-header-overlay {
+    background: rgba(19, 18, 26, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: var(--border-dark);
+  }
+  /* Headline overlay — only legitimate text-shadow on the page */
+  .hero-headline {
+    position: absolute; top: 18%; left: 0; right: 0;
+    z-index: 5; text-align: center;
+    padding: 0 var(--pad);
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+  .hero-headline .h1-display {
+    color: var(--text-on-dark);
+    text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    max-width: 980px; margin: 0 auto;
+    text-wrap: balance;
+  }
+  .hero-headline .body-lg {
+    margin-top: 14px;
+    color: rgba(245, 241, 232, 0.78);
+    text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+  }
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: lowercase;
+    color: rgba(245, 241, 232, 0.7);
+    text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    pointer-events: none;
+    will-change: opacity;
+  }
+  .scroll-cue .ti { font-size: 14px; }
+
+  /* ============================================================
+     PHASE 2 — Configurator section (no laptop framing)
+     ============================================================ */
+  .configurator-section {
+    position: relative;
+    padding: calc(var(--section-pad) + 40px) 0 var(--section-pad) 0;
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    overflow: hidden;
+  }
+  .configurator-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 600px; height: 300px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(239,159,39,0.05) 0%, transparent 60%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .configurator-section .inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    display: flex; flex-direction: column; gap: 40px;
+    position: relative; z-index: 1;
+  }
+  .configurator-section .inner > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+  }
+  .configurator-section.is-revealed .inner > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+  .configurator-section.is-revealed .inner > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
+  .configurator-section.is-revealed .inner > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
+  .configurator {
+    font-size: 44px; line-height: 1.18; font-weight: 500; letter-spacing: -0.02em;
+    color: var(--text-on-dark);
+    text-wrap: balance;
+    margin: 0;
+  }
+  .configurator .inline-select { font: inherit; color: var(--accent-amber); }
+  .configurator .inline-select select { font: inherit; }
+
+  /* Response panel — clean on the dark surface, no frame, just a hairline */
+  .response {
+    border-top: 1px dashed var(--border-dark);
+    padding-top: 32px;
+    display: flex; flex-direction: column; gap: 22px;
+    text-align: left;
+    transition: opacity 140ms var(--ease);
+  }
+  .response.updating { opacity: 0.5; }
+  .response-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    letter-spacing: 0.10em; text-transform: lowercase; color: var(--muted-on-dark);
+  }
+  .response-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block; }
+  .response-copy { color: var(--text-on-dark); max-width: 760px; }
+  .response-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .response-status { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .response-cta-row { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 6px; align-items: center; }
+
+  /* ============================================================
+     SECTION 3 placeholder
+     ============================================================ */
+  .section-3 { min-height: 100vh; display: flex; align-items: center; }
+  .section-3 .inner {
+    max-width: 980px; padding: 0 var(--pad);
+    margin: 0 auto;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+
+  /* ============================================================
+     MOBILE FALLBACK (<=900px)
+     Hero is in regular flow, video replaced by static start frame.
+     ============================================================ */
+  @media (max-width: 900px) {
+    :root { --section-pad: 72px; --pad: 20px; }
+    .h1-display { font-size: 36px; }
+    .h1 { font-size: 28px; }
+    .h2 { font-size: 22px; }
+    .configurator { font-size: 26px; }
+
+    .hero-scrub { height: auto; }
+    .hero-sticky { position: static; height: auto; min-height: 70vh; }
+    #hero-video { display: none; }
+    .hero-end-poster { display: none; }
+    .hero-mobile-poster {
+      display: block;
+      width: 100%; height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .hero-headline {
+      position: static; padding: 32px 20px 24px;
+      text-align: left;
+    }
+    .hero-headline .h1-display,
+    .hero-headline .body-lg { text-shadow: none; }
+    .hero-headline .h1-display { margin: 0; max-width: none; }
+    .scroll-cue { display: none; }
+
+    .page-header .nav { display: none; }
+    .hero-header-overlay {
+      position: static;
+    }
+    body.hero-scrolled .hero-header-overlay {
+      background: transparent; backdrop-filter: none; border-bottom-color: transparent;
+    }
+
+    .journey { display: none; }
+  }
+  /* Show mobile poster only on mobile */
+  .hero-mobile-poster { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Journey thread — right rail -->
+<div class="journey" aria-hidden="true">
+  <span class="line"></span>
+  <div class="nodes" id="journey-nodes"></div>
+</div>
+
+<!-- ============================================================
+     SECTION 1 — Hero scrubbing
+     200vh outer · 100vh sticky inner with video + headline + header
+     ============================================================ -->
+<section class="hero-scrub" id="hero" data-screen-label="01 Hero">
+  <div class="hero-sticky">
+
+    <!-- Video element (scrubbed by JS — never played).
+         No <source> in markup: we fetch the MP4 as a Blob and assign
+         video.src = URL.createObjectURL(blob) so the whole byte-range is
+         in memory and `seekable` covers the full duration. Without this,
+         dev servers that don't support HTTP byte-range requests leave
+         seekable=[0,0] and currentTime assignments are silently ignored. -->
+    <video id="hero-video" muted playsinline preload="auto" disablepictureinpicture
+           poster="./hero_start_frame_sm.jpg"></video>
+
+    <!-- Mobile-only static poster (replaces video on small screens) -->
+    <img class="hero-mobile-poster" src="./hero_start_frame_sm.jpg" alt="" />
+
+    <!-- Header bar overlay -->
+    <header class="hero-header-overlay">
+      <div class="container">
+        <div class="page-header">
+          <div class="row" style="gap:14px;">
+            <span class="wordmark-mark"><span class="s">S</span></span>
+            <span class="wordmark"><span class="sof">Sof</span>SolutionsAI</span>
+          </div>
+          <nav class="nav">
+            <a href="#">services</a>
+            <a href="#">work</a>
+            <a href="#">how we work</a>
+            <a href="#">about</a>
+          </nav>
+          <button class="btn btn--primary" id="header-whatsapp"><span class="dot"></span>WhatsApp</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Headline overlay -->
+    <div class="hero-headline">
+      <h1 class="h1-display">Your business problem. Our software solution.</h1>
+      <p class="body-lg">Edit the sentence.</p>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue" id="scroll-cue">
+      <i class="ti ti-arrow-down"></i>
+      <span>scroll to dive in</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — Configurator (no laptop frame; sits on the dark
+     surface so it continues the dashboard view we just dove into)
+     ============================================================ -->
+<section class="configurator-section tex-dots-dark" id="configurator" data-screen-label="02 Configure">
+  <div class="inner">
+
+    <span class="eyebrow">● 02 · configure your build</span>
+
+    <p class="configurator">
+      I run a
+      <span class="inline-select">
+        <select id="cfg-business" aria-label="business">
+          <option value="restaurant chain">restaurant chain</option>
+          <option value="bank">bank</option>
+          <option value="clinic">clinic</option>
+          <option value="logistics company">logistics company</option>
+          <option value="saas startup">saas startup</option>
+          <option value="retail store">retail store</option>
+        </select>
+        <i class="ti ti-chevron-down"></i>
+      </span>
+      and I need
+      <span class="inline-select">
+        <select id="cfg-need" aria-label="need">
+          <option value="a mobile ordering app">a mobile ordering app</option>
+          <option value="a web dashboard">a web dashboard</option>
+          <option value="an ai support agent">an ai support agent</option>
+          <option value="an appointment booker">an appointment booker</option>
+          <option value="a whole platform">a whole platform</option>
+        </select>
+        <i class="ti ti-chevron-down"></i>
+      </span>.
+    </p>
+
+    <div class="response" id="response">
+      <span class="response-eyebrow" id="response-eyebrow">↳ here's what we'd ship</span>
+      <p class="body-lg response-copy" id="response-copy"></p>
+      <div class="response-tags" id="response-tags"></div>
+      <div class="response-status" id="response-status"></div>
+      <div class="response-cta-row">
+        <button class="btn btn--primary" id="cta-whatsapp"><span class="dot"></span>WhatsApp us about this</button>
+        <button class="btn btn--ghost-dark">See a similar build<i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — placeholder
+     ============================================================ -->
+<section class="surface surface--dark tex-dots-dark section-3" id="section-3" data-screen-label="03 What we ship">
+  <div class="inner">
+    <span class="eyebrow">● 03 · what we ship</span>
+    <h1 class="h1-display" style="margin-top: 8px; margin-bottom: 16px;">Section 3 lives here — coming in phase 03.</h1>
+    <p class="body-lg muted-dark">
+      A sticky-scroll showcase of the four things we ship well enough to stake our name on — restaurant ordering, banking dashboards, AI support, healthcare portals. Wiring that up next.
+    </p>
+  </div>
+</section>
+
+
+<script>
+/* =================================================================
+   Hero scrubber — scroll-linked video frame seeking.
+   - section is 200vh; runway = section.offsetHeight - viewport.
+   - progress 0..1 drives video.currentTime = progress * duration
+   - end-frame poster crossfades in at progress >= 0.99
+   - headline fades out by progress 0.2
+   - body gets `hero-scrolled` class once progress > 0.05 (header bg)
+   - Disabled on mobile (<=900px) — static poster shown instead.
+   ================================================================= */
+(function() {
+  const section   = document.querySelector('.hero-scrub');
+  const video     = document.getElementById('hero-video');
+  const headline  = document.querySelector('.hero-headline');
+  const scrollCue = document.getElementById('scroll-cue');
+
+  if (!section || !video) return;
+
+  /* Trim the scrub: stop before the dashboard reveals at the very end.
+     The source video ends on a fully-revealed dashboard; we cap the
+     scrub at ~82% so the user sees the dive-in but not the dashboard. */
+  const SCRUB_END_RATIO = 0.82;
+
+  let ticking = false;
+  let videoReady = false;
+  let lastSeekTime = -1;
+
+  function isDesktop() { return window.innerWidth > 900; }
+
+  function seekTo(t) {
+    if (!videoReady) return;
+    if (Math.abs(t - lastSeekTime) < 0.016) return; // ~1 frame
+    try {
+      video.currentTime = t;
+      lastSeekTime = t;
+    } catch (e) { /* non-fatal */ }
+  }
+
+  function update() {
+    if (!isDesktop()) {
+      document.body.classList.remove('hero-scrolled');
+      if (headline) { headline.style.opacity = ''; headline.style.transform = ''; }
+      if (scrollCue) scrollCue.style.opacity = '';
+      ticking = false;
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const sectionTop = window.scrollY + rect.top;
+    const runway = section.offsetHeight - window.innerHeight;
+    const raw = (window.scrollY - sectionTop) / Math.max(1, runway);
+    const progress = Math.max(0, Math.min(1, raw));
+
+    // Seek video — trimmed so we never reach the dashboard reveal
+    if (videoReady && video.duration && !isNaN(video.duration)) {
+      const targetTime = progress * video.duration * SCRUB_END_RATIO;
+      seekTo(targetTime);
+    }
+
+    // Headline fade — gone by 20% scroll
+    if (headline) {
+      const fade = Math.max(0, 1 - progress / 0.2);
+      headline.style.opacity = fade.toFixed(3);
+      headline.style.transform = `translateY(${((1 - fade) * -20).toFixed(2)}px)`;
+    }
+
+    // Video fade-to-dark in the final 12% of scroll progress.
+    // .hero-scrub's background reads as continuous dark surface beneath.
+    const videoFade = progress < 0.88 ? 1 : Math.max(0, 1 - (progress - 0.88) / 0.12);
+    video.style.opacity = videoFade.toFixed(3);
+
+    // Scroll cue fades out quickly
+    if (scrollCue) {
+      const cueFade = Math.max(0, 1 - progress / 0.08);
+      scrollCue.style.opacity = cueFade.toFixed(3);
+    }
+
+    // Frosted header once you've started scrolling
+    document.body.classList.toggle('hero-scrolled', progress > 0.05);
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  function markReady() {
+    if (videoReady) return;
+    if (!video.duration || isNaN(video.duration)) return;
+    videoReady = true;
+    // Force a paint of the first frame so the poster swaps to live video
+    try { video.currentTime = 0.001; } catch (e) {}
+    update();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  // Multiple readiness signals — different browsers fire different ones first.
+  video.addEventListener('loadedmetadata', markReady);
+  video.addEventListener('loadeddata',     markReady);
+  video.addEventListener('canplay',        markReady);
+  video.addEventListener('canplaythrough', markReady);
+
+  // Fetch the MP4 fully into memory and feed it via a blob URL so the
+  // whole stream is seekable. Required when the host doesn't support
+  // HTTP byte-range requests (which otherwise pins seekable to [0,0]).
+  (async function loadVideoAsBlob() {
+    const src = (window.__resources && window.__resources.heroVideo) || video.dataset.src;
+    if (!src) return;
+    try {
+      const res = await fetch(src);
+      if (!res.ok) throw new Error('fetch failed: ' + res.status);
+      const blob = await res.blob();
+      video.src = URL.createObjectURL(blob);
+      try { video.load(); } catch (e) {}
+    } catch (err) {
+      // Fall back to direct src — at least the poster will show.
+      console.warn('[hero-scrub] blob load failed, falling back to direct src:', err);
+      video.src = src;
+      try { video.load(); } catch (e) {}
+    }
+  })();
+
+  if (video.readyState >= 1) markReady();
+
+  // Initial paint (overlay state) even before video is ready
+  update();
+})();
+
+
+/* =================================================================
+   Configurator — selects update response in real time.
+   No pricing, no week counts. Status pill is qualitative cadence only.
+   ================================================================= */
+(function () {
+  const business   = document.getElementById('cfg-business');
+  const need       = document.getElementById('cfg-need');
+  const responseEl = document.getElementById('response');
+  const copyEl     = document.getElementById('response-copy');
+  const tagsEl     = document.getElementById('response-tags');
+  const statusEl   = document.getElementById('response-status');
+  const ctaWA      = document.getElementById('cta-whatsapp');
+  const headerWA   = document.getElementById('header-whatsapp');
+
+  if (!business || !need) return;
+
+  const responses = {
+    'restaurant chain|a mobile ordering app': {
+      copy: "Mobile apps for F&B are our sweet spot. We'd start with the order flow, wire up Stripe + WhatsApp ordering, sync to your kitchen display, and ship something you can put in customers' hands fast.",
+      tags: ['react native','stripe','postgres','whatsapp'],
+      status: 'ships every friday'
+    },
+    'restaurant chain|a web dashboard': {
+      copy: "A POS-grade dashboard for F&B operators — table turn, item velocity, kitchen lag, voids. We'd plug into your existing POS first, then add the layer you actually need.",
+      tags: ['next.js','postgres','clickhouse'],
+      status: 'clickable before we sign'
+    },
+    'bank|a web dashboard': {
+      copy: "Banking dashboards are core to what we do. We'd start with the transaction pipeline, layer in real-time fraud signals, build the reconciliation flow, and ship an ops view your auditors will trust.",
+      tags: ['typescript','kafka','redis','postgres'],
+      status: 'production-ready'
+    },
+    'bank|an ai support agent': {
+      copy: "An LLM-backed agent inside your existing support stack — RAG over your policies, scoped to your data, escalates when it shouldn't guess.",
+      tags: ['openai','pgvector','fastapi','python'],
+      status: 'same engineer all the way'
+    },
+    'clinic|an appointment booker': {
+      copy: "Healthcare booking flows are HIPAA-touched, ABDM-friendly. We'd build the booking engine, sync doctor availability, send SMS confirmations through Twilio, and a patient portal that doesn't feel like a webview.",
+      tags: ['next.js','mongodb','twilio','express'],
+      status: 'friday demos, weekly'
+    },
+    'logistics company|a mobile ordering app': {
+      copy: "Last-mile driver apps with offline-first sync. Route optimization, hub dashboards, signature capture, and a back-office that doesn't fall over on Diwali.",
+      tags: ['react native','go','postgis','websockets'],
+      status: 'ships every friday'
+    },
+    'saas startup|a whole platform': {
+      copy: "A whole-stack build from auth to billing to dashboards. We move in pairs, deploy on green, and you'll have a working v1 long before any agency would have finished their wireframes.",
+      tags: ['next.js','typescript','stripe','supabase'],
+      status: 'friday demos, weekly'
+    }
+  };
+
+  function fallback(b, n) {
+    return {
+      copy: `We haven't shipped exactly this combination yet, but ${b} × ${n} is in our range. Send the sentence to us on WhatsApp — we'll scope it on a call and come back with a team and a plan you can work with.`,
+      tags: ['typescript','postgres','open-stack'],
+      status: 'same engineer all the way'
+    };
+  }
+
+  function render() {
+    const b = business.value;
+    const n = need.value;
+    const key = b + '|' + n;
+    const data = responses[key] || fallback(b, n);
+
+    responseEl.classList.add('updating');
+    setTimeout(() => responseEl.classList.remove('updating'), 80);
+
+    copyEl.textContent = data.copy;
+
+    tagsEl.innerHTML = '';
+    data.tags.forEach(t => {
+      const el = document.createElement('span');
+      el.className = 'tag';
+      el.textContent = t;
+      tagsEl.appendChild(el);
+    });
+
+    // Status pill lives on its own row, distinct from tech tags.
+    statusEl.innerHTML = '';
+    const status = document.createElement('span');
+    status.className = 'tag tag--status';
+    status.textContent = data.status;
+    statusEl.appendChild(status);
+
+    // WhatsApp pre-fill: no timeline, no budget
+    const msg = `Hi! I run a ${b} and I need ${n}. Thinking ${data.tags.slice(0,2).join(' + ')}. Can we talk?`;
+    const url = `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
+    ctaWA.dataset.href = url;
+    if (headerWA) headerWA.dataset.href = url;
+  }
+
+  business.addEventListener('change', render);
+  need.addEventListener('change', render);
+
+  function openWA(e) {
+    const href = e.currentTarget.dataset.href;
+    if (href) window.open(href, '_blank', 'noopener');
+  }
+  ctaWA.addEventListener('click', openWA);
+  if (headerWA) headerWA.addEventListener('click', openWA);
+
+  render();
+})();
+
+
+/* =================================================================
+   Configurator reveal — stagger-fade eyebrow → sentence → response
+   when the section enters the viewport.
+   ================================================================= */
+(function() {
+  const section = document.querySelector('.configurator-section');
+  if (!section || !('IntersectionObserver' in window)) {
+    if (section) section.classList.add('is-revealed');
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        section.classList.add('is-revealed');
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.15 });
+  io.observe(section);
+})();
+
+
+/* =================================================================
+   Journey thread — 3 nodes (hero, configurator, section 3)
+   ================================================================= */
+(function () {
+  const nodesWrap = document.getElementById('journey-nodes');
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!nodesWrap || !sections.length) return;
+
+  const labelMap = {
+    'hero': '01 · hero',
+    'configurator': '02 · configure',
+    'section-3': '03 · what we ship'
+  };
+
+  const nodeEls = sections.map((s, i) => {
+    const el = document.createElement('span');
+    el.className = 'node';
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = labelMap[s.id] || String(i+1).padStart(2,'0');
+    el.appendChild(lbl);
+    nodesWrap.appendChild(el);
+    return el;
+  });
+
+  function position() {
+    const track = nodesWrap.getBoundingClientRect();
+    const docH = document.documentElement.scrollHeight;
+    sections.forEach((s, i) => {
+      const pct = Math.min(1, Math.max(0, s.offsetTop / docH));
+      nodeEls[i].style.top = (pct * track.height) + 'px';
+    });
+  }
+
+  function update() {
+    const mid = window.scrollY + window.innerHeight * 0.45;
+    let activeIdx = 0;
+    sections.forEach((s, i) => {
+      if (s.offsetTop <= mid) activeIdx = i;
+      if (s.offsetTop <= window.scrollY + window.innerHeight * 0.55) {
+        nodeEls[i].classList.add('filled');
+      } else {
+        nodeEls[i].classList.remove('filled');
+      }
+    });
+    nodeEls.forEach((el, i) => el.classList.toggle('active', i === activeIdx));
+  }
+
+  position(); update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { position(); update(); }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { position(); update(); });
+})();
+</script>
+
+</body>
+</html>

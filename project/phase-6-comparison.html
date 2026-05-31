@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SofSolutionsAI — phase 06 · what you don't have to do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#16131f">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#16131f"/>
+    <g font-family="Space Mono, monospace" font-size="40">
+      <text x="300" y="360" fill="#605b73" text-decoration="line-through">agency</text>
+      <line x1="270" y1="346" x2="470" y2="346" stroke="#605b73" stroke-width="5"/>
+      <text x="700" y="360" fill="#EF9F27">us</text>
+      <rect x="660" y="320" width="4" height="60" fill="#EF9F27"/>
+    </g>
+    <text x="300" y="560" font-family="Space Mono, monospace" font-size="26" fill="#908ba3" letter-spacing="3">06 · what you don't have to do</text>
+  </svg>
+</template>
+<style>
+/* SHARED SHELL — dedupe at assembly */
+:root{
+  --bg-dark:#16131f; --bg-dark-2:#1f1a2e;
+  --accent-amber:#EF9F27; --accent-amber-2:#BA7517;
+  --text-on-dark:#f5f4f9; --muted-on-dark:#908ba3;
+  --border-dark:rgba(245,244,249,0.10);
+  --spring:cubic-bezier(.22,1,.36,1);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg-dark);color:var(--text-on-dark);font-family:'Space Grotesk',sans-serif;font-weight:400}
+
+/* ============================================================
+   JOURNEY THREAD (inherited — dark variant)
+   ============================================================ */
+.journey{position:fixed;right:28px;top:0;bottom:0;width:14px;display:flex;flex-direction:column;align-items:center;pointer-events:none;z-index:60}
+.journey .line{position:absolute;top:80px;bottom:80px;width:1px;background:var(--accent-amber);opacity:.25;left:50%;transform:translateX(-50%)}
+.journey .nodes{position:relative;flex:1;width:14px}
+.journey .node{
+  position:absolute;left:0;width:14px;height:14px;border-radius:50%;
+  border:1px solid var(--accent-amber);background:var(--bg-dark);
+  transform:translateY(-50%);
+  transition:background 200ms var(--ease),box-shadow 200ms var(--ease);
+  pointer-events:auto;cursor:pointer;
+}
+.journey .node.filled{background:var(--accent-amber)}
+.journey .node.active{box-shadow:0 0 0 4px rgba(239,159,39,.15)}
+.journey .node .lbl{
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:lowercase;
+  color:var(--muted-on-dark);white-space:nowrap;opacity:0;transition:opacity 200ms var(--ease);
+}
+.journey .node:hover .lbl,.journey .node.active .lbl{opacity:1}
+
+/* ============================================================
+   SECTION 06 — what you don't have to do
+   ============================================================ */
+#sec-06{position:relative;width:100%;overflow:hidden;background:var(--bg-dark);padding:120px 0 0}
+/* faint dot-grid texture ~2% */
+#sec-06::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(245,244,249,.045) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+#sec-06 .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 32px}
+
+/* ---- framing ---- */
+#sec-06 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--muted-on-dark);text-transform:lowercase}
+#sec-06 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-amber);box-shadow:0 0 10px rgba(239,159,39,.6)}
+#sec-06 h1{margin-top:20px;font-weight:500;font-size:clamp(32px,4.4vw,48px);line-height:1.08;letter-spacing:-.02em;max-width:18ch}
+#sec-06 .sub{margin-top:18px;max-width:560px;font-size:18px;line-height:1.55;color:var(--muted-on-dark)}
+
+/* ---- table ---- */
+#sec-06 .table{margin-top:56px}
+#sec-06 .cmp-head,#sec-06 .cmp-row{display:grid;grid-template-columns:16% 1fr 1fr;align-items:start}
+#sec-06 .cmp-head{padding:0 0 16px}
+#sec-06 .hc{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:lowercase;color:var(--muted-on-dark)}
+#sec-06 .hc.us-head{color:var(--text-on-dark);display:inline-flex;align-items:center;gap:8px;padding-left:24px}
+#sec-06 .hc.us-head::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-amber)}
+
+#sec-06 .cmp-row{border-top:1px solid var(--border-dark);padding:30px 0}
+
+/* stage label */
+#sec-06 .st-cell{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.04em;text-transform:lowercase;color:var(--text-on-dark);padding-top:2px;padding-right:18px;line-height:1.4}
+
+/* agency cell */
+#sec-06 .ag-cell{
+  padding-right:32px;
+  transform-origin:left center;
+  transition:filter .5s var(--ease) .42s,opacity .5s var(--ease) .42s,transform .55s var(--spring) .42s;
+}
+#sec-06 .cmp-row.is-on .ag-cell{filter:grayscale(1);opacity:.5;transform:rotate(-1.6deg)}
+#sec-06 .ag-cell ul,#sec-06 .us-cell ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+#sec-06 .ag-item{font-size:16px;line-height:1.45;color:var(--muted-on-dark)}
+#sec-06 .ag-txt{position:relative;display:inline-block}
+#sec-06 .strike{position:absolute;left:-2px;top:0;width:calc(100% + 4px);height:100%;overflow:visible;pointer-events:none}
+#sec-06 .strike line{
+  stroke:var(--accent-amber);stroke-width:2;vector-effect:non-scaling-stroke;
+  stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .4s var(--ease);
+}
+#sec-06 .cmp-row.is-on .strike line{stroke-dashoffset:0}
+/* slight per-item draw stagger */
+#sec-06 .ag-item:nth-child(2) .strike line{transition-delay:.06s}
+#sec-06 .ag-item:nth-child(3) .strike line{transition-delay:.12s}
+#sec-06 .ag-item:nth-child(4) .strike line{transition-delay:.18s}
+
+/* our cell */
+#sec-06 .us-cell{
+  padding:14px 18px 16px 22px;margin:-14px 0 -16px;border-radius:8px;
+  border-left:2px solid var(--accent-amber);
+}
+#sec-06 .cmp-row.is-on .us-cell{animation:sec06UsPulse .55s var(--spring)}
+@keyframes sec06UsPulse{
+  0%{transform:translateY(0);background:rgba(239,159,39,0);box-shadow:-2px 0 0 0 rgba(239,159,39,0)}
+  32%{transform:translateY(-2px);background:rgba(239,159,39,.10);box-shadow:-2px 0 0 0 var(--accent-amber),0 10px 26px rgba(239,159,39,.12)}
+  100%{transform:translateY(0);background:rgba(239,159,39,0);box-shadow:-2px 0 0 0 rgba(239,159,39,0)}
+}
+#sec-06 .us-item{font-size:16px;line-height:1.45;color:var(--text-on-dark);display:flex;align-items:baseline;gap:11px}
+#sec-06 .us-item::before{content:"";flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:var(--accent-amber);transform:translateY(-3px)}
+
+/* mobile-only column labels (hidden on desktop) */
+#sec-06 .cell-label{display:none}
+
+/* replay reset helper */
+#sec-06 .cmp-row.no-anim,#sec-06 .cmp-row.no-anim *{transition:none!important;animation:none!important}
+#sec-06 .cmp-row{cursor:default}
+
+/* ---- closing CTA band ---- */
+#sec-06 .cta{
+  position:relative;z-index:1;margin-top:96px;padding:104px 32px 120px;text-align:center;
+  border-top:1px solid var(--border-dark);
+}
+#sec-06 .cta h2{font-weight:500;font-size:clamp(26px,3.2vw,32px);line-height:1.2;letter-spacing:-.015em;max-width:22ch;margin:0 auto}
+#sec-06 .cta .cta-sub{margin-top:16px;font-size:16px;color:var(--muted-on-dark)}
+#sec-06 .cta-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:center}
+#sec-06 .btn-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--accent-amber);color:#16131f;font-weight:500;font-size:16px;
+  padding:15px 26px;border-radius:999px;text-decoration:none;
+  transition:background .2s var(--ease),transform .2s var(--ease);
+}
+#sec-06 .btn-wa .dot{width:7px;height:7px;border-radius:50%;background:#16131f}
+#sec-06 .btn-wa:hover{background:var(--accent-amber-2);transform:translateY(-1px)}
+#sec-06 .link-ghost{
+  font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--muted-on-dark);
+  text-decoration:none;border-bottom:1px solid var(--border-dark);padding-bottom:2px;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+#sec-06 .link-ghost:hover{color:var(--text-on-dark);border-color:var(--accent-amber)}
+
+/* trailing — forward-motion spacer for the rail */
+.trailing{min-height:16vh;background:var(--bg-dark)}
+
+/* ---- mobile (≤760px) ---- */
+@media (max-width:760px){
+  #sec-06{padding-top:80px}
+  #sec-06 .wrap{padding:0 20px}
+  #sec-06 .cmp-head{display:none}
+  #sec-06 .table{margin-top:40px}
+  #sec-06 .cmp-row{display:block;padding:26px 0}
+  #sec-06 .st-cell{font-size:14px;color:var(--accent-amber);padding:0 0 18px}
+  #sec-06 .ag-cell{padding-right:0;margin-bottom:22px}
+  #sec-06 .cmp-row.is-on .ag-cell{transform:rotate(-1deg)}
+  #sec-06 .us-cell{margin:0;padding:14px 16px}
+  #sec-06 .cell-label{display:block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:lowercase;color:var(--muted-on-dark);margin-bottom:12px}
+  #sec-06 .us-cell .cell-label{color:var(--accent-amber)}
+  #sec-06 .cta{margin-top:64px;padding:72px 20px 84px}
+  .journey{display:none}
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion:reduce){
+  #sec-06 .ag-cell{transition:none!important}
+  #sec-06 .strike line{transition:none!important}
+  #sec-06 .cmp-row.is-on .us-cell{animation:none!important}
+  #sec-06 .btn-wa:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Journey thread -->
+<div class="journey" aria-hidden="true">
+  <span class="line"></span>
+  <div class="nodes" id="journey-nodes"></div>
+</div>
+
+<section id="sec-06" aria-label="What you don't have to do" data-screen-label="06 what you don't have to do">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>06 · what you don't have to do</span>
+    <h1>What you don't have to do.</h1>
+    <p class="sub">Everything on the left is how it usually goes. None of it happens here.</p>
+
+    <div class="table" id="cmp-table">
+      <div class="cmp-head">
+        <div class="hc"></div>
+        <div class="hc">typical agency</div>
+        <div class="hc us-head">sofsolutionsai</div>
+      </div>
+
+      <!-- rows injected by JS from DATA -->
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Tell us what's broken. An engineer replies — not a sales team.</h2>
+    <p class="cta-sub">No form. No discovery call. No slide deck.</p>
+    <div class="cta-actions">
+      <a class="btn-wa" href="https://wa.me/91XXXXXXXXXX?text=Hi%20—%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp →</a>
+      <a class="link-ghost" href="mailto:hello@sofsolutionsai.com">hello@sofsolutionsai.com →</a>
+    </div>
+  </div>
+</section>
+
+<section class="trailing" id="trailing" data-screen-label="footer"></section>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById('sec-06');
+  if(!root) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+
+  var DATA = [
+    { stage:'first contact',
+      agency:['discovery call','NDA exchange','proposal slide deck','signed SOW (long after)'],
+      us:['a WhatsApp message','an engineer replies, same day','a quote in writing'] },
+    { stage:'design',
+      agency:['UX research phase','brand workshop','wireframes v1 → v3','hi-fi mocks, PM review'],
+      us:['a clickable prototype, before we sign','you break it, we fix it',"the same engineer who'll build it"] },
+    { stage:'build',
+      agency:['offshored to a dev partner','Monday status reports','code you never see','a black box'],
+      us:['Friday demos, weekly','a staging URL you can open anytime','direct WhatsApp to the engineers','your repo, your servers'] },
+    { stage:'after launch',
+      agency:['support tickets','SLA terms','an escalation matrix','an account manager'],
+      us:['the same team on WhatsApp','no tickets','break-it-we-fix-it','forever'] }
+  ];
+
+  // ---- build rows ----
+  var table = document.getElementById('cmp-table');
+  var rows = [];
+  DATA.forEach(function(d){
+    var row = document.createElement('div');
+    row.className = 'cmp-row';
+
+    var st = document.createElement('div');
+    st.className = 'st-cell';
+    st.textContent = d.stage;
+
+    var ag = document.createElement('div');
+    ag.className = 'ag-cell';
+    var agInner = '<div class="cell-label">typical agency</div><ul>';
+    d.agency.forEach(function(item){
+      agInner += '<li class="ag-item"><span class="ag-txt">'+esc(item)+
+        '<svg class="strike" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="55%" x2="100%" y2="55%" pathLength="1"></line></svg>'+
+        '</span></li>';
+    });
+    agInner += '</ul>';
+    ag.innerHTML = agInner;
+
+    var us = document.createElement('div');
+    us.className = 'us-cell';
+    var usInner = '<div class="cell-label">sofsolutionsai</div><ul>';
+    d.us.forEach(function(item){ usInner += '<li class="us-item">'+esc(item)+'</li>'; });
+    usInner += '</ul>';
+    us.innerHTML = usInner;
+
+    row.appendChild(st); row.appendChild(ag); row.appendChild(us);
+    table.appendChild(row);
+    rows.push(row);
+  });
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // ---- reduced motion: final state immediately, no hover ----
+  if(reduce){
+    rows.forEach(function(r){ r.classList.add('is-on'); });
+    return;
+  }
+
+  // ---- cascade on first scroll-in ----
+  var fired = false;
+  function cascade(){
+    if(fired) return; fired = true;
+    rows.forEach(function(r,i){
+      setTimeout(function(){ r.classList.add('is-on'); }, i*150);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ cascade(); io.disconnect(); } });
+    }, { threshold:0.3 });
+    io.observe(table);
+  } else {
+    cascade();
+  }
+
+  // ---- hover replays the row ----
+  if(!isTouch){
+    rows.forEach(function(r){
+      r.addEventListener('mouseenter', function(){
+        if(!r.classList.contains('is-on')) return; // wait for first cascade
+        r.classList.add('no-anim');
+        r.classList.remove('is-on');
+        void r.offsetWidth;            // flush reset with no transition
+        r.classList.remove('no-anim');
+        requestAnimationFrame(function(){ r.classList.add('is-on'); });
+      });
+    });
+  }
+
+  /* ============================================================
+     JOURNEY THREAD (inherited)
+     ============================================================ */
+  (function () {
+    var nodesWrap = document.getElementById('journey-nodes');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!nodesWrap || !sections.length) return;
+    var labelMap = { 'sec-06': '06 · what you don\u2019t have to do', 'trailing': 'footer' };
+    var nodeEls = sections.map(function (s, i) {
+      var el = document.createElement('span');
+      el.className = 'node';
+      var lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = labelMap[s.id] || String(i + 1).padStart(2, '0');
+      el.appendChild(lbl);
+      el.addEventListener('click', function(){ window.scrollTo({ top: window.scrollY + s.getBoundingClientRect().top, behavior: 'smooth' }); });
+      nodesWrap.appendChild(el);
+      return el;
+    });
+    function position() {
+      var track = nodesWrap.getBoundingClientRect();
+      var docH = document.documentElement.scrollHeight;
+      sections.forEach(function (s, i) { nodeEls[i].style.top = (Math.min(1, Math.max(0, s.offsetTop / docH)) * track.height) + 'px'; });
+    }
+    function update() {
+      var mid = window.scrollY + window.innerHeight * 0.45;
+      var activeIdx = 0;
+      sections.forEach(function (s, i) {
+        if (s.offsetTop <= mid) activeIdx = i;
+        nodeEls[i].classList.toggle('filled', s.offsetTop <= window.scrollY + window.innerHeight * 0.55);
+      });
+      nodeEls.forEach(function (el, i) { el.classList.toggle('active', i === activeIdx); });
+    }
+    position(); update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function(){ position(); update(); }, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ position(); update(); });
+  })();
+
+})();
+</script>
+</body>
+</html>

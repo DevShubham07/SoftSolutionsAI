@@ -1,0 +1,126 @@
+{
+ "initial": {
+  "stageH": 759,
+  "stageBot": 1003,
+  "s4top": 1143,
+  "pagerShown": true,
+  "pagerActive": [
+   true,
+   false,
+   false
+  ],
+  "maxCardBot": 966,
+  "cards": [
+   {
+    "id": "card-email",
+    "cls": "is-front",
+    "pos": "absolute",
+    "top": 348,
+    "bot": 966,
+    "z": "30"
+   },
+   {
+    "id": "card-chat",
+    "cls": "is-mid",
+    "pos": "absolute",
+    "top": 296,
+    "bot": 895,
+    "z": "20"
+   },
+   {
+    "id": "card-dash",
+    "cls": "is-back",
+    "pos": "absolute",
+    "top": 244,
+    "bot": 965,
+    "z": "10"
+   }
+  ],
+  "overflowsIntoSec04": false,
+  "stacked": true
+ },
+ "dashFront": {
+  "stageH": 863,
+  "stageBot": 1107,
+  "s4top": 1247,
+  "pagerShown": true,
+  "pagerActive": [
+   false,
+   false,
+   true
+  ],
+  "maxCardBot": 1107,
+  "cards": [
+   {
+    "id": "card-email",
+    "cls": "is-mid",
+    "pos": "absolute",
+    "top": 296,
+    "bot": 898,
+    "z": "20"
+   },
+   {
+    "id": "card-chat",
+    "cls": "is-back",
+    "pos": "absolute",
+    "top": 244,
+    "bot": 828,
+    "z": "10"
+   },
+   {
+    "id": "card-dash",
+    "cls": "is-front",
+    "pos": "absolute",
+    "top": 348,
+    "bot": 1107,
+    "z": "30"
+   }
+  ],
+  "overflowsIntoSec04": false
+ },
+ "chatFront": {
+  "stageH": 811,
+  "stageBot": 1055,
+  "s4top": 1195,
+  "pagerShown": true,
+  "pagerActive": [
+   false,
+   true,
+   false
+  ],
+  "maxCardBot": 1036,
+  "cards": [
+   {
+    "id": "card-email",
+    "cls": "is-back",
+    "pos": "absolute",
+    "top": 244,
+    "bot": 831,
+    "z": "10"
+   },
+   {
+    "id": "card-chat",
+    "cls": "is-front",
+    "pos": "absolute",
+    "top": 348,
+    "bot": 962,
+    "z": "30"
+   },
+   {
+    "id": "card-dash",
+    "cls": "is-mid",
+    "pos": "absolute",
+    "top": 296,
+    "bot": 1036,
+    "z": "20"
+   }
+  ]
+ },
+ "emailInteract": {
+  "beforeSelH": 759,
+  "afterSelH": 795,
+  "draftFilled": true,
+  "overflowsAfterExpand": false
+ },
+ "errors": []
+}

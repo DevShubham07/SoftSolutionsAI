@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SofSolutionsAI — design system v0.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
+<style>
+  :root {
+    --bg-dark: #0e0e10;
+    --bg-cream: #f5f1e8;
+    --accent-amber: #EF9F27;
+    --accent-amber-2: #BA7517;
+    --text-on-dark: #f5f1e8;
+    --text-on-light: #1a1a1a;
+    --muted-on-dark: #8a857b;
+    --muted-on-light: #6a655c;
+    --border-dark: rgba(245, 241, 232, 0.12);
+    --border-light: rgba(26, 26, 26, 0.10);
+    --border-dark-strong: rgba(245, 241, 232, 0.22);
+    --border-light-strong: rgba(26, 26, 26, 0.22);
+
+    --font-sans: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+
+    --container: 1200px;
+    --pad: 32px;
+    --section-pad: 120px;
+
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-pill: 999px;
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent-amber); color: #1a1a1a; }
+
+  .surface { position: relative; padding: var(--section-pad) 0; overflow: hidden; }
+  .surface--dark { background: var(--bg-dark); color: var(--text-on-dark); }
+  .surface--cream { background: var(--bg-cream); color: var(--text-on-light); }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); position: relative; }
+
+  .tex-noise::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity: .035; mix-blend-mode: screen;
+  }
+  .surface--cream.tex-noise::before { mix-blend-mode: multiply; opacity: .045; }
+
+  .tex-dots-dark::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(245,241,232,1) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: .015;
+  }
+  .tex-dots-cream::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(26,26,26,1) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: .025;
+  }
+
+  .h1-display { font-size: 64px; line-height: 1.05; font-weight: 500; letter-spacing: -0.025em; margin: 0; }
+  .h1 { font-size: 48px; line-height: 1.08; font-weight: 500; letter-spacing: -0.02em; margin: 0; }
+  .h2 { font-size: 32px; line-height: 1.15; font-weight: 500; letter-spacing: -0.015em; margin: 0; }
+  .h3 { font-size: 22px; line-height: 1.25; font-weight: 500; margin: 0; }
+  .body-lg { font-size: 18px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .body   { font-size: 16px; line-height: 1.60; font-weight: 400; margin: 0; }
+  .body-sm{ font-size: 14px; line-height: 1.55; font-weight: 400; margin: 0; }
+  .mono   { font-family: var(--font-mono); }
+  .mono-label { font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: lowercase; }
+  .mono-tag   { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; text-transform: lowercase; }
+  .muted-dark  { color: var(--muted-on-dark); }
+  .muted-light { color: var(--muted-on-light); }
+
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: lowercase; color: inherit; }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block; }
+  .surface--dark .eyebrow  { color: var(--muted-on-dark); }
+  .surface--cream .eyebrow { color: var(--muted-on-light); }
+
+  .wordmark { font-family: var(--font-sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1; }
+  .wordmark .sof { color: var(--accent-amber); }
+  .wordmark-mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border: 1px solid currentColor; border-radius: var(--r-sm);
+    font-family: var(--font-sans); font-weight: 500; font-size: 18px; letter-spacing: -0.02em;
+  }
+  .wordmark-mark .s { color: var(--accent-amber); }
+
+  .page-header { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid var(--border-dark); }
+  .page-header .nav { display: flex; gap: 28px; align-items: center; }
+  .page-header .nav a { color: var(--muted-on-dark); text-decoration: none; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+  .page-header .nav a:hover { color: var(--text-on-dark); }
+
+  .stack { display: flex; flex-direction: column; }
+  .stack > * + * { margin-top: var(--gap, 16px); }
+  .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .grid { display: grid; gap: 24px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid-8 { grid-template-columns: repeat(8, 1fr); }
+
+  .group {
+    padding-top: 64px; padding-bottom: 8px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--border-dark);
+  }
+  .surface--cream .group { border-top-color: var(--border-light); }
+  .group-title {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: lowercase;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .group-title::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); }
+  .group-count { font-family: var(--font-mono); font-size: 11px; color: var(--muted-on-dark); letter-spacing: 0.08em; }
+  .surface--cream .group-count { color: var(--muted-on-light); }
+  .group-body { margin-top: 36px; }
+
+  .sublabel { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: lowercase; color: var(--muted-on-dark); }
+  .surface--cream .sublabel { color: var(--muted-on-light); }
+
+  .caption { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted-on-dark); margin-top: 12px; }
+  .surface--cream .caption { color: var(--muted-on-light); }
+
+  .specimen { padding: 28px 0; border-top: 1px dashed var(--border-dark); }
+  .surface--cream .specimen { border-top-color: var(--border-light); }
+  .specimen:first-child { border-top: 0; }
+  .specimen-row { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; }
+  .specimen-row .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted-on-dark); letter-spacing: 0.04em; line-height: 1.7; }
+  .surface--cream .specimen-row .meta { color: var(--muted-on-light); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans); font-weight: 500; font-size: 14px;
+    padding: 10px 18px; border-radius: var(--r-pill);
+    border: 1px solid transparent; cursor: pointer; text-decoration: none;
+    transition: transform 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease), background-color 200ms var(--ease);
+    user-select: none; line-height: 1; white-space: nowrap;
+  }
+  .btn--sm { padding: 6px 12px; font-size: 13px; }
+  .btn .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .9; }
+  .btn--primary { background: var(--accent-amber); color: #1a1a1a; border-color: var(--accent-amber); }
+  .btn--primary:hover { transform: translateY(-1px); border-color: var(--accent-amber-2); }
+  .btn--ghost-dark { background: transparent; color: var(--text-on-dark); border-color: var(--border-dark-strong); }
+  .btn--ghost-dark:hover { transform: translateY(-1px); border-color: var(--text-on-dark); }
+  .btn--ghost-light { background: transparent; color: var(--text-on-light); border-color: var(--border-light-strong); }
+  .btn--ghost-light:hover { transform: translateY(-1px); border-color: var(--text-on-light); }
+  .btn .ti { font-size: 14px; }
+
+  .link-dark, .link-light { color: inherit; text-decoration: none; position: relative; padding-bottom: 1px; border-bottom: 1px solid transparent; transition: border-color 200ms var(--ease); text-underline-offset: 4px; }
+  .link-dark:hover  { border-bottom-color: var(--text-on-dark); }
+  .link-light:hover { border-bottom-color: var(--text-on-light); }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: lowercase;
+    padding: 4px 9px; border-radius: var(--r-sm);
+    border: 1px solid currentColor; background: transparent; line-height: 1.2;
+  }
+  .surface--dark  .tag { color: var(--muted-on-dark); border-color: var(--border-dark-strong); }
+  .surface--cream .tag { color: var(--muted-on-light); border-color: var(--border-light-strong); }
+  .tag--status {
+    color: var(--accent-amber); border-color: rgba(239,159,39,0.45);
+    background: rgba(239,159,39,0.08);
+  }
+
+  .card {
+    border-radius: var(--r-lg); border: 1px solid var(--border-dark); padding: 24px;
+    background: #131316; transition: transform 220ms var(--ease), border-color 220ms var(--ease);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .card:hover { transform: translateY(-1px); border-color: var(--border-dark-strong); }
+  .surface--cream .card { background: #fbf8f1; border-color: var(--border-light); }
+  .surface--cream .card:hover { border-color: var(--border-light-strong); }
+  .card .card-title { font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.005em; }
+  .card .card-body { font-size: 15px; line-height: 1.55; }
+  .surface--dark .card .card-body  { color: var(--muted-on-dark); }
+  .surface--cream .card .card-body { color: var(--muted-on-light); }
+  .card .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .card .card-cta  { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+
+  .input, .select {
+    height: 40px; padding: 0 14px; border-radius: var(--r-md);
+    font-family: var(--font-sans); font-size: 14px;
+    background: transparent; border: 1px solid var(--border-dark-strong); color: inherit;
+    transition: border-color 200ms var(--ease);
+    appearance: none;
+  }
+  .surface--cream .input, .surface--cream .select { border-color: var(--border-light-strong); }
+  .input::placeholder { color: var(--muted-on-dark); }
+  .surface--cream .input::placeholder { color: var(--muted-on-light); }
+  .input:focus, .select:focus { outline: none; border-color: var(--accent-amber); }
+  .select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a857b' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px;
+    min-width: 180px;
+  }
+  .surface--cream .select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236a655c' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+  }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: lowercase; }
+  .surface--dark .field label  { color: var(--muted-on-dark); }
+  .surface--cream .field label { color: var(--muted-on-light); }
+
+  .inline-select {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    border-bottom: 1px dashed var(--accent-amber);
+    color: var(--accent-amber);
+    font: inherit; padding: 0 4px;
+    cursor: pointer;
+  }
+  .inline-select select {
+    background: transparent; border: 0; color: inherit; font: inherit;
+    padding: 0; cursor: pointer; appearance: none; -webkit-appearance: none;
+    letter-spacing: inherit;
+  }
+  .inline-select::after { content: "\f0d7"; }
+  .inline-select .ti { font-size: 0.6em; opacity: .7; align-self: center; }
+
+  .swatch-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .swatch { display: flex; flex-direction: column; gap: 10px; }
+  .swatch .chip { width: 100%; aspect-ratio: 1 / 1; border-radius: var(--r-md); border: 1px solid var(--border-dark); }
+  .surface--cream .swatch .chip { border-color: var(--border-light); }
+  .swatch .name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; line-height: 1.4; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--muted-on-dark); }
+  .surface--cream .swatch .hex { color: var(--muted-on-light); }
+  .swatch-group-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: lowercase; color: var(--muted-on-dark); margin: 0 0 14px; }
+  .surface--cream .swatch-group-title { color: var(--muted-on-light); }
+
+  .frame {
+    position: relative; border: 1px solid var(--border-dark); border-radius: var(--r-lg);
+    background: #131316;
+    overflow: hidden;
+  }
+  .surface--cream .frame { background: #fbf8f1; border-color: var(--border-light); }
+  .frame .chrome {
+    height: 36px; display: flex; align-items: center; gap: 14px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--border-dark);
+    background: rgba(255,255,255,0.02);
+  }
+  .surface--cream .frame .chrome { border-bottom-color: var(--border-light); background: rgba(0,0,0,0.025); }
+  .frame .lights { display: flex; gap: 6px; }
+  .frame .lights span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-dark-strong); }
+  .surface--cream .frame .lights span { background: var(--border-light-strong); }
+  .frame .url {
+    flex: 1; height: 22px; border-radius: var(--r-sm);
+    display: flex; align-items: center; padding: 0 10px; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-on-dark);
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border-dark);
+  }
+  .surface--cream .frame .url { color: var(--muted-on-light); background: rgba(0,0,0,0.03); border-color: var(--border-light); }
+  .frame .placeholder {
+    height: 280px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-on-dark);
+    letter-spacing: 0.08em;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(245,241,232,0.018) 0 8px, transparent 8px 16px);
+  }
+  .surface--cream .frame .placeholder { color: var(--muted-on-light); background-image:
+      repeating-linear-gradient(135deg, rgba(26,26,26,0.025) 0 8px, transparent 8px 16px); }
+  .frame--wide .placeholder { height: 360px; }
+
+  .phone {
+    width: 280px; height: 580px; border: 1px solid var(--border-dark);
+    border-radius: 36px; background: #131316; position: relative;
+    overflow: hidden;
+    padding: 12px;
+  }
+  .surface--cream .phone { background: #fbf8f1; border-color: var(--border-light); }
+  .phone .notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 22px; border-radius: var(--r-pill); background: #0e0e10;
+    border: 1px solid var(--border-dark);
+  }
+  .surface--cream .phone .notch { background: var(--bg-cream); border-color: var(--border-light); }
+  .phone .side {
+    position: absolute; right: -2px; top: 110px; width: 3px; height: 56px; border-radius: 2px;
+    background: var(--border-dark-strong);
+  }
+  .surface--cream .phone .side { background: var(--border-light-strong); }
+  .phone .screen {
+    width: 100%; height: 100%; border-radius: 26px; border: 1px solid var(--border-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted-on-dark);
+    background-image:
+      repeating-linear-gradient(135deg, rgba(245,241,232,0.018) 0 8px, transparent 8px 16px);
+  }
+  .surface--cream .phone .screen { border-color: var(--border-light); color: var(--muted-on-light); background-image:
+      repeating-linear-gradient(135deg, rgba(26,26,26,0.025) 0 8px, transparent 8px 16px); }
+
+  .journey {
+    position: fixed; right: 28px; top: 0; bottom: 0; width: 14px;
+    display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 50;
+  }
+  .journey .line {
+    position: absolute; top: 0; bottom: 0; width: 1px; background: var(--accent-amber);
+    opacity: 0.25; left: 50%; transform: translateX(-50%);
+  }
+  .journey .nodes { position: relative; flex: 1; width: 14px; }
+  .journey .node {
+    position: absolute; left: 0; width: 14px; height: 14px; border-radius: 50%;
+    border: 1px solid var(--accent-amber); background: var(--bg-dark);
+    transform: translateY(-50%);
+    transition: background 200ms var(--ease), transform 200ms var(--ease);
+    pointer-events: auto;
+  }
+  .journey .node.filled { background: var(--accent-amber); }
+  .journey .node .lbl {
+    position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: lowercase;
+    color: var(--muted-on-dark); white-space: nowrap; opacity: 0; transition: opacity 200ms var(--ease);
+  }
+  .journey .node:hover .lbl { opacity: 1; }
+
+  body.in-cream .journey .node { background: var(--bg-cream); }
+  body.in-cream .journey .node .lbl { color: var(--muted-on-light); }
+
+  .divider-demo { display: grid; grid-template-columns: 1fr; gap: 0; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border-dark); }
+  .surface--cream .divider-demo { border-color: var(--border-light); }
+  .divider-demo .panel { padding: 56px 32px; position: relative; }
+  .divider-demo .panel.dark { background: var(--bg-dark); color: var(--text-on-dark); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%); }
+  .divider-demo .panel.cream { background: var(--bg-cream); color: var(--text-on-light); margin-top: -28px; clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%); padding-top: 84px; }
+  .divider-demo--reverse .panel.cream { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%); margin-top: 0; padding-top: 56px; }
+  .divider-demo--reverse .panel.dark  { clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%); margin-top: -28px; padding-top: 84px; }
+
+  .ab { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ab .cell { border: 1px solid var(--border-dark); border-radius: var(--r-md); height: 200px; position: relative; overflow: hidden; }
+  .surface--cream .ab .cell { border-color: var(--border-light); }
+  .ab .cell.dark  { background: var(--bg-dark); }
+  .ab .cell.cream { background: var(--bg-cream); }
+  .ab .cell .lbl { position: absolute; bottom: 10px; left: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted-on-dark); }
+  .ab .cell.cream .lbl { color: var(--muted-on-light); }
+  .ab .noise::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity: .04; mix-blend-mode: screen;
+  }
+  .ab .cell.cream.noise::after { mix-blend-mode: multiply; opacity: .05; }
+  .ab .dots-dark::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(245,241,232,1) 1px, transparent 1px);
+    background-size: 18px 18px; opacity: 0.018;
+  }
+  .ab .dots-cream::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(26,26,26,1) 1px, transparent 1px);
+    background-size: 18px 18px; opacity: 0.03;
+  }
+
+  .icon-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); border-radius: var(--r-md); overflow: hidden; }
+  .surface--cream .icon-grid { background: var(--border-light); border-color: var(--border-light); }
+  .icon-cell { background: var(--bg-dark); padding: 22px 12px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: background 180ms var(--ease); }
+  .icon-cell:hover { background: #15151a; }
+  .surface--cream .icon-cell { background: var(--bg-cream); }
+  .surface--cream .icon-cell:hover { background: #f1ecdf; }
+  .icon-cell .ti { font-size: 24px; color: inherit; }
+  .icon-cell .small { font-size: 20px; color: var(--muted-on-dark); }
+  .surface--cream .icon-cell .small { color: var(--muted-on-light); }
+  .icon-cell .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--muted-on-dark); margin-top: 2px; }
+  .surface--cream .icon-cell .name { color: var(--muted-on-light); }
+  .icon-cell .sizes { display: flex; gap: 14px; align-items: baseline; }
+
+  .footnote {
+    margin-top: 80px; padding: 24px 0; border-top: 1px solid var(--border-dark);
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted-on-dark);
+  }
+  .surface--cream .footnote { border-top-color: var(--border-light); color: var(--muted-on-light); }
+
+  .states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: end; }
+  .states .cell { display: flex; flex-direction: column; gap: 14px; }
+
+  .lede { max-width: 720px; }
+
+  @media (max-width: 900px) {
+    :root { --section-pad: 80px; --pad: 20px; }
+    .h1-display { font-size: 44px; }
+    .h1 { font-size: 36px; }
+    .h2 { font-size: 26px; }
+    .grid-3, .grid-4, .grid-6, .grid-8 { grid-template-columns: 1fr 1fr; }
+    .icon-grid { grid-template-columns: repeat(4, 1fr); }
+    .swatch-row { grid-template-columns: repeat(2, 1fr); }
+    .ab { grid-template-columns: 1fr; }
+    .journey { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="journey" aria-hidden="true">
+  <span class="line"></span>
+  <div class="nodes" id="journey-nodes"></div>
+</div>
+
+<section class="surface surface--dark tex-noise" id="intro">
+  <div class="container">
+    <header class="page-header">
+      <div class="row" style="gap:14px;">
+        <span class="wordmark-mark"><span class="s">S</span></span>
+        <span class="wordmark"><span class="sof">Sof</span>SolutionsAI</span>
+      </div>
+      <nav class="nav">
+        <a href="#typography">typography</a>
+        <a href="#color">color</a>
+        <a href="#components">components</a>
+        <a href="#frames">frames</a>
+        <a href="#texture">texture</a>
+      </nav>
+      <span class="mono" style="font-size:11px;color:var(--muted-on-dark);letter-spacing:.08em;">design system · v0.1 · locked may 28 2026</span>
+    </header>
+
+    <div style="padding: 88px 0 48px;">
+      <span class="eyebrow">● 00 · foundation</span>
+      <h1 class="h1-display" style="margin-top:28px; max-width: 920px;">A design system, not a homepage. Tokens, type, and the primitives every section inherits.</h1>
+      <p class="body-lg lede muted-dark" style="margin-top:24px;">
+        Every border, padding, and radius below is a deliberate decision. Two weights, two backgrounds, one accent. Components shown in default and hover where it matters, in dark and cream wherever they live in both.
+      </p>
+      <div class="row" style="margin-top:36px; gap: 12px;">
+        <a class="btn btn--primary" href="#components"><span class="dot"></span>browse components</a>
+        <a class="btn btn--ghost-dark" href="#color">see tokens<i class="ti ti-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark tex-dots-dark" id="color">
+  <div class="container">
+
+    <div class="group">
+      <span class="group-title">color · backgrounds</span>
+      <span class="group-count">02 swatches</span>
+    </div>
+    <div class="group-body">
+      <p class="swatch-group-title">surfaces — every section lives on one of these</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#0e0e10"></div>
+          <div class="name">bg-dark</div>
+          <div class="hex">#0e0e10</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#f5f1e8"></div>
+          <div class="name">bg-cream</div>
+          <div class="hex">#f5f1e8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-title">color · accents</span>
+      <span class="group-count">02 swatches</span>
+    </div>
+    <div class="group-body">
+      <p class="swatch-group-title">amber — single accent, used sparingly</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#EF9F27"></div>
+          <div class="name">accent-amber</div>
+          <div class="hex">#EF9F27</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#BA7517"></div>
+          <div class="name">accent-amber-2</div>
+          <div class="hex">#BA7517</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-title">color · text</span>
+      <span class="group-count">04 swatches</span>
+    </div>
+    <div class="group-body">
+      <p class="swatch-group-title">foreground — bg-dependent</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#f5f1e8"></div>
+          <div class="name">text-on-dark</div>
+          <div class="hex">#f5f1e8</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#1a1a1a"></div>
+          <div class="name">text-on-light</div>
+          <div class="hex">#1a1a1a</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#8a857b"></div>
+          <div class="name">muted-on-dark</div>
+          <div class="hex">#8a857b</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#6a655c"></div>
+          <div class="name">muted-on-light</div>
+          <div class="hex">#6a655c</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-title">color · borders</span>
+      <span class="group-count">02 swatches</span>
+    </div>
+    <div class="group-body">
+      <p class="swatch-group-title">1px borders — always alpha-blended into the surface</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:rgba(245,241,232,0.12); outline:1px solid rgba(245,241,232,0.16); outline-offset:-1px;"></div>
+          <div class="name">border-dark</div>
+          <div class="hex">f5f1e8 / 12%</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:rgba(26,26,26,0.10); outline:1px solid rgba(26,26,26,0.16); outline-offset:-1px;"></div>
+          <div class="name">border-light</div>
+          <div class="hex">1a1a1a / 10%</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="surface surface--dark" id="typography">
+  <div class="container">
+
+    <div class="group">
+      <span class="group-title">typography · on dark</span>
+      <span class="group-count">09 specimens</span>
+    </div>
+    <div class="group-body">
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">display h1<br>64 / 1.05 / 500<br>tracking −0.025em</div>
+          <h1 class="h1-display">A small studio. Real engineers. Software that ships in weeks.</h1>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">h1<br>48 / 1.08 / 500<br>tracking −0.02em</div>
+          <h2 class="h1">End-to-end custom software for restaurants, banks, and clinics.</h2>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">h2<br>32 / 1.15 / 500<br>tracking −0.015em</div>
+          <h3 class="h2">One process. Four moments. No surprises.</h3>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">h3<br>22 / 1.25 / 500</div>
+          <h4 class="h3">We demo every Friday and we ship every other one.</h4>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">body large<br>18 / 1.55 / 400</div>
+          <p class="body-lg">Edit the sentence. We'll tell you what we'd build, who we'd put on it, and how long it'd take — no form, no sales call, no slide deck.</p>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">body<br>16 / 1.6 / 400</div>
+          <p class="body">An engineering studio out of Bengaluru. We work in pairs, ship in pairs, and stay accountable to the same engineer who took your first call. The point is that you can WhatsApp us at 9pm on a Tuesday and the message gets to a person who can actually fix the thing.</p>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">body small<br>14 / 1.55 / 400</div>
+          <p class="body-sm muted-dark">Used for captions, secondary copy, footnotes. Keep it close to body — the contrast comes from color, not size jumps.</p>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">mono label<br>12 / 400<br>tracking +0.12em</div>
+          <p class="mono-label muted-dark">● 03 · what we ship</p>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">mono tag<br>11 / 400</div>
+          <p class="mono-tag muted-dark">react native · postgres · stripe · twilio</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream tex-dots-cream" id="typography-cream">
+  <div class="container">
+    <div class="group">
+      <span class="group-title">typography · on cream</span>
+      <span class="group-count">same scale, inverted surface</span>
+    </div>
+    <div class="group-body">
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">display h1<br>64 / 1.05 / 500</div>
+          <h1 class="h1-display">Whitespace is the signal. Restraint is the taste.</h1>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">h1<br>48 / 1.08 / 500</div>
+          <p class="h1">Sentence case, everywhere. We don't shout, we don't celebrate.</p>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">h2 / h3</div>
+          <div>
+            <p class="h2" style="margin-bottom:12px;">Two weights. Four hundred and five hundred.</p>
+            <p class="h3 muted-light">No 600. No 700. Never bold-italic-anything.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">body sizes</div>
+          <div class="stack" style="--gap:14px;">
+            <p class="body-lg">Body large carries lede paragraphs and the first beat of every section. The line-height stays loose so the eye can rest.</p>
+            <p class="body">Body sits at sixteen. It's where the work happens — paragraphs, descriptions, every sentence that isn't a heading.</p>
+            <p class="body-sm muted-light">Body small handles captions and the small print. Close to body, no drama.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-row">
+          <div class="meta">mono</div>
+          <div class="stack" style="--gap:10px;">
+            <span class="mono-label">● 04 · how we work</span>
+            <span class="mono-tag muted-light">typescript · kafka · redis · postgres</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="wordmark">
+  <div class="container">
+
+    <div class="group" style="border-top:0;">
+      <span class="group-title">wordmark</span>
+      <span class="group-count">03 variants × 02 surfaces</span>
+    </div>
+    <div class="group-body">
+
+      <div class="grid grid-2">
+        <div class="card" style="background:transparent;border-style:dashed;">
+          <span class="sublabel">on cream</span>
+          <div class="stack" style="--gap:28px; margin-top:8px;">
+            <div class="row" style="gap:18px;">
+              <span class="wordmark" style="font-size:32px;"><span class="sof">Sof</span>SolutionsAI</span>
+              <span class="sublabel">full</span>
+            </div>
+            <div class="row" style="gap:18px;">
+              <span class="wordmark" style="font-size:28px;"><span class="sof">Sof</span></span>
+              <span class="sublabel">abbreviated</span>
+            </div>
+            <div class="row" style="gap:18px;">
+              <span class="wordmark-mark" style="width:40px;height:40px;font-size:22px;"><span class="s">S</span></span>
+              <span class="sublabel">mark only</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:#0e0e10;color:var(--text-on-dark);border-color:var(--border-dark);">
+          <span class="sublabel" style="color:var(--muted-on-dark);">on dark</span>
+          <div class="stack" style="--gap:28px; margin-top:8px;">
+            <div class="row" style="gap:18px;">
+              <span class="wordmark" style="font-size:32px;"><span class="sof">Sof</span>SolutionsAI</span>
+              <span class="sublabel" style="color:var(--muted-on-dark);">full</span>
+            </div>
+            <div class="row" style="gap:18px;">
+              <span class="wordmark" style="font-size:28px;"><span class="sof">Sof</span></span>
+              <span class="sublabel" style="color:var(--muted-on-dark);">abbreviated</span>
+            </div>
+            <div class="row" style="gap:18px;">
+              <span class="wordmark-mark" style="width:40px;height:40px;font-size:22px;"><span class="s">S</span></span>
+              <span class="sublabel" style="color:var(--muted-on-dark);">mark only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark tex-noise" id="components">
+  <div class="container">
+
+    <div class="group" style="border-top:0;">
+      <span class="group-title">eyebrow labels</span>
+      <span class="group-count">numbered + unnumbered</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-2">
+        <div class="card" style="background:#0e0e10;">
+          <span class="sublabel">on dark</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+            <span class="eyebrow">● 01 · hero</span>
+            <span class="eyebrow">● 03 · what we ship</span>
+            <span class="eyebrow">● 04 · how we work</span>
+            <span class="eyebrow">● what you don't have to do</span>
+            <span class="eyebrow">● build your own</span>
+          </div>
+        </div>
+        <div class="card" style="background:var(--bg-cream);color:var(--text-on-light);border-color:var(--border-light);">
+          <span class="sublabel" style="color:var(--muted-on-light);">on cream</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+            <span class="eyebrow" style="color:var(--muted-on-light);">● 01 · hero</span>
+            <span class="eyebrow" style="color:var(--muted-on-light);">● 03 · what we ship</span>
+            <span class="eyebrow" style="color:var(--muted-on-light);">● 04 · how we work</span>
+            <span class="eyebrow" style="color:var(--muted-on-light);">● what you don't have to do</span>
+            <span class="eyebrow" style="color:var(--muted-on-light);">● build your own</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-title">buttons</span>
+      <span class="group-count">primary · ghost · link · sm</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-2">
+        <div class="card" style="background:#0e0e10;">
+          <span class="sublabel">on dark — default / hover (right column simulates hover)</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+
+            <div class="states">
+              <span class="caption" style="margin-top:0;">primary</span>
+              <span class="caption" style="margin-top:0;">primary · hover</span>
+              <span class="caption" style="margin-top:0;">primary · small</span>
+              <div class="cell"><button class="btn btn--primary"><span class="dot"></span>WhatsApp us about this</button></div>
+              <div class="cell"><button class="btn btn--primary" style="transform:translateY(-1px);border-color:var(--accent-amber-2);"><span class="dot"></span>WhatsApp us about this</button></div>
+              <div class="cell"><button class="btn btn--primary btn--sm"><span class="dot"></span>send</button></div>
+            </div>
+
+            <div class="states" style="margin-top:8px;">
+              <span class="caption" style="margin-top:0;">ghost</span>
+              <span class="caption" style="margin-top:0;">ghost · hover</span>
+              <span class="caption" style="margin-top:0;">ghost · small</span>
+              <div class="cell"><button class="btn btn--ghost-dark">See a similar build<i class="ti ti-arrow-right"></i></button></div>
+              <div class="cell"><button class="btn btn--ghost-dark" style="transform:translateY(-1px);border-color:var(--text-on-dark);">See a similar build<i class="ti ti-arrow-right"></i></button></div>
+              <div class="cell"><button class="btn btn--ghost-dark btn--sm">view spec</button></div>
+            </div>
+
+            <div class="states" style="margin-top:8px;">
+              <span class="caption" style="margin-top:0;">link</span>
+              <span class="caption" style="margin-top:0;">link · hover</span>
+              <span class="caption" style="margin-top:0;">—</span>
+              <div class="cell"><a class="link-dark body" href="#">read the build log</a></div>
+              <div class="cell"><a class="link-dark body" href="#" style="border-bottom-color:var(--text-on-dark);">read the build log</a></div>
+              <div class="cell"><span class="caption" style="margin-top:0;">offset 4px on hover</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--bg-cream);color:var(--text-on-light);border-color:var(--border-light);">
+          <span class="sublabel" style="color:var(--muted-on-light);">on cream — default / hover</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+
+            <div class="states">
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">primary</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">primary · hover</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">primary · small</span>
+              <div class="cell"><button class="btn btn--primary"><span class="dot"></span>send to WhatsApp</button></div>
+              <div class="cell"><button class="btn btn--primary" style="transform:translateY(-1px);border-color:var(--accent-amber-2);"><span class="dot"></span>send to WhatsApp</button></div>
+              <div class="cell"><button class="btn btn--primary btn--sm"><span class="dot"></span>send</button></div>
+            </div>
+
+            <div class="states" style="margin-top:8px;">
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">ghost</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">ghost · hover</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">ghost · small</span>
+              <div class="cell"><button class="btn btn--ghost-light">explore demos<i class="ti ti-arrow-right"></i></button></div>
+              <div class="cell"><button class="btn btn--ghost-light" style="transform:translateY(-1px);border-color:var(--text-on-light);">explore demos<i class="ti ti-arrow-right"></i></button></div>
+              <div class="cell"><button class="btn btn--ghost-light btn--sm">view spec</button></div>
+            </div>
+
+            <div class="states" style="margin-top:8px;">
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">link</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">link · hover</span>
+              <span class="caption" style="margin-top:0;color:var(--muted-on-light);">—</span>
+              <div class="cell"><a class="link-light body" href="#">read the build log</a></div>
+              <div class="cell"><a class="link-light body" href="#" style="border-bottom-color:var(--text-on-light);">read the build log</a></div>
+              <div class="cell"><span class="caption" style="margin-top:0;color:var(--muted-on-light);">offset 4px on hover</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-title">tags · pills</span>
+      <span class="group-count">tech + status</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-2">
+        <div class="card" style="background:#0e0e10;">
+          <span class="sublabel">on dark</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+            <div>
+              <p class="caption" style="margin-top:0;">tech tags — transparent fill, 1px border, lowercase mono</p>
+              <div class="row" style="margin-top:10px;">
+                <span class="tag">react native</span>
+                <span class="tag">next.js</span>
+                <span class="tag">postgres</span>
+                <span class="tag">kafka</span>
+                <span class="tag">openai</span>
+                <span class="tag">pgvector</span>
+                <span class="tag">fastapi</span>
+                <span class="tag">stripe</span>
+                <span class="tag">twilio</span>
+              </div>
+            </div>
+            <div>
+              <p class="caption" style="margin-top:0;">status tags — amber border, 8% amber fill</p>
+              <div class="row" style="margin-top:10px;">
+                <span class="tag tag--status">14 weeks</span>
+                <span class="tag tag--status">₹18–25L</span>
+                <span class="tag tag--status">4 engineers</span>
+                <span class="tag tag--status">demo every friday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:var(--bg-cream);color:var(--text-on-light);border-color:var(--border-light);">
+          <span class="sublabel" style="color:var(--muted-on-light);">on cream</span>
+          <div class="stack" style="--gap:18px;margin-top:8px;">
+            <div>
+              <p class="caption" style="margin-top:0;color:var(--muted-on-light);">tech tags</p>
+              <div class="row" style="margin-top:10px;">
+                <span class="tag">react native</span>
+                <span class="tag">next.js</span>
+                <span class="tag">postgres</span>
+                <span class="tag">kafka</span>
+                <span class="tag">openai</span>
+                <span class="tag">pgvector</span>
+                <span class="tag">fastapi</span>
+                <span class="tag">stripe</span>
+                <span class="tag">twilio</span>
+              </div>
+            </div>
+            <div>
+              <p class="caption" style="margin-top:0;color:var(--muted-on-light);">status tags</p>
+              <div class="row" style="margin-top:10px;">
+                <span class="tag tag--status">14 weeks</span>
+                <span class="tag tag--status">₹18–25L</span>
+                <span class="tag tag--status">4 engineers</span>
+                <span class="tag tag--status">demo every friday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="surface surface--dark" id="cards">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">cards · on dark</span>
+      <span class="group-count">default + hover (right)</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-3">
+
+        <div class="card">
+          <span class="mono-label muted-dark">● restaurant ordering</span>
+          <p class="card-title">Tables that turn 18% faster than they did last quarter.</p>
+          <p class="card-body">QR menu, kitchen display, table-side payments — one stack from front-of-house to the books.</p>
+          <div class="card-tags">
+            <span class="tag">react native</span>
+            <span class="tag">stripe</span>
+            <span class="tag">postgres</span>
+          </div>
+          <a class="card-cta link-dark" href="#">see the build<i class="ti ti-arrow-right"></i></a>
+        </div>
+
+        <div class="card" style="transform:translateY(-1px);border-color:var(--border-dark-strong);">
+          <span class="mono-label muted-dark">● banking dashboard</span>
+          <p class="card-title">Fraud signals scored in 300ms, every transaction, no exception.</p>
+          <p class="card-body">A real-time pipeline that auditors actually trust and operators can actually read.</p>
+          <div class="card-tags">
+            <span class="tag">typescript</span>
+            <span class="tag">kafka</span>
+            <span class="tag">redis</span>
+          </div>
+          <a class="card-cta link-dark" href="#" style="border-bottom-color:var(--text-on-dark);">see the build<i class="ti ti-arrow-right"></i></a>
+        </div>
+
+        <div class="card">
+          <span class="mono-label muted-dark">● healthcare portal</span>
+          <p class="card-title">847 appointments booked last month, no one called reception.</p>
+          <p class="card-body">Patient portal, doctor scheduler, SMS confirmations — pieced into one quiet flow.</p>
+          <div class="card-tags">
+            <span class="tag">next.js</span>
+            <span class="tag">mongodb</span>
+            <span class="tag">twilio</span>
+          </div>
+          <a class="card-cta link-dark" href="#">see the build<i class="ti ti-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="cards-cream">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">cards · on cream</span>
+      <span class="group-count">default + hover (right)</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="mono-label muted-light">● phase 01</span>
+          <p class="card-title">Understand</p>
+          <p class="card-body">One week. Two engineers in the room. We map your workflow, draw the data, and write the spec you'll approve in plain language.</p>
+          <div class="card-tags"><span class="tag">week 1</span></div>
+          <a class="card-cta link-light" href="#">what we deliver<i class="ti ti-arrow-right"></i></a>
+        </div>
+        <div class="card" style="transform:translateY(-1px);border-color:var(--border-light-strong);">
+          <span class="mono-label muted-light">● phase 02</span>
+          <p class="card-title">Design</p>
+          <p class="card-body">Two weeks. Click-through prototype in your hands by end of week three. We design with you, not for you.</p>
+          <div class="card-tags"><span class="tag">weeks 2–3</span></div>
+          <a class="card-cta link-light" href="#" style="border-bottom-color:var(--text-on-light);">what we deliver<i class="ti ti-arrow-right"></i></a>
+        </div>
+        <div class="card">
+          <span class="mono-label muted-light">● phase 03</span>
+          <p class="card-title">Build</p>
+          <p class="card-body">Eight to ten weeks. Friday demos every week. Production-ready by the last one — not a deck, not a recap.</p>
+          <div class="card-tags"><span class="tag">weeks 4–12</span></div>
+          <a class="card-cta link-light" href="#">what we deliver<i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark" id="form">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">form primitives · on dark</span>
+      <span class="group-count">input · select · inline select</span>
+    </div>
+    <div class="group-body">
+
+      <div class="grid grid-3">
+        <div class="field">
+          <label>text input · default</label>
+          <input class="input" placeholder="your business" />
+        </div>
+        <div class="field">
+          <label>text input · focus</label>
+          <input class="input" placeholder="your business" style="border-color:var(--accent-amber);" />
+        </div>
+        <div class="field">
+          <label>text input · filled</label>
+          <input class="input" value="indore coffee co." />
+        </div>
+
+        <div class="field">
+          <label>dropdown · default</label>
+          <select class="select"><option>restaurant chain</option></select>
+        </div>
+        <div class="field">
+          <label>dropdown · focus</label>
+          <select class="select" style="border-color:var(--accent-amber);"><option>retail store</option></select>
+        </div>
+        <div class="field">
+          <label>dropdown · filled</label>
+          <select class="select"><option>a mobile ordering app</option></select>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;">
+        <p class="sublabel" style="margin-bottom:12px;">inline editable sentence — section 1 configurator</p>
+        <p class="h2" style="max-width:1000px;">
+          I run a
+          <span class="inline-select">
+            <select aria-label="business">
+              <option>restaurant chain</option>
+              <option>retail store</option>
+              <option>clinic</option>
+              <option>bank</option>
+              <option>logistics company</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </span>
+          and I need
+          <span class="inline-select">
+            <select aria-label="need">
+              <option>a mobile ordering app</option>
+              <option>a web dashboard</option>
+              <option>an ai support agent</option>
+              <option>a whole platform</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </span>.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="form-cream">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">form primitives · on cream</span>
+      <span class="group-count">input · select · inline select</span>
+    </div>
+    <div class="group-body">
+      <div class="grid grid-3">
+        <div class="field">
+          <label>text input · default</label>
+          <input class="input" placeholder="your business" />
+        </div>
+        <div class="field">
+          <label>text input · focus</label>
+          <input class="input" placeholder="your business" style="border-color:var(--accent-amber);" />
+        </div>
+        <div class="field">
+          <label>text input · filled</label>
+          <input class="input" value="koramangala clinic" />
+        </div>
+
+        <div class="field">
+          <label>dropdown · default</label>
+          <select class="select"><option>clinic</option></select>
+        </div>
+        <div class="field">
+          <label>dropdown · focus</label>
+          <select class="select" style="border-color:var(--accent-amber);"><option>bank</option></select>
+        </div>
+        <div class="field">
+          <label>dropdown · filled</label>
+          <select class="select"><option>an appointment booker</option></select>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;">
+        <p class="sublabel" style="margin-bottom:12px;">inline editable sentence</p>
+        <p class="h2" style="max-width:1000px;">
+          I run a
+          <span class="inline-select">
+            <select aria-label="business">
+              <option>clinic</option>
+              <option>bank</option>
+              <option>saas startup</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </span>
+          and I need
+          <span class="inline-select">
+            <select aria-label="need">
+              <option>an appointment booker</option>
+              <option>a fraud-detection layer</option>
+              <option>a customer portal</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </span>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark" id="frames">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">device chrome · frames</span>
+      <span class="group-count">macos · phone · wide</span>
+    </div>
+    <div class="group-body">
+
+      <div class="grid grid-2">
+
+        <div>
+          <p class="sublabel" style="margin-bottom:14px;">macos browser chrome — used in section 1 + section 3</p>
+          <div class="frame">
+            <div class="chrome">
+              <div class="lights"><span></span><span></span><span></span></div>
+              <div class="url"><i class="ti ti-lock"></i>sofsolutionsai.com/configure</div>
+              <i class="ti ti-arrows-maximize" style="color:var(--muted-on-dark);font-size:14px;"></i>
+            </div>
+            <div class="placeholder">component slot — receives content in phase 02</div>
+          </div>
+        </div>
+
+        <div>
+          <p class="sublabel" style="margin-bottom:14px;">phone frame — used in section 6 preview</p>
+          <div style="display:flex;justify-content:center;">
+            <div class="phone">
+              <div class="notch"></div>
+              <div class="side"></div>
+              <div class="screen">mobile slot — receives content in phase 07</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:48px;">
+        <p class="sublabel" style="margin-bottom:14px;">wide browser frame — used in section 3 dashboard demos</p>
+        <div class="frame frame--wide">
+          <div class="chrome">
+            <div class="lights"><span></span><span></span><span></span></div>
+            <div class="url"><i class="ti ti-lock"></i>sofsolutionsai.com/build/banking-dashboard</div>
+            <i class="ti ti-arrows-maximize" style="color:var(--muted-on-dark);font-size:14px;"></i>
+          </div>
+          <div class="placeholder">dashboard slot — receives demo 02 in phase 04b</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="journey">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">journey thread</span>
+      <span class="group-count">1px amber · node anchors</span>
+    </div>
+    <div class="group-body">
+      <p class="body lede muted-light" style="margin-bottom:36px;">
+        A 1px amber line runs the full document on the right rail (visible on desktop). 14px circle nodes mark section anchors; they fill as the reader scrolls past them. Below: every state, annotated.
+      </p>
+
+      <div style="position:relative; padding: 32px 0 32px 80px;">
+        <div style="position:absolute; top:0; bottom:0; left:36px; width:1px; background:var(--accent-amber); opacity:.4;"></div>
+
+        <div style="position:relative; display:flex; align-items:center; gap:24px; padding:18px 0;">
+          <span style="position:absolute; left:30px; width:14px;height:14px;border:1px solid var(--accent-amber); background:var(--accent-amber); border-radius:50%;"></span>
+          <div>
+            <p class="mono-label muted-light">scrolled past — filled</p>
+            <p class="body-sm muted-light" style="margin-top:4px;">node fills with amber, label remains visible</p>
+          </div>
+        </div>
+
+        <div style="position:relative; display:flex; align-items:center; gap:24px; padding:18px 0;">
+          <span style="position:absolute; left:30px; width:14px;height:14px;border:1px solid var(--accent-amber); background:var(--bg-cream); border-radius:50%; box-shadow:0 0 0 4px rgba(239,159,39,0.15);"></span>
+          <div>
+            <p class="mono-label muted-light">active — current section</p>
+            <p class="body-sm muted-light" style="margin-top:4px;">amber halo at 15% opacity, ring 1px</p>
+          </div>
+        </div>
+
+        <div style="position:relative; display:flex; align-items:center; gap:24px; padding:18px 0;">
+          <span style="position:absolute; left:30px; width:14px;height:14px;border:1px solid var(--accent-amber); background:var(--bg-cream); border-radius:50%;"></span>
+          <div>
+            <p class="mono-label muted-light">unfilled — not yet reached</p>
+            <p class="body-sm muted-light" style="margin-top:4px;">1px amber ring, surface fill</p>
+          </div>
+        </div>
+
+        <div style="position:relative; display:flex; align-items:center; gap:24px; padding:18px 0;">
+          <span style="position:absolute; left:30px; width:14px;height:14px;border:1px solid var(--accent-amber); background:var(--bg-cream); border-radius:50%;"></span>
+          <div class="row" style="gap:14px;">
+            <p class="mono-label muted-light">with label · on hover</p>
+            <span class="mono-tag muted-light">04 · how we work</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="caption" style="color:var(--muted-on-light);">live: the right-edge thread tracks your scroll position through the document above.</p>
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="dividers">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">section dividers</span>
+      <span class="group-count">~3° diagonal · both directions</span>
+    </div>
+    <div class="group-body">
+
+      <p class="body lede muted-light" style="margin-bottom:24px;">A shallow diagonal between dark and cream sections. ~3° angle, no shadow, no gradient — just a hard clip-path cut.</p>
+
+      <div class="divider-demo" style="margin-bottom:32px;">
+        <div class="panel dark">
+          <span class="eyebrow" style="color:var(--muted-on-dark);">● section ends</span>
+          <p class="h2" style="margin-top:14px;">dark → cream</p>
+        </div>
+        <div class="panel cream">
+          <span class="eyebrow">● section begins</span>
+          <p class="h2" style="margin-top:14px;">cream → continued</p>
+        </div>
+      </div>
+
+      <div class="divider-demo divider-demo--reverse">
+        <div class="panel cream">
+          <span class="eyebrow">● section ends</span>
+          <p class="h2" style="margin-top:14px;">cream → dark</p>
+        </div>
+        <div class="panel dark">
+          <span class="eyebrow" style="color:var(--muted-on-dark);">● section begins</span>
+          <p class="h2" style="margin-top:14px;">dark → continued</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark" id="texture">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">texture overlays</span>
+      <span class="group-count">a/b · noise + dot grid</span>
+    </div>
+    <div class="group-body">
+
+      <p class="body lede muted-dark" style="margin-bottom:32px;">Visible enough to read as "considered," subtle enough to never compete with content. Noise sits ~3–4% on dark, dot grid 1.5% on dark and 2–3% on cream.</p>
+
+      <p class="sublabel" style="margin-bottom:12px;">dark — noise vs plain</p>
+      <div class="ab" style="margin-bottom:36px;">
+        <div class="cell dark"><span class="lbl">plain · #0e0e10</span></div>
+        <div class="cell dark noise"><span class="lbl">+ noise · 3.5%</span></div>
+      </div>
+
+      <p class="sublabel" style="margin-bottom:12px;">dark — dot grid vs plain</p>
+      <div class="ab" style="margin-bottom:36px;">
+        <div class="cell dark"><span class="lbl">plain · #0e0e10</span></div>
+        <div class="cell dark dots-dark"><span class="lbl">+ dot grid · 1.8%</span></div>
+      </div>
+
+      <p class="sublabel" style="margin-bottom:12px;">cream — dot grid vs plain</p>
+      <div class="ab">
+        <div class="cell cream"><span class="lbl">plain · #f5f1e8</span></div>
+        <div class="cell cream dots-cream"><span class="lbl">+ dot grid · 3%</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--cream" id="icons">
+  <div class="container">
+    <div class="group" style="border-top:0;">
+      <span class="group-title">iconography · tabler outline</span>
+      <span class="group-count">16 icons × 2 sizes</span>
+    </div>
+    <div class="group-body">
+
+      <p class="body lede muted-light" style="margin-bottom:32px;">Outline-only. 20px for inline / dense UI, 24px for buttons and standalone usage. No filled icons, no emoji, no custom illustration.</p>
+
+      <div class="icon-grid">
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-chevron-down small"></i><i class="ti ti-chevron-down"></i></div><span class="name">chevron-down</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-x small"></i><i class="ti ti-x"></i></div><span class="name">x</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-check small"></i><i class="ti ti-check"></i></div><span class="name">check</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-arrow-right small"></i><i class="ti ti-arrow-right"></i></div><span class="name">arrow-right</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-brand-whatsapp small"></i><i class="ti ti-brand-whatsapp"></i></div><span class="name">whatsapp</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-mail small"></i><i class="ti ti-mail"></i></div><span class="name">mail</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-send small"></i><i class="ti ti-send"></i></div><span class="name">send</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-cursor-text small"></i><i class="ti ti-cursor-text"></i></div><span class="name">cursor-text</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-hand-click small"></i><i class="ti ti-hand-click"></i></div><span class="name">hand-click</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-arrows-maximize small"></i><i class="ti ti-arrows-maximize"></i></div><span class="name">arrows-maximize</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-pencil small"></i><i class="ti ti-pencil"></i></div><span class="name">pencil</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-player-play small"></i><i class="ti ti-player-play"></i></div><span class="name">player-play</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-lock small"></i><i class="ti ti-lock"></i></div><span class="name">lock</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-clock small"></i><i class="ti ti-clock"></i></div><span class="name">clock</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-bolt small"></i><i class="ti ti-bolt"></i></div><span class="name">bolt</span></div>
+        <div class="icon-cell"><div class="sizes"><i class="ti ti-circle-dot small"></i><i class="ti ti-circle-dot"></i></div><span class="name">circle-dot</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="surface surface--dark" id="end" style="padding-top:80px; padding-bottom:48px;">
+  <div class="container">
+    <div class="footnote">
+      <div class="row" style="gap:14px;">
+        <span class="wordmark-mark"><span class="s">S</span></span>
+        <span class="mono-label muted-dark">design system · v0.1 · phase 01 of 09</span>
+      </div>
+      <span class="mono-label muted-dark">next: phase 02 — hero + mercury zoom</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const nodes = document.getElementById('journey-nodes');
+    const sections = Array.from(document.querySelectorAll('section.surface'));
+    if (!nodes || !sections.length) return;
+
+    const labelMap = {
+      'intro':           '00 · foundation',
+      'color':           '01 · color',
+      'typography':      '02 · type / dark',
+      'typography-cream':'03 · type / cream',
+      'wordmark':        '04 · wordmark',
+      'components':      '05 · components',
+      'cards':           '06 · cards / dark',
+      'cards-cream':     '07 · cards / cream',
+      'form':            '08 · form / dark',
+      'form-cream':      '09 · form / cream',
+      'frames':          '10 · frames',
+      'journey':         '11 · journey',
+      'dividers':        '12 · dividers',
+      'texture':         '13 · texture',
+      'icons':           '14 · icons',
+      'end':             '15 · end'
+    };
+
+    const docHeight = () => document.documentElement.scrollHeight;
+    const viewportH = () => window.innerHeight;
+
+    const nodeEls = sections.map((s, i) => {
+      const el = document.createElement('span');
+      el.className = 'node';
+      const lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = labelMap[s.id] || (String(i+1).padStart(2,'0') + ' · ' + (s.id || 'section'));
+      el.appendChild(lbl);
+      nodes.appendChild(el);
+      return el;
+    });
+
+    function positionNodes() {
+      const track = nodes.getBoundingClientRect();
+      const trackH = track.height;
+      const total = docHeight() - viewportH();
+      sections.forEach((s, i) => {
+        const top = s.offsetTop;
+        const pct = total > 0 ? Math.min(1, Math.max(0, top / docHeight())) : (i / Math.max(1, sections.length-1));
+        nodeEls[i].style.top = (pct * trackH) + 'px';
+      });
+    }
+
+    function updateState() {
+      const scrolled = window.scrollY + viewportH() * 0.35;
+      sections.forEach((s, i) => {
+        if (s.offsetTop <= scrolled) nodeEls[i].classList.add('filled');
+        else nodeEls[i].classList.remove('filled');
+      });
+
+      const mid = window.scrollY + viewportH() / 2;
+      let current = sections[0];
+      for (const s of sections) {
+        if (s.offsetTop <= mid) current = s;
+      }
+      if (current && current.classList.contains('surface--cream')) document.body.classList.add('in-cream');
+      else document.body.classList.remove('in-cream');
+    }
+
+    positionNodes();
+    updateState();
+
+    window.addEventListener('scroll', updateState, { passive: true });
+    window.addEventListener('resize', () => { positionNodes(); updateState(); }, { passive: true });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => { positionNodes(); updateState(); });
+    }
+  })();
+</script>
+
+</body>
+</html>

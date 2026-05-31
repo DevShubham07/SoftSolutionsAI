@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SofSolutionsAI — phase 05 · how we work (crystal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#16131f">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#16131f"/>
+    <g transform="translate(600 400)" fill="none" stroke="#EF9F27" stroke-width="3" stroke-opacity="0.7">
+      <polygon points="0,-180 156,-90 156,90 0,180 -156,90 -156,-90"/>
+      <polygon points="0,-180 0,180" stroke-opacity="0.35"/>
+      <polygon points="-156,-90 156,90" stroke-opacity="0.35"/>
+      <polygon points="156,-90 -156,90" stroke-opacity="0.35"/>
+    </g>
+    <circle cx="600" cy="400" r="46" fill="#EF9F27"/>
+    <circle cx="600" cy="400" r="74" fill="#EF9F27" fill-opacity="0.18"/>
+    <text x="190" y="700" font-family="Space Mono, monospace" font-size="24" fill="#908ba3" letter-spacing="3">05 · how we work</text>
+  </svg>
+</template>
+<style>
+/* SHARED SHELL — dedupe at assembly */
+:root{
+  --bg-dark:#16131f; --bg-dark-2:#1f1a2e;
+  --accent-amber:#EF9F27; --accent-amber-2:#BA7517;
+  --text-on-dark:#f5f4f9; --muted-on-dark:#908ba3;
+  --border-dark:rgba(245,244,249,0.10);
+  --spring:cubic-bezier(.22,1,.36,1);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg-dark);color:var(--text-on-dark);font-family:'Space Grotesk',sans-serif;font-weight:400}
+
+/* ============================================================
+   JOURNEY THREAD (inherited — dark variant)
+   ============================================================ */
+.journey{position:fixed;right:28px;top:0;bottom:0;width:14px;display:flex;flex-direction:column;align-items:center;pointer-events:none;z-index:60}
+.journey .line{position:absolute;top:80px;bottom:80px;width:1px;background:var(--accent-amber);opacity:.25;left:50%;transform:translateX(-50%)}
+.journey .nodes{position:relative;flex:1;width:14px}
+.journey .node{
+  position:absolute;left:0;width:14px;height:14px;border-radius:50%;
+  border:1px solid var(--accent-amber);background:var(--bg-dark);
+  transform:translateY(-50%);
+  transition:background 200ms var(--ease),box-shadow 200ms var(--ease);
+  pointer-events:auto;cursor:pointer;
+}
+.journey .node.filled{background:var(--accent-amber)}
+.journey .node.active{box-shadow:0 0 0 4px rgba(239,159,39,.15)}
+.journey .node .lbl{
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:lowercase;
+  color:var(--muted-on-dark);white-space:nowrap;opacity:0;transition:opacity 200ms var(--ease);
+}
+.journey .node:hover .lbl,.journey .node.active .lbl{opacity:1}
+
+#sec-05{position:relative;min-height:100vh;width:100%;overflow:hidden;background:var(--bg-dark)}
+/* faint dot-grid texture */
+#sec-05::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(245,244,249,.05) 1px,transparent 1px);
+  background-size:26px 26px;mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 40%,transparent 100%);
+}
+/* ambient amber glow behind the crystal — atmosphere, fills the space */
+#sec-05 .amber-halo{
+  position:absolute;left:50%;top:54%;width:min(72vmin,720px);height:min(72vmin,720px);
+  transform:translate(-50%,-50%);pointer-events:none;z-index:0;
+  background:radial-gradient(circle, rgba(239,159,39,.20) 0%, rgba(239,159,39,.08) 32%, rgba(239,159,39,0) 66%);
+  filter:blur(4px);
+}
+
+#sec-05 .frame{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:84px 32px 40px;text-align:center}
+#sec-05 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--muted-on-dark);text-transform:lowercase}
+#sec-05 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-amber);box-shadow:0 0 10px rgba(239,159,39,.6)}
+#sec-05 h1{margin-top:20px;font-weight:500;font-size:clamp(30px,4.4vw,48px);line-height:1.08;letter-spacing:-.02em}
+#sec-05 .sub{margin:16px auto 0;max-width:540px;font-size:17px;line-height:1.55;color:var(--muted-on-dark)}
+
+/* the 3D stage */
+#sec-05 .stage{position:relative;z-index:1;width:100%;height:62vh;min-height:440px}
+#sec-05 canvas{display:block;width:100%;height:100%;cursor:grab}
+#sec-05 .hint{
+  position:relative;z-index:2;text-align:center;margin-top:-8px;padding-bottom:84px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--muted-on-dark);
+  text-transform:lowercase;transition:opacity .4s ease;
+}
+
+/* floating detail card (one shared element, repositioned) */
+#sec-05 .card{
+  position:absolute;z-index:5;top:0;left:0;width:268px;
+  background:rgba(31,26,46,.86);backdrop-filter:blur(10px);
+  border:1px solid var(--border-dark);border-left:2px solid var(--accent-amber);
+  border-radius:12px;padding:18px 18px 16px;
+  opacity:0;transform:translateY(6px) scale(.98);pointer-events:none;
+  transition:opacity .26s var(--spring),transform .26s var(--spring);
+  text-align:left;
+}
+#sec-05 .card.show{opacity:1;transform:translateY(0) scale(1)}
+#sec-05 .card .name{font-weight:500;font-size:19px;letter-spacing:-.01em}
+#sec-05 .card .tag{margin-top:3px;font-size:13.5px;color:var(--accent-amber);font-weight:400}
+#sec-05 .card .rows{margin-top:14px;display:flex;flex-direction:column;gap:11px}
+#sec-05 .card .row .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--muted-on-dark);text-transform:lowercase}
+#sec-05 .card .row .v{margin-top:3px;font-size:13.5px;line-height:1.45;color:var(--text-on-dark)}
+
+/* fallback (no WebGL / reduced) */
+#sec-05 .fallback{display:none;position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 32px 90px;
+  grid-template-columns:repeat(2,1fr);gap:16px}
+#sec-05 .fallback.on{display:grid}
+#sec-05 .fb{background:var(--bg-dark-2);border:1px solid var(--border-dark);border-left:2px solid var(--accent-amber);border-radius:12px;padding:18px;text-align:left}
+#sec-05 .fb .name{font-weight:500;font-size:18px}
+#sec-05 .fb .tag{font-size:13px;color:var(--accent-amber);margin-top:2px}
+#sec-05 .fb .rows{margin-top:12px;display:flex;flex-direction:column;gap:9px}
+#sec-05 .fb .k{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--muted-on-dark)}
+#sec-05 .fb .v{font-size:13px;line-height:1.4;margin-top:2px}
+
+/* trailing — forward-motion spacer for the rail (dark) */
+.trailing{min-height:24vh;background:var(--bg-dark)}
+
+@media (max-width:760px){
+  #sec-05 .frame{padding:64px 20px 24px}
+  #sec-05 .stage{height:54vh;min-height:360px}
+  #sec-05 .card{width:240px}
+  #sec-05 .fallback.on{grid-template-columns:1fr}
+  .journey{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Journey thread -->
+<div class="journey" aria-hidden="true">
+  <span class="line"></span>
+  <div class="nodes" id="journey-nodes"></div>
+</div>
+
+<section id="sec-05" aria-label="How we work" data-screen-label="05 how we work">
+  <div class="amber-halo"></div>
+
+  <div class="frame">
+    <span class="eyebrow"><span class="dot"></span>05 · how we work</span>
+    <h1>One process. Six moments. No surprises.</h1>
+    <p class="sub">Friday demos, every Friday. The same engineer from the first message to long after launch.</p>
+  </div>
+
+  <div class="stage" id="stage">
+    <!-- canvas injected -->
+    <div class="card" id="card" role="status" aria-live="polite">
+      <div class="name" id="c-name"></div>
+      <div class="tag" id="c-tag"></div>
+      <div class="rows">
+        <div class="row"><div class="k">we do</div><div class="v" id="c-we"></div></div>
+        <div class="row"><div class="k">you do</div><div class="v" id="c-you"></div></div>
+        <div class="row"><div class="k">output</div><div class="v" id="c-out"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint" id="hint">hover a node to see the step</div>
+
+  <!-- fallback grid (filled by JS) -->
+  <div class="fallback" id="fallback"></div>
+</section>
+
+<section class="trailing" id="trailing" data-screen-label="06 next"></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById('sec-05');
+  var stage = document.getElementById('stage');
+  var card  = document.getElementById('card');
+  var hint  = document.getElementById('hint');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+
+  // ---- the six process faces ----
+  var PHASES = [
+    {name:'understand', tag:'we ask before we build',
+     we:'ask hard questions, read the code', you:"tell us what's actually broken", out:"a spec you'd approve in plain language",
+     dir:[0.20,0.30,1.0]},
+    {name:'design', tag:'you click it before we sign',
+     we:'architecture, UX, a clickable prototype', you:'one review call, break what feels wrong', out:'clickable prototype you sign off on',
+     dir:[1.0,0.15,-0.10]},
+    {name:'build', tag:'friday demos, every friday',
+     we:'ship in pairs, friday demos, deploy on green', you:'come to friday demos, redirect when needed', out:'working software in production',
+     dir:[0.10,0.95,-0.20]},
+    {name:'ship', tag:'we go live together',
+     we:'production deploy, monitoring, rollback ready', you:'pick the go-live moment', out:'your users on the real thing',
+     dir:[-0.95,0.20,0.25]},
+    {name:'support', tag:'same engineer, forever',
+     we:'on-call, maintenance, the same engineers', you:'WhatsApp us when something breaks', out:'uptime + the team that built it',
+     dir:[-0.15,-0.90,0.30]},
+    {name:'evolve', tag:"it doesn't stop at launch",
+     we:'new features, improvements, the same hands', you:"tell us what's next on WhatsApp", out:'software that keeps growing with you',
+     dir:[0.35,-0.25,-1.0]}
+  ];
+
+  function fillCard(p){
+    document.getElementById('c-name').textContent = p.name;
+    document.getElementById('c-tag').textContent  = p.tag;
+    document.getElementById('c-we').textContent   = p.we;
+    document.getElementById('c-you').textContent  = p.you;
+    document.getElementById('c-out').textContent  = p.out;
+  }
+
+  // ---- graceful fallback ----
+  function buildFallback(){
+    var fb = document.getElementById('fallback');
+    fb.classList.add('on');
+    var html='';
+    for(var i=0;i<PHASES.length;i++){var p=PHASES[i];
+      html+='<div class="fb"><div class="name">'+p.name+'</div><div class="tag">'+p.tag+'</div>'+
+            '<div class="rows"><div><div class="k">we do</div><div class="v">'+p.we+'</div></div>'+
+            '<div><div class="k">you do</div><div class="v">'+p.you+'</div></div>'+
+            '<div><div class="k">output</div><div class="v">'+p.out+'</div></div></div></div>';
+    }
+    fb.innerHTML=html;
+    stage.style.display='none';
+    hint.style.display='none';
+  }
+
+  function webglOK(){
+    try{var c=document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl')||c.getContext('experimental-webgl')));
+    }catch(e){return false;}
+  }
+
+  if(typeof THREE==='undefined' || !webglOK()){ buildFallback(); }
+  else { initCrystal(); }
+
+  function initCrystal(){
+  try{
+    var scene = new THREE.Scene();
+    var W = stage.clientWidth, H = stage.clientHeight;
+    var camera = new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
+    camera.position.set(0,0,7.2);
+
+    var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setSize(W,H);
+    renderer.setClearColor(0x000000,0);
+    stage.insertBefore(renderer.domElement, card);
+
+    var R = 2.4;
+    var group = new THREE.Group();
+    scene.add(group);
+
+    // outer faceted translucent shell
+    var shellGeo = new THREE.IcosahedronGeometry(R, 1); // 80 flat faces
+    var shellMat = new THREE.MeshStandardMaterial({
+      color:0xf5f4f9, metalness:0.05, roughness:0.35,
+      transparent:true, opacity:0.16, flatShading:true, side:THREE.DoubleSide
+    });
+    var shell = new THREE.Mesh(shellGeo, shellMat);
+    group.add(shell);
+
+    // amber facet lattice (the "divided into faces" look)
+    var edges = new THREE.EdgesGeometry(shellGeo, 1);
+    var edgeMat = new THREE.LineBasicMaterial({color:0xEF9F27, transparent:true, opacity:0.22});
+    group.add(new THREE.LineSegments(edges, edgeMat));
+
+    // a second, smaller cool-white inner lattice for depth
+    var innerEdges = new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(R*0.7,1),1);
+    group.add(new THREE.LineSegments(innerEdges, new THREE.LineBasicMaterial({color:0x9aa0c0, transparent:true, opacity:0.10})));
+
+    // glowing amber core
+    var core = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(R*0.34, 1),
+      new THREE.MeshBasicMaterial({color:0xEF9F27})
+    );
+    group.add(core);
+    var coreGlow = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(R*0.52, 1),
+      new THREE.MeshBasicMaterial({color:0xEF9F27, transparent:true, opacity:0.18, blending:THREE.AdditiveBlending})
+    );
+    group.add(coreGlow);
+
+    // ---- node markers on the six faces ----
+    var nodes = [];      // visible marker meshes
+    var hits = [];       // invisible larger hit spheres for raycasting
+    var rings = [];      // pulse rings
+    var markerGeo = new THREE.SphereGeometry(0.085, 16, 16);
+    var hitGeo = new THREE.SphereGeometry(0.42, 12, 12);
+    for(var i=0;i<PHASES.length;i++){
+      var d = PHASES[i].dir;
+      var v = new THREE.Vector3(d[0],d[1],d[2]).normalize().multiplyScalar(R*1.04);
+
+      var m = new THREE.Mesh(markerGeo, new THREE.MeshBasicMaterial({color:0xEF9F27}));
+      m.position.copy(v);
+      group.add(m); nodes.push(m);
+
+      var ring = new THREE.Mesh(
+        new THREE.RingGeometry(0.13,0.17,28),
+        new THREE.MeshBasicMaterial({color:0xEF9F27, transparent:true, opacity:0.5, side:THREE.DoubleSide})
+      );
+      ring.position.copy(v); ring.lookAt(v.clone().multiplyScalar(2));
+      group.add(ring); rings.push(ring);
+
+      var hsm = new THREE.Mesh(hitGeo, new THREE.MeshBasicMaterial({visible:false}));
+      hsm.position.copy(v); hsm.userData.idx = i;
+      group.add(hsm); hits.push(hsm);
+    }
+
+    // lighting
+    scene.add(new THREE.AmbientLight(0xffffff, 0.40));
+    var keyL = new THREE.DirectionalLight(0xc7ccff, 0.65); keyL.position.set(-4,5,6); scene.add(keyL);
+    var rimL = new THREE.DirectionalLight(0xEF9F27, 0.45); rimL.position.set(5,-3,-4); scene.add(rimL);
+    var coreL = new THREE.PointLight(0xEF9F27, 1.1, 14); coreL.position.set(0,0,0); scene.add(coreL);
+
+    // ---- interaction ----
+    var ray = new THREE.Raycaster();
+    var ndc = new THREE.Vector2(-2,-2);
+    var hovered = -1;
+    var pinned = -1;        // touch: tapped node stays open until tapped away
+    var baseSpeed = reduce ? 0 : 0.0032;
+    var curSpeed = baseSpeed, targetSpeed = baseSpeed;
+    var clock = new THREE.Clock();
+
+    var _wp = new THREE.Vector3();
+    function isFront(idx){
+      nodes[idx].getWorldPosition(_wp);
+      return _wp.clone().normalize().dot(camera.position.clone().normalize()) > -0.12;
+    }
+
+    function setHover(idx){
+      if(idx===hovered) return;
+      hovered = idx;
+      if(idx>=0){
+        fillCard(PHASES[idx]);
+        card.classList.add('show');
+        hint.style.opacity = '0';
+        targetSpeed = 0;
+        renderer.domElement.style.cursor='pointer';
+      }else{
+        card.classList.remove('show');
+        hint.style.opacity = '1';
+        targetSpeed = baseSpeed;
+        renderer.domElement.style.cursor='grab';
+      }
+    }
+
+    function pointerMove(e){
+      var r = renderer.domElement.getBoundingClientRect();
+      var cx = (e.touches? e.touches[0].clientX : e.clientX);
+      var cy = (e.touches? e.touches[0].clientY : e.clientY);
+      ndc.x = ((cx - r.left)/r.width)*2 - 1;
+      ndc.y = -((cy - r.top)/r.height)*2 + 1;
+    }
+    // hover only on devices that have a hover-capable pointer
+    if(!isTouch){
+      renderer.domElement.addEventListener('pointermove', pointerMove);
+      renderer.domElement.addEventListener('pointerleave', function(){ ndc.set(-2,-2); if(pinned<0) setHover(-1); });
+    }
+    // tap a node toggles (and pins on touch so it survives the rotation)
+    renderer.domElement.addEventListener('pointerdown', function(e){
+      pointerMove(e);
+      ray.setFromCamera(ndc, camera);
+      var hit = ray.intersectObjects(hits, false);
+      if(hit.length){
+        var idx=hit[0].object.userData.idx;
+        if(isFront(idx)){
+          if(idx===hovered){ pinned=-1; setHover(-1); }
+          else { pinned=idx; setHover(idx); }
+        } else { pinned=-1; setHover(-1); }
+      } else { pinned=-1; setHover(-1); }
+      // reset ndc on touch so idle hit-test doesn't re-trigger
+      if(isTouch) ndc.set(-2,-2);
+    });
+
+    function positionCard(){
+      if(hovered<0) return;
+      var wp = new THREE.Vector3(); nodes[hovered].getWorldPosition(wp);
+      var p = wp.clone().project(camera);
+      var r = renderer.domElement.getBoundingClientRect();
+      var sx = (p.x*0.5+0.5)*r.width;
+      var sy = (-p.y*0.5+0.5)*r.height;
+      var cw = card.offsetWidth, ch = card.offsetHeight;
+      var left = sx + 26, top = sy - ch*0.4;
+      if(left + cw > r.width - 8) left = sx - cw - 26;   // flip if off right edge
+      if(left < 8) left = 8;
+      if(top < 8) top = 8;
+      if(top + ch > r.height - 8) top = r.height - ch - 8;
+      card.style.left = left+'px';
+      card.style.top  = top+'px';
+    }
+
+    function animate(){
+      requestAnimationFrame(animate);
+      var t = clock.getElapsedTime();
+      // keep rotating when a node is pinned on touch, so it feels alive
+      var wantPause = (hovered>=0 && pinned<0);
+      targetSpeed = wantPause ? 0 : baseSpeed;
+      curSpeed += (targetSpeed - curSpeed)*0.06;
+      group.rotation.y += curSpeed;
+      // gentle idle bob, scaled down when paused
+      var life = curSpeed/ (baseSpeed||1);
+      group.rotation.x = Math.sin(t*0.25)*0.12*(reduce?0:1);
+      group.position.y = Math.sin(t*0.6)*0.05*life;
+      // core breathing glow
+      var pulse = 1 + Math.sin(t*1.6)*0.06;
+      coreGlow.scale.setScalar(pulse);
+      coreL.intensity = 1.0 + Math.sin(t*1.6)*0.25 + (hovered>=0?0.5:0);
+
+      // hover hit-test (skip on touch — handled by tap)
+      if(!isTouch && ndc.x>-1.5){
+        ray.setFromCamera(ndc, camera);
+        var hit = ray.intersectObjects(hits, false);
+        if(hit.length && isFront(hit[0].object.userData.idx)) setHover(hit[0].object.userData.idx);
+        else setHover(-1);
+      }
+      // if a pinned node rotates to the back, release it
+      if(pinned>=0 && !isFront(pinned)){ pinned=-1; setHover(-1); }
+
+      // node visuals: active grows + pulses, others calm
+      for(var i=0;i<nodes.length;i++){
+        var active = (i===hovered);
+        var target = active? 1.9 : 1.0;
+        nodes[i].scale.x += (target - nodes[i].scale.x)*0.18;
+        nodes[i].scale.y = nodes[i].scale.z = nodes[i].scale.x;
+        rings[i].material.opacity = active? (0.5+Math.sin(t*5)*0.3) : 0.32;
+        var rs = active? (1.0+Math.sin(t*5)*0.18) : 1.0;
+        rings[i].scale.setScalar(rs);
+        rings[i].lookAt(camera.position); // face the camera
+      }
+
+      positionCard();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    function onResize(){
+      var w=stage.clientWidth, h=stage.clientHeight;
+      camera.aspect=w/h; camera.updateProjectionMatrix();
+      renderer.setSize(w,h);
+    }
+    window.addEventListener('resize', onResize);
+
+    if(isTouch){ hint.textContent='tap a node to see the step'; }
+    else if(reduce){ hint.textContent='hover a node to see the step'; }
+  }catch(err){
+    console.error('crystal init failed:', err);
+    buildFallback();
+  }
+  }
+
+  /* ============================================================
+     JOURNEY THREAD (inherited)
+     ============================================================ */
+  (function () {
+    var nodesWrap = document.getElementById('journey-nodes');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!nodesWrap || !sections.length) return;
+    var labelMap = { 'sec-05': '05 · how we work', 'trailing': '06 · next' };
+    var nodeEls = sections.map(function (s, i) {
+      var el = document.createElement('span');
+      el.className = 'node';
+      var lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = labelMap[s.id] || String(i + 1).padStart(2, '0');
+      el.appendChild(lbl);
+      el.addEventListener('click', function(){ window.scrollTo({ top: window.scrollY + s.getBoundingClientRect().top, behavior: 'smooth' }); });
+      nodesWrap.appendChild(el);
+      return el;
+    });
+    function position() {
+      var track = nodesWrap.getBoundingClientRect();
+      var docH = document.documentElement.scrollHeight;
+      sections.forEach(function (s, i) { nodeEls[i].style.top = (Math.min(1, Math.max(0, s.offsetTop / docH)) * track.height) + 'px'; });
+    }
+    function update() {
+      var mid = window.scrollY + window.innerHeight * 0.45;
+      var activeIdx = 0;
+      sections.forEach(function (s, i) {
+        if (s.offsetTop <= mid) activeIdx = i;
+        nodeEls[i].classList.toggle('filled', s.offsetTop <= window.scrollY + window.innerHeight * 0.55);
+      });
+      nodeEls.forEach(function (el, i) { el.classList.toggle('active', i === activeIdx); });
+    }
+    position(); update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function(){ position(); update(); }, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ position(); update(); });
+  })();
+
+})();
+</script>
+</body>
+</html>

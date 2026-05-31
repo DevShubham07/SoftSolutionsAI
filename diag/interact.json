@@ -1,0 +1,17 @@
+{
+ "bankDrawer": {
+  "open": true,
+  "left": 77,
+  "right": 369,
+  "withinFrameRight": true,
+  "withinFrameLeft": true,
+  "frameRight": 370
+ },
+ "cart": {
+  "open": false,
+  "withinFrameRight": false,
+  "withinFrameLeft": true,
+  "badge": "0"
+ },
+ "errors": []
+}
