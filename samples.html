@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-energy="electric">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Samples — SoftSolutionsAI</title>
+<meta name="description" content="Sample sites we design and ship at SofSolutionsAI — open each one and click through it live. Skincare storefront, developer platform, and an interactive web app." />
+<meta name="theme-color" content="#16131f" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Samples — SoftSolutionsAI" />
+<meta property="og:description" content="Example builds you can open and click through live. Every SofSolutionsAI project is custom — these show the range." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" /></noscript>
+<style>
+/* ============================================================
+   SAMPLES PAGE — reuses the SofSolutionsAI design tokens + chrome
+   (self-contained, matches the standalone-page pattern in /project)
+   ============================================================ */
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6;background:var(--bg-dark);color:var(--text-on-dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+::selection{background:var(--accent-amber);color:#1a1a1a;}
+
+:root{
+  --bg-dark:#16131f; --bg-dark-2:#1f1a2e; --bg-dark-3:#14111d; --bg-cream:#f5f1e8;
+  --accent-amber:#EF9F27; --accent-amber-2:#BA7517;
+  --accent-indigo:#7c6cff; --accent-indigo-2:#9a8dff;
+  --text-on-dark:#f5f4f9; --text-on-light:#1a1a1a;
+  --muted-on-dark:#908ba3; --muted-on-light:#6a655c;
+  --border-dark:rgba(245,244,249,0.10); --border-light:rgba(26,26,26,0.10);
+  --border-dark-strong:rgba(245,244,249,0.20); --border-light-strong:rgba(26,26,26,0.22);
+  --pos:#4ec98a; --neg:#d96d6d;
+  --font-sans:'Space Grotesk', system-ui, sans-serif;
+  --font-mono:'Space Mono', ui-monospace, monospace;
+  --container:1200px; --pad:32px;
+  --r-sm:4px; --r-md:8px; --r-lg:12px; --r-pill:999px;
+  --ease:cubic-bezier(.22,.61,.36,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ---- typography + primitives (lifted from index.html) ---- */
+.h1-display{font-size:64px;line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0;}
+.body-lg{font-size:18px;line-height:1.55;font-weight:400;margin:0;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:lowercase;color:var(--muted-on-dark);}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-amber);display:inline-block;flex:none;}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:500;font-size:14px;padding:10px 18px;border-radius:var(--r-pill);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform 200ms var(--ease),border-color 200ms var(--ease),color 200ms var(--ease),background-color 200ms var(--ease);user-select:none;line-height:1;white-space:nowrap;}
+.btn .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.9;}
+.btn--primary{background:var(--accent-amber);color:#1a1a1a;border-color:var(--accent-amber);}
+.btn--primary:hover{transform:translateY(-1px);border-color:var(--accent-amber-2);}
+
+/* ---- top navbar (always solid on this page) ---- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(22,19,31,0.82);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid var(--border-dark);}
+.nav-inner{position:relative;height:100%;max-width:var(--container);margin:0 auto;display:flex;align-items:center;gap:16px;padding:0 max(var(--pad),24px);}
+.site-brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--text-on-dark);flex:0 0 auto;}
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid var(--border-dark-strong);border-radius:var(--r-sm);}
+.brand-mark svg{display:block;}
+.site-brand .wm{font-family:var(--font-sans);font-weight:500;font-size:19px;letter-spacing:-0.015em;line-height:1;}
+.site-brand .wm .sof{color:var(--accent-amber);}
+.nav-cta-group{display:flex;align-items:center;gap:14px;flex:0 0 auto;margin-left:auto;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.03em;color:var(--muted-on-dark);text-decoration:none;transition:color .2s var(--ease);}
+.back-link .arr{transition:transform .2s var(--ease);}
+.back-link:hover{color:var(--text-on-dark);}
+.back-link:hover .arr{transform:translateX(-3px);}
+.btn:focus-visible,.back-link:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;border-radius:var(--r-sm);}
+
+/* ---- page layout ---- */
+main{padding-top:68px;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 max(var(--pad),24px);}
+.samples-hero{padding:76px 0 8px;}
+.samples-hero .h1-display{margin-top:18px;max-width:16ch;}
+.samples-hero .sub{margin-top:18px;max-width:54ch;color:var(--muted-on-dark);}
+.samples-section{padding:0 0 110px;}
+
+/* ---- card grid ---- */
+.samples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
+.sample-card{
+  --accent:#EF9F27; --accent-soft:rgba(239,159,39,.5); --accent-faint:rgba(239,159,39,.14);
+  position:relative;display:flex;flex-direction:column;
+  background:var(--bg-dark-2);border:1px solid var(--border-dark);border-radius:var(--r-lg);
+  overflow:hidden;text-decoration:none;color:var(--text-on-dark);
+  transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);
+}
+.sample-card.is-solene{--accent:#EF9F27;--accent-soft:rgba(239,159,39,.5);--accent-faint:rgba(239,159,39,.16);}
+.sample-card.is-vector{--accent:#7c6cff;--accent-soft:rgba(124,108,255,.5);--accent-faint:rgba(124,108,255,.16);}
+.sample-card.is-atlas{--accent:#4ec98a;--accent-soft:rgba(78,201,138,.5);--accent-faint:rgba(78,201,138,.16);}
+.sample-card:hover{transform:translateY(-4px);border-color:var(--accent-soft);box-shadow:0 22px 48px -28px rgba(0,0,0,.85);}
+.sample-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+.sample-thumb{position:relative;aspect-ratio:16/10;display:flex;align-items:flex-end;padding:18px;background:radial-gradient(120% 120% at 82% 8%, var(--accent-faint), transparent 58%),linear-gradient(160deg, var(--bg-dark-3), var(--bg-dark-2));border-bottom:1px solid var(--border-dark);overflow:hidden;}
+.sample-thumb::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(245,244,249,1) 1px,transparent 1px);background-size:20px 20px;opacity:.04;}
+.sample-mono{position:absolute;top:-14px;right:10px;font-family:var(--font-sans);font-weight:500;font-size:120px;line-height:1;letter-spacing:-.05em;color:var(--accent);opacity:.16;user-select:none;pointer-events:none;}
+.sample-tag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;text-transform:lowercase;color:var(--text-on-dark);background:rgba(22,19,31,.55);border:1px solid var(--border-dark-strong);padding:6px 11px;border-radius:var(--r-pill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.sample-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent-soft);}
+
+.sample-body{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1;}
+.sample-cat{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:lowercase;color:var(--accent);}
+.sample-name{font-family:var(--font-sans);font-weight:500;font-size:24px;letter-spacing:-.02em;margin:0;}
+.sample-desc{font-size:14.5px;line-height:1.55;color:var(--muted-on-dark);margin:0;flex:1;}
+.sample-view{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;color:var(--text-on-dark);}
+.sample-view .arr{transition:transform .2s var(--ease);}
+.sample-card:hover .sample-view{color:var(--accent);}
+.sample-card:hover .sample-view .arr{transform:translate(3px,-3px);}
+
+/* reveal-on-scroll (opacity only — never touches the hover transform) */
+.sample-card.reveal{opacity:0;}
+.sample-card.reveal.in{opacity:1;transition:opacity .55s var(--ease);}
+
+/* ---- footer (lifted from index.html) ---- */
+.site-footer{position:relative;z-index:1;background:var(--bg-dark);border-top:1px solid var(--border-dark);padding:56px max(var(--pad),24px) 64px;}
+.footer-inner{max-width:var(--container);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:20px 40px;}
+.footer-links{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-left:auto;}
+.footer-links a{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.03em;color:var(--muted-on-dark);text-decoration:none;transition:color .2s var(--ease);}
+.footer-links a:hover{color:var(--accent-amber);}
+.footer-links .dot-wa{width:7px;height:7px;border-radius:50%;background:var(--accent-amber);}
+.footer-copy{flex-basis:100%;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--muted-on-dark);margin-top:8px;}
+
+/* ---- responsive ---- */
+@media (max-width:900px){
+  .samples-grid{grid-template-columns:1fr;gap:18px;}
+  .samples-hero{padding:56px 0 4px;}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:18px;}
+  .footer-links{flex-direction:column;align-items:flex-start;margin-left:0;gap:6px;}
+}
+@media (max-width:600px){
+  .h1-display{font-size:40px;}
+  .back-link{display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .sample-card,.sample-view .arr,.back-link .arr{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav-inner" aria-label="primary">
+    <a class="site-brand" href="index.html#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="2" stroke="#EF9F27" stroke-width="1.4" opacity="0.55"/>
+          <path d="M9 15.5 L12 8 L15 15.5 Z" fill="#EF9F27"/>
+          <circle cx="12" cy="17.2" r="1.05" fill="#EF9F27"/>
+        </svg>
+      </span>
+      <span class="wm"><span class="sof">Sof</span>SolutionsAI</span>
+    </a>
+    <div class="nav-cta-group">
+      <a class="back-link" href="index.html#top"><span class="arr" aria-hidden="true">←</span> back to site</a>
+      <a class="btn btn--primary" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="samples-hero">
+    <div class="wrap">
+      <span class="eyebrow">samples</span>
+      <h1 class="h1-display">Sites we design &amp; ship.</h1>
+      <p class="body-lg sub">Three example builds — open any one and click through it live. Each is a real, working front-end, not a screenshot. Every SofSolutionsAI project is custom; these just show the range.</p>
+    </div>
+  </section>
+
+  <section class="samples-section">
+    <div class="wrap">
+      <div class="samples-grid">
+
+        <a class="sample-card is-solene" href="samples/solene.html" target="_blank" rel="noopener" aria-label="Open the Solène sample site in a new tab">
+          <span class="sample-thumb">
+            <span class="sample-mono" aria-hidden="true">S</span>
+            <span class="sample-tag"><span class="dot"></span>live site</span>
+          </span>
+          <span class="sample-body">
+            <span class="sample-cat">skincare · e-commerce</span>
+            <h2 class="sample-name">Solène</h2>
+            <span class="sample-desc">An editorial storefront for a skincare brand — shop by what your skin is telling you, with a calm, premium feel.</span>
+            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+
+        <a class="sample-card is-vector" href="samples/vector.html" target="_blank" rel="noopener" aria-label="Open the Vector sample site in a new tab">
+          <span class="sample-thumb">
+            <span class="sample-mono" aria-hidden="true">V</span>
+            <span class="sample-tag"><span class="dot"></span>live site</span>
+          </span>
+          <span class="sample-body">
+            <span class="sample-cat">developer platform · saas</span>
+            <h2 class="sample-name">Vector</h2>
+            <span class="sample-desc">A push-to-deploy developer platform — landing site where the CLI is the whole product. Fast, technical, confident.</span>
+            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+
+        <a class="sample-card is-atlas" href="samples/atlas.html" target="_blank" rel="noopener" aria-label="Open the Atlas sample app in a new tab">
+          <span class="sample-thumb">
+            <span class="sample-mono" aria-hidden="true">A</span>
+            <span class="sample-tag"><span class="dot"></span>live app</span>
+          </span>
+          <span class="sample-body">
+            <span class="sample-cat">interactive web app</span>
+            <h2 class="sample-name">Atlas</h2>
+            <span class="sample-desc">A live, data-driven product interface — fully interactive in the browser. Give it a second to load the richer app.</span>
+            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="site-brand" href="index.html#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="2" stroke="#EF9F27" stroke-width="1.4" opacity="0.55"/>
+          <path d="M9 15.5 L12 8 L15 15.5 Z" fill="#EF9F27"/>
+          <circle cx="12" cy="17.2" r="1.05" fill="#EF9F27"/>
+        </svg>
+      </span>
+      <span class="wm"><span class="sof">Sof</span>SolutionsAI</span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html#top">← back to site</a>
+      <a href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com</a>
+      <a href="https://wa.me/919258494901" target="_blank" rel="noopener"><span class="dot-wa"></span>WhatsApp</a>
+    </div>
+    <div class="footer-copy">© 2026 SofSolutionsAI — talk to an engineer, not a sales team.</div>
+  </div>
+</footer>
+
+<script>
+/* reveal cards on scroll (progressive enhancement; cards stay fully visible without JS) */
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.sample-card'));
+  if(!cards.length) return;
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function reveal(c){ c.classList.add('in'); }
+  cards.forEach(function(c){ c.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12 });
+  cards.forEach(function(c){ io.observe(c); });
+  /* failsafe: never leave a card hidden, even if the observer never fires */
+  setTimeout(function(){ cards.forEach(reveal); }, 1200);
+})();
+</script>
+</body>
+</html>
