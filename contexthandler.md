@@ -3,10 +3,12 @@
 _Last session date: 2026-06-17. Read this top-to-bottom before continuing._
 
 ## TL;DR
-A SoftSolutionsAI static portfolio site. This session fixed 5 user-reported issues + 2 bugs
-found while verifying + 2 adversarial-review findings. **All changes are in the working tree,
-UNCOMMITTED.** Nothing has been committed or pushed. We are on branch `main` (full site lives
-here now, in sync with `origin/main`).
+A SoftSolutionsAI static portfolio site. An earlier session fixed 5 user-reported issues + 2 bugs
+found while verifying + 2 adversarial-review findings.
+
+**2026-06-17 follow-up (committed):** fixed the "more samples" mini-cards on the sample viewer
+pages — they were rendering ~690px tall with the preview sliced into a vertical strip (see the
+generated-viewers section below). Committed on branch `fix/samples-more-card-height`.
 
 ## Repo layout (what matters)
 - `index.html` — ~4.6k-line single-page site (no framework/build). Per-section scoped `<style>`
@@ -66,6 +68,16 @@ A local server may still be running on :8765 from last session.
 - Mobile header fix: `.hdr-back-t` text hidden `<820px` (arrow kept); CTA → icon-only `<560px`
   (avoids horizontal overflow that pushed it off-screen). Verified ctaVisible at 360/414px.
 - a11y: added `.sr-only` class + `<h2 class="sr-only">… live … demo</h2>` + `aria-label` on `.stage`.
+- **Mini-card height fix (2026-06-17):** `.mini-shot` (the "more samples" thumbnail `<img>`) had a
+  width (`46%`/max `220px`) but **no height** → inside the `display:flex; align-items:stretch` card
+  the img fell back to its intrinsic **688px** height, blowing each card up to ~690px tall and
+  cropping the wide 1100×688 preview into a tall vertical sliver (the user's "image cut in half" /
+  "these 2 don't align" reports). Fix = added `aspect-ratio:16/10;height:auto;` to the `.mini-shot`
+  rule (generator `/tmp/gen_viewers.py` line ~165 + regenerated all 3 files). Cards now ~140px tall
+  (desktop card 668×140 / shot 220×138; mobile card 366×117 / shot 146×115), full preview shown
+  undistorted. Verified all 3 viewers × desktop+mobile via puppeteer; `git diff` was 1 line/file.
+  NOTE: the fix lives in the committed HTML, so re-creating the generator from these files carries
+  it forward — but if you re-create `gen_viewers.py` from memory, keep the `aspect-ratio` line.
 
 ### samples/sites/solene.html — real photos (IMPORTANT architecture note)
 This demo is a **bundled/hydrated app**: the real DOM is an ESCAPED string (`/` for `/`)
