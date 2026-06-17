@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Samples — SoftSolutionsAI</title>
-<meta name="description" content="Sample sites we design and ship at SofSolutionsAI — open each one and click through it live. Skincare storefront, developer platform, and an interactive web app." />
+<meta name="description" content="Sample sites we design and ship at SofSolutionsAI — a skincare e-commerce storefront, a developer deploy-platform, and an AI customer-ops workspace app. Open each one and explore it live inside the site." />
 <meta name="theme-color" content="#16131f" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Samples — SoftSolutionsAI" />
@@ -100,11 +100,13 @@ main{padding-top:68px;}
 .sample-body{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1;}
 .sample-cat{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:lowercase;color:var(--accent);}
 .sample-name{font-family:var(--font-sans);font-weight:500;font-size:24px;letter-spacing:-.02em;margin:0;}
-.sample-desc{font-size:14.5px;line-height:1.55;color:var(--muted-on-dark);margin:0;flex:1;}
-.sample-view{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;color:var(--text-on-dark);}
+.sample-desc{font-size:14.5px;line-height:1.55;color:var(--muted-on-dark);margin:0;}
+.sample-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.sample-chip{font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;color:var(--muted-on-dark);background:rgba(245,244,249,0.04);border:1px solid var(--border-dark);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap;}
+.sample-view{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:16px;font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;color:var(--text-on-dark);}
 .sample-view .arr{transition:transform .2s var(--ease);}
 .sample-card:hover .sample-view{color:var(--accent);}
-.sample-card:hover .sample-view .arr{transform:translate(3px,-3px);}
+.sample-card:hover .sample-view .arr{transform:translateX(3px);}
 
 /* reveal-on-scroll (opacity only — never touches the hover transform) */
 .sample-card.reveal{opacity:0;}
@@ -162,7 +164,7 @@ main{padding-top:68px;}
     <div class="wrap">
       <span class="eyebrow">samples</span>
       <h1 class="h1-display">Sites we design &amp; ship.</h1>
-      <p class="body-lg sub">Three example builds — open any one and click through it live. Each is a real, working front-end, not a screenshot. Every SofSolutionsAI project is custom; these just show the range.</p>
+      <p class="body-lg sub">Three example builds — three very different products. Open any one to explore it live inside the site; each is a real, working front-end, not a screenshot. Every SofSolutionsAI project is custom — these just show the range.</p>
     </div>
   </section>
 
@@ -170,42 +172,45 @@ main{padding-top:68px;}
     <div class="wrap">
       <div class="samples-grid">
 
-        <a class="sample-card is-solene" href="samples/solene.html" target="_blank" rel="noopener" aria-label="Open the Solène sample site in a new tab">
+        <a class="sample-card is-solene" href="samples/solene.html" aria-label="Open the Solène skincare e-commerce sample">
           <span class="sample-thumb">
             <span class="sample-mono" aria-hidden="true">S</span>
-            <span class="sample-tag"><span class="dot"></span>live site</span>
+            <span class="sample-tag"><span class="dot"></span>e-commerce</span>
           </span>
           <span class="sample-body">
-            <span class="sample-cat">skincare · e-commerce</span>
+            <span class="sample-cat">skincare brand · d2c store</span>
             <h2 class="sample-name">Solène</h2>
-            <span class="sample-desc">An editorial storefront for a skincare brand — shop by what your skin is telling you, with a calm, premium feel.</span>
-            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+            <span class="sample-desc">A premium skincare storefront — shop by skin concern, a guided routine builder, an editorial journal, and a working cart &amp; checkout.</span>
+            <span class="sample-chips"><span class="sample-chip">shop by concern</span><span class="sample-chip">routine builder</span><span class="sample-chip">cart &amp; checkout</span></span>
+            <span class="sample-view">Open sample <span class="arr" aria-hidden="true">→</span></span>
           </span>
         </a>
 
-        <a class="sample-card is-vector" href="samples/vector.html" target="_blank" rel="noopener" aria-label="Open the Vector sample site in a new tab">
+        <a class="sample-card is-vector" href="samples/vector.html" aria-label="Open the Vector developer-platform sample">
           <span class="sample-thumb">
             <span class="sample-mono" aria-hidden="true">V</span>
-            <span class="sample-tag"><span class="dot"></span>live site</span>
+            <span class="sample-tag"><span class="dot"></span>saas site</span>
           </span>
           <span class="sample-body">
-            <span class="sample-cat">developer platform · saas</span>
+            <span class="sample-cat">developer tool · product site</span>
             <h2 class="sample-name">Vector</h2>
-            <span class="sample-desc">A push-to-deploy developer platform — landing site where the CLI is the whole product. Fast, technical, confident.</span>
-            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+            <span class="sample-desc">A deploy-platform marketing site — bold hero, feature deep-dives (preview URLs, edge runtime, observability), pricing tiers, and a docs / CLI focus.</span>
+            <span class="sample-chips"><span class="sample-chip">feature sections</span><span class="sample-chip">pricing tiers</span><span class="sample-chip">docs / cli</span></span>
+            <span class="sample-view">Open sample <span class="arr" aria-hidden="true">→</span></span>
           </span>
         </a>
 
-        <a class="sample-card is-atlas" href="samples/atlas.html" target="_blank" rel="noopener" aria-label="Open the Atlas sample app in a new tab">
+        <a class="sample-card is-atlas" href="samples/atlas.html" aria-label="Open the Atlas AI workspace sample">
           <span class="sample-thumb">
             <span class="sample-mono" aria-hidden="true">A</span>
-            <span class="sample-tag"><span class="dot"></span>live app</span>
+            <span class="sample-tag"><span class="dot"></span>web app</span>
           </span>
           <span class="sample-body">
-            <span class="sample-cat">interactive web app</span>
+            <span class="sample-cat">ai workspace · saas product ui</span>
             <h2 class="sample-name">Atlas</h2>
-            <span class="sample-desc">A live, data-driven product interface — fully interactive in the browser. Give it a second to load the richer app.</span>
-            <span class="sample-view">View live <span class="arr" aria-hidden="true">↗</span></span>
+            <span class="sample-desc">An AI customer-ops copilot — reviews calls &amp; emails across accounts, summarises them with cited sources, and drafts replies, inside a real workspace UI.</span>
+            <span class="sample-chips"><span class="sample-chip">ai assistant</span><span class="sample-chip">account summaries</span><span class="sample-chip">drafts replies</span></span>
+            <span class="sample-view">Open sample <span class="arr" aria-hidden="true">→</span></span>
           </span>
         </a>
 
