@@ -80,8 +80,15 @@ main{padding-top:var(--bar-h);}
 .browser{border:1px solid var(--border-dark-strong);border-radius:14px;overflow:hidden;background:#0e0c16;box-shadow:0 40px 90px -50px rgba(0,0,0,.9);}
 .browser-bar{display:flex;align-items:center;gap:12px;height:46px;padding:0 14px;background:#1c1830;border-bottom:1px solid var(--border-dark);}
 .dots{display:inline-flex;gap:7px;flex:0 0 auto;}
-.dots i{width:11px;height:11px;border-radius:50%;background:#3a3550;}
-.dots i:nth-child(1){background:#e06d63;}.dots i:nth-child(2){background:#e3b341;}.dots i:nth-child(3){background:#4ec98a;}
+.dots a{display:block;width:11px;height:11px;border-radius:50%;background-color:#3a3550;background-repeat:no-repeat;background-position:center;background-size:9px 9px;text-decoration:none;cursor:pointer;transition:filter .15s var(--ease);}
+.dots a:hover{filter:brightness(1.05);}
+.dots a:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;}
+.dots a:nth-child(1){background-color:#e06d63;}
+.dots a:nth-child(2){background-color:#e3b341;}
+.dots a:nth-child(3){background-color:#4ec98a;}
+.dots:hover a:nth-child(1),.dots a:nth-child(1):focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20d%3D%27M3.6%203.6l4.8%204.8M8.4%203.6l-4.8%204.8%27%20stroke%3D%27%234d0f0a%27%20stroke-width%3D%271.5%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E");}
+.dots:hover a:nth-child(2),.dots a:nth-child(2):focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20d%3D%27M3.2%206h5.6%27%20stroke%3D%27%235a3d00%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E");}
+.dots:hover a:nth-child(3),.dots a:nth-child(3):focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpolygon%20points%3D%273%2C3%207%2C3%203%2C7%27%20fill%3D%27%230c5230%27%2F%3E%3Cpolygon%20points%3D%279%2C9%209%2C5%205%2C9%27%20fill%3D%27%230c5230%27%2F%3E%3C%2Fsvg%3E");}
 .urlbar{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--muted-on-dark);background:rgba(0,0,0,.28);border:1px solid var(--border-dark);border-radius:var(--r-pill);padding:5px 14px;max-width:360px;margin:0 auto;}
 .urlbar i.ti{font-size:13px;color:var(--accent);}
 .live{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--accent);}
@@ -175,7 +182,7 @@ main{padding-top:var(--bar-h);}
       <h2 class="sr-only">Vector — live saas website demo</h2>
       <div class="browser">
         <div class="browser-bar">
-          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="dots"><a href="../samples.html" title="Close — back to all samples" aria-label="Close: back to all samples"></a><a href="../samples.html" title="Minimize — back to all samples" aria-label="Minimize: back to all samples"></a><a href="sites/vector.html" target="_blank" rel="noopener" title="Open full screen" aria-label="Open full screen"></a></span>
           <span class="urlbar"><i class="ti ti-lock" aria-hidden="true"></i>vector.dev</span>
           <span class="live"><span class="pulse"></span>live demo</span>
         </div>
