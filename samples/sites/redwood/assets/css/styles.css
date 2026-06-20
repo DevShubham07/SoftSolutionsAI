@@ -634,8 +634,13 @@ textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{
   .footer-grid{grid-template-columns:1fr 1fr!important}
   .cta3{flex-direction:column!important;align-items:stretch!important}
   .mob-nav{display:flex!important}
-  .floatstack{bottom:84px!important}
-  .rae-fig{width:62px!important}
+  /* declutter the floating assistant on phones — it was covering the hero */
+  .floatstack{right:14px!important;bottom:78px!important;gap:10px!important}
+  .rae-greet{display:none!important}
+  .rae-badge{display:none!important}
+  .rae-fig,.rae-fig .rae-svg{width:50px!important}
+  .fab{width:46px!important;height:46px!important}
+  .fab svg{width:21px!important;height:21px!important}
   body{padding-bottom:60px!important}
   .pad-x{padding-left:22px!important;padding-right:22px!important}
   .container{padding-left:22px;padding-right:22px}
