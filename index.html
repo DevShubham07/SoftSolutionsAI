@@ -9,14 +9,11 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="SofSolutionsAI — your business problem, our software solution" />
 <meta property="og:description" content="End-to-end custom software for any business. Talk to an engineer directly on WhatsApp — no form, no sales call, no slide deck." />
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="preload" href="./project/assets/hero_start_frame_sm.jpg" as="image" fetchpriority="high" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'6'%20fill%3D'%2316131f'%2F%3E%3Ctext%20x%3D'16'%20y%3D'23'%20font-family%3D'monospace'%20font-size%3D'20'%20font-weight%3D'700'%20fill%3D'%23EF9F27'%20text-anchor%3D'middle'%3ES%3C%2Ftext%3E%3C%2Fsvg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" onload="this.onload=null;this.rel='stylesheet'" />
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
 <style id="shared-head">
 /* ============================================================
    SHARED HEAD — reset, palette-C tokens, lifted design system,
@@ -83,14 +80,15 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 .nav-link{position:relative;display:inline-flex;align-items:baseline;gap:8px;padding:9px 13px;font-family:var(--font-sans);font-weight:400;font-size:14px;letter-spacing:-0.005em;color:var(--text-on-dark);text-decoration:none;white-space:nowrap;transition:color .16s var(--ease);}
 .nav-link .ix{font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:0.12em;color:var(--muted-on-dark);transition:color .16s var(--ease);}
 .nav-link .lbl{position:relative;text-transform:lowercase;}
-.nav-link{border-radius:var(--r-sm);transition:color .16s var(--ease),background-color .16s var(--ease);}
-.nav-link:hover{color:var(--accent-amber);background:rgba(245,244,249,0.06);}
+.nav-link .lbl::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--accent-amber);transform:scaleX(0);transform-origin:left;transition:transform .16s var(--ease);}
+.nav-link:hover{color:var(--accent-amber);}
 .nav-link:hover .ix{color:var(--accent-amber);}
+.nav-link:hover .lbl::after{transform:scaleX(1);}
 .nav-link[aria-current="true"]{color:var(--text-on-dark);}
 .nav-link[aria-current="true"] .ix{color:var(--accent-amber);}
 .nav-link:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;border-radius:var(--r-sm);}
 /* sliding active marker */
-.nav-marker{position:absolute;bottom:-1px;left:0;height:2px;width:0;background:var(--accent-amber);border-radius:2px;box-shadow:0 0 8px rgba(239,159,39,.55);opacity:0;transform:translateX(0);transition:transform .25s var(--spring),width .25s var(--spring),opacity .2s var(--ease);pointer-events:none;}
+.nav-marker{position:absolute;bottom:-1px;left:0;height:2px;width:0;background:var(--accent-amber);border-radius:2px;opacity:0;transform:translateX(0);transition:transform .25s var(--spring),width .25s var(--spring),opacity .2s var(--ease);pointer-events:none;}
 .nav-marker.show{opacity:1;}
 
 /* right cluster */
@@ -126,7 +124,7 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 .footer-links a{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.03em;color:var(--muted-on-dark);text-decoration:none;transition:color .2s var(--ease);}
 .footer-links a:hover{color:var(--accent-amber);}
 .footer-links .dot-wa{width:7px;height:7px;border-radius:50%;background:var(--accent-amber);}
-.footer-copy{flex-basis:100%;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--muted-on-dark);margin-top:8px;}
+.footer-copy{flex-basis:100%;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--muted-on-dark);opacity:.8;margin-top:8px;}
 
 /* ---- single journey thread ---- */
 .journey{position:fixed;right:28px;top:0;bottom:0;width:14px;display:flex;flex-direction:column;align-items:center;pointer-events:none;z-index:60;}
@@ -157,6 +155,7 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 @media (prefers-reduced-motion:reduce){
   .nav-marker{transition:opacity .15s linear;}
   .nav-progress{transition:none;}
+  .nav-link .lbl::after{transition:none;}
   .nav-panel{transition:opacity .15s linear,visibility 0s linear .15s;}
   .nav-status,.nav-status .dot{animation:none;color:var(--muted-on-dark);}
 }
@@ -700,7 +699,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-03 .deck-card.is-back:hover{transform: translate(calc(-50% + var(--shift) + 86px), 45px) rotate(4.2deg) scale(0.945); opacity: 0.56;}
 #sec-03 .deck-card:not(.is-front) .ai-demo, #sec-03 .deck-card:not(.is-front) .demo-caption{pointer-events: none;}
 #sec-03 .deck-stage.shuffling .deck-card{pointer-events: none;}
-#sec-03 .deck-pager{display: flex; gap: 8px; justify-content: center; align-items: center; margin-top: 26px; flex-wrap: wrap; position: relative; z-index: 40;}
+#sec-03 .deck-pager{display: flex; gap: 8px; justify-content: center; align-items: center; margin-top: 26px; flex-wrap: wrap;}
 #sec-03 .pager-item{display: inline-flex; align-items: center; gap: 9px; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: lowercase; color: var(--muted-on-dark); background: none; border: 0px; padding: 6px 12px; border-radius: var(--r-pill); transition: color 200ms var(--ease), background 200ms var(--ease);}
 #sec-03 .pager-item:hover{color: var(--text-on-dark);}
 #sec-03 .pager-item .pnum{width: 22px; height: 22px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted-on-dark); border: 1.5px solid var(--border-dark-strong); background: var(--bg-dark); transition: color 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease);}
@@ -993,9 +992,6 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-05 .btn-wa:hover{background: var(--accent-amber-2); transform: translateY(-1px);}
 #sec-05 .link-ghost{font-family: "Space Mono", monospace; font-size: 13px; letter-spacing: 0.04em; color: var(--muted-on-dark); text-decoration: none; border-bottom: 1px solid var(--border-dark); padding-bottom: 2px; transition: color .2s var(--ease),border-color .2s var(--ease);}
 #sec-05 .link-ghost:hover{color: var(--text-on-dark); border-color: var(--accent-amber);}
-#sec-05 .btn-samples{display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text-on-dark); font-weight: 500; font-size: 16px; padding: 15px 26px; border-radius: 999px; border: 1px solid var(--border-dark-strong); text-decoration: none; transition: border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease);}
-#sec-05 .btn-samples .dot{width: 7px; height: 7px; border-radius: 50%; background: var(--accent-amber);}
-#sec-05 .btn-samples:hover{border-color: var(--accent-amber); transform: translateY(-1px);}
 @media (max-width: 760px){
 #sec-05{padding-top: 80px;}
 #sec-05 .wrap{padding: 0px 20px;}
@@ -1015,14 +1011,12 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-05 .us-cell .cell-label{color: var(--accent-amber);}
 #sec-05 .cta{margin-top: 64px; padding: 72px 20px 84px;}
 #sec-05 .link-ghost{display: inline-flex; align-items: center; min-height: 44px;}
-#sec-05 .btn-samples{min-height: 44px;}
 }
 @media (prefers-reduced-motion: reduce){
 #sec-05 .ag-cell{transition: none !important;}
 #sec-05 .strike line{transition: none !important;}
 #sec-05 .cmp-row.is-on .us-cell{animation: auto ease 0s 1 normal none running none !important;}
 #sec-05 .btn-wa:hover{transform: none;}
-#sec-05 .btn-samples:hover{transform: none;}
 }
 
 </style>
@@ -1031,7 +1025,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 <a id="top"></a>
 <header class="site-header" id="site-header">
   <nav class="nav-inner" aria-label="primary">
-    <a class="site-brand" href="#top" id="nav-brand">
+    <a class="site-brand" href="#top" id="nav-brand" aria-label="SofSolutionsAI — back to top">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none">
           <rect x="3.5" y="3.5" width="17" height="17" rx="2" stroke="#EF9F27" stroke-width="1.4" opacity="0.55"/>
@@ -1047,7 +1041,6 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
       <a class="nav-link" href="#sec-03" data-target="sec-03"><span class="ix">02</span><span class="lbl">ai layer</span></a>
       <a class="nav-link" href="#sec-04" data-target="sec-04"><span class="ix">03</span><span class="lbl">how we work</span></a>
       <a class="nav-link" href="#sec-05" data-target="sec-05"><span class="ix">04</span><span class="lbl">why us</span></a>
-      <a class="nav-link" href="samples.html"><span class="ix">05</span><span class="lbl">samples</span></a>
       <span class="nav-marker" id="nav-marker" aria-hidden="true"></span>
     </div>
 
@@ -1065,7 +1058,6 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
   <a class="nav-panel-link" href="#sec-03" data-target="sec-03"><span class="ix">02</span> ai layer</a>
   <a class="nav-panel-link" href="#sec-04" data-target="sec-04"><span class="ix">03</span> how we work</a>
   <a class="nav-panel-link" href="#sec-05" data-target="sec-05"><span class="ix">04</span> why us</a>
-  <a class="nav-panel-link" href="samples.html"><span class="ix">05</span> samples</a>
   <a class="btn btn--primary nav-panel-cta" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
 </div>
 <div class="journey" aria-hidden="true">
@@ -1084,10 +1076,10 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
          in memory and `seekable` covers the full duration. Without this,
          dev servers that don't support HTTP byte-range requests leave
          seekable=[0,0] and currentTime assignments are silently ignored. -->
-    <video id="hero-video" muted="" playsinline="" preload="none" disablepictureinpicture="" poster="./project/assets/hero_start_frame_sm.jpg" data-src="./project/assets/hero-scrub-lg.mp4"></video>
+    <video id="hero-video" muted="" playsinline="" preload="auto" disablepictureinpicture="" poster="./project/assets/hero_start_frame_sm.jpg" data-src="./project/assets/hero-scrub-lg.mp4"></video>
 
     <!-- Mobile-only static poster (replaces video on small screens) -->
-    <img class="hero-mobile-poster" src="./project/assets/hero_start_frame_sm.jpg" alt="" fetchpriority="high" decoding="async" />
+    <img class="hero-mobile-poster" src="./project/assets/hero_start_frame_sm.jpg" alt="">
 
     <!-- Header bar overlay -->
     
@@ -1235,7 +1227,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                       <div class="drawer-merchant" id="d-merchant">—</div>
                       <div class="drawer-cat" id="d-cat">—</div>
                     </div>
-                    <button class="drawer-close" id="d-close" type="button" aria-label="Close transaction details"><i class="ti ti-x" aria-hidden="true"></i></button>
+                    <button class="drawer-close" id="d-close"><i class="ti ti-x"></i></button>
                   </div>
                   <div class="drawer-amt" id="d-amt">—</div>
                   <div>
@@ -1327,7 +1319,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                 <div class="floor-pop" id="floor-pop">
                   <div class="ph">
                     <span class="pt">reserve <span id="pop-table">T1</span></span>
-                    <button class="pclose" id="pop-close" type="button" aria-label="Close reservation"><i class="ti ti-x" aria-hidden="true"></i></button>
+                    <button class="pclose" id="pop-close"><i class="ti ti-x"></i></button>
                   </div>
                   <div class="pfield">
                     <label>name</label>
@@ -1336,9 +1328,9 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                   <div class="pfield">
                     <label>party size</label>
                     <div class="pstepper">
-                      <button id="pop-minus" type="button" aria-label="Decrease party size">−</button>
+                      <button id="pop-minus">−</button>
                       <span class="pv" id="pop-size">2</span>
-                      <button id="pop-plus" type="button" aria-label="Increase party size">+</button>
+                      <button id="pop-plus">+</button>
                     </div>
                   </div>
                   <div class="pfield">
@@ -1355,7 +1347,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                 <div class="floor-pop" id="floor-order">
                   <div class="ph">
                     <span class="pt">order · <span id="order-table">T2</span></span>
-                    <button class="pclose" id="order-close" type="button" aria-label="Close order"><i class="ti ti-x" aria-hidden="true"></i></button>
+                    <button class="pclose" id="order-close"><i class="ti ti-x"></i></button>
                   </div>
                   <div class="omenu" id="order-menu"></div>
                   <div class="ototal"><span>table total</span><span id="order-total">₹0</span></div>
@@ -1386,8 +1378,8 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                     <div class="st">Tilana — slow fashion</div>
                     <div class="sm"><span class="livedot loop"></span>spring capsule · just in</div>
                   </div>
-                  <button class="cart-btn" id="cart-btn" type="button" aria-label="Open cart">
-                    <i class="ti ti-shopping-bag" aria-hidden="true"></i>
+                  <button class="cart-btn" id="cart-btn">
+                    <i class="ti ti-shopping-bag"></i>
                     <span class="cart-badge" id="cart-badge">0</span>
                   </button>
                 </div>
@@ -1395,7 +1387,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                 <aside class="shop-cart" id="shop-cart">
                   <div class="cart-h">
                     <span class="ct">Your cart</span>
-                    <button class="cart-close" id="cart-close" type="button" aria-label="Close cart"><i class="ti ti-x" aria-hidden="true"></i></button>
+                    <button class="cart-close" id="cart-close"><i class="ti ti-x"></i></button>
                   </div>
                   <div class="cart-items" id="cart-items">
                     <div class="cart-empty" id="cart-empty">cart is empty</div>
@@ -1413,7 +1405,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                   <div class="detail-card">
                     <div class="detail-img"><img id="dt-img" alt=""></div>
                     <div class="detail-info">
-                      <button class="detail-close" id="dt-close" type="button" aria-label="Close product details"><i class="ti ti-x" aria-hidden="true"></i></button>
+                      <button class="detail-close" id="dt-close"><i class="ti ti-x"></i></button>
                       <div>
                         <div class="detail-name" id="dt-name">—</div>
                         <div class="detail-rate" id="dt-rate">★ —</div>
@@ -1505,7 +1497,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
                 <div class="chat-chips" id="chat-chips"></div>
                 <div class="chat-input">
                   <input id="chat-text" type="text" placeholder="ask anything…" autocomplete="off">
-                  <button class="chat-send" id="chat-send" type="button" aria-label="Send message"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
+                  <button class="chat-send" id="chat-send" aria-label="send"><i class="ti ti-arrow-up"></i></button>
                 </div>
               </div>
             </div>
@@ -1634,7 +1626,6 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
     <p class="cta-sub">No form. No discovery call. No slide deck.</p>
     <div class="cta-actions">
       <a class="btn-wa" href="https://wa.me/919258494901?text=Hi%20—%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp →</a>
-      <a class="btn-samples" href="samples.html"><span class="dot"></span>See our work →</a>
       <a class="link-ghost" href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com →</a>
     </div>
   </div>
@@ -1643,8 +1634,8 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 </main>
 <footer class="site-footer">
   <div class="footer-inner">
-    <a class="site-brand" href="#top">
-      <span class="brand-mark" aria-hidden="true"><span class="s">S</span></span>
+    <a class="site-brand" href="#top" aria-label="SofSolutionsAI">
+      <span class="brand-mark"><span class="s">S</span></span>
       <span class="wm"><span class="sof">Sof</span>SolutionsAI</span>
     </a>
     <div class="footer-links">
@@ -1655,6 +1646,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* Single page-level journey driver + header scroll state.
    One scroll-progress source fills the thread; per-section fill logic removed. */
@@ -1773,7 +1765,6 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
     sections.forEach(function(s){
       if(s && s.getBoundingClientRect().top <= line) current = s.id;
     });
-    if(!current) current = allTargets[0];   // at the top (hero) keep the marker on the first nav item, never floating onto a later link
     setActive(current);
   }
 
@@ -1996,17 +1987,9 @@ var document=new Proxy(window.document,{get:function(t,p){
   video.addEventListener('canplaythrough', markReady);
 
   // Fetch the MP4 fully into memory and feed it via a blob URL so the
-  // whole stream is seekable. Deferred until the hero is visible or idle
-  // so the 4.6 MB asset does not block first paint / LCP.
-  let videoLoadStarted = false;
-
-  function shouldSkipVideo() {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (conn && (conn.saveData || conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g')) return true;
-    return window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches;
-  }
-
-  async function loadVideoAsBlob() {
+  // whole stream is seekable. Required when the host doesn't support
+  // HTTP byte-range requests (which otherwise pins seekable to [0,0]).
+  (async function loadVideoAsBlob() {
     const src = (window.__resources && window.__resources.heroVideo) || video.dataset.src;
     if (!src) return;
     try {
@@ -2016,28 +1999,12 @@ var document=new Proxy(window.document,{get:function(t,p){
       video.src = URL.createObjectURL(blob);
       try { video.load(); } catch (e) {}
     } catch (err) {
+      // Fall back to direct src — at least the poster will show.
       console.warn('[hero-scrub] blob load failed, falling back to direct src:', err);
       video.src = src;
       try { video.load(); } catch (e) {}
     }
-  }
-
-  function startVideoLoad() {
-    if (videoLoadStarted || shouldSkipVideo()) return;
-    videoLoadStarted = true;
-    loadVideoAsBlob();
-  }
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function(entries) {
-      if (entries.some(function(e) { return e.isIntersecting; })) startVideoLoad();
-    }, { rootMargin: '150px' }).observe(section);
-  }
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(function() { startVideoLoad(); }, { timeout: 4000 });
-  } else {
-    setTimeout(startVideoLoad, 1500);
-  }
+  })();
 
   if (video.readyState >= 1) markReady();
 
@@ -2898,7 +2865,7 @@ function countUp(el, to, fmt, dur) {
     orderMenuEl.innerHTML = MENU.map((m, i) =>
       '<div class="omenu-row"><span class="on">' + m.nm + '</span><span class="op">' + inr(m.pr) +
       '</span><span class="oqty" data-i="' + i + '">' + (orderQty[i] || 0) + '</span>' +
-      '<button class="oadd" type="button" aria-label="Add ' + m.nm + '" data-i="' + i + '">+</button></div>').join('');
+      '<button class="oadd" data-i="' + i + '">+</button></div>').join('');
     orderTotalEl.textContent = inr(MENU.reduce((s, m, i) => s + (orderQty[i] || 0) * m.pr, 0));
   }
   function openOrder(t, el) {
@@ -3870,36 +3837,8 @@ var document=new Proxy(window.document,{get:function(t,p){
      can land off-screen — use the readable stacked-card fallback instead
      (BUILD_SPEC: "mobile: degrade to vertical stacked cards"). */
   var __smallScreen = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
-
-  function loadThree(){
-    return new Promise(function(resolve, reject){
-      if(typeof THREE!=='undefined'){ resolve(); return; }
-      var s=document.createElement('script');
-      s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-      s.async=true;
-      s.onload=resolve;
-      s.onerror=reject;
-      document.head.appendChild(s);
-    });
-  }
-
-  function bootCrystal(){
-    if(!webglOK() || __smallScreen){ buildFallback(); return; }
-    loadThree().then(initCrystal).catch(function(){ buildFallback(); });
-  }
-
-  if(typeof IntersectionObserver!=='undefined' && stage){
-    var crystalStarted=false;
-    new IntersectionObserver(function(es){
-      if(crystalStarted) return;
-      if(es.some(function(e){ return e.isIntersecting; })){
-        crystalStarted=true;
-        bootCrystal();
-      }
-    }, {rootMargin:'200px'}).observe(stage);
-  } else {
-    bootCrystal();
-  }
+  if(typeof THREE==='undefined' || !webglOK() || __smallScreen){ buildFallback(); }
+  else { initCrystal(); }
 
   function initCrystal(){
   try{

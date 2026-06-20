@@ -16,6 +16,7 @@
 
   // Swap in your real equirectangular campus panorama (2:1 ratio JPG).
   const PANO_IMAGE = 'https://pannellum.org/images/alma.jpg';
+  const HEAD_VIDEO = 'https://assets.mixkit.co/videos/49581/49581-720.mp4';
 
   const PANNELLUM_CSS = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css';
   const PANNELLUM_JS  = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
@@ -57,7 +58,7 @@
     up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>'
   };
-  // Rae — the AI admission assistant. Inline SVG (no external asset needed). Violet "eSkooly"-style mascot.
+  // Erica — the AI admission assistant. Inline SVG (no external asset needed). Violet "eSkooly"-style mascot.
   const RAE_AV = '<svg class="rae-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#6536e4"/><path d="M32 16 50 23 32 30 14 23z" fill="#fff"/><path d="M20 27v7c0 5 5.4 8 12 8s12-3 12-8v-7" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="26" cy="38" r="2.6" fill="#fff"/><circle cx="38" cy="38" r="2.6" fill="#fff"/><path d="M26 46c2 2 10 2 12 0" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M50 23v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="31" r="2.2" fill="#fff"/></svg>';
   const RAE_HEAD = '<svg class="rae-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="2.5"/><path d="M32 17 49 23.5 32 30 15 23.5z" fill="#fff"/><path d="M21 27.5v6.5c0 4.8 5 7.6 11 7.6s11-2.8 11-7.6v-6.5" fill="none" stroke="#fff" stroke-width="2.3"/><circle cx="26.5" cy="37.5" r="2.5" fill="#fff"/><circle cx="37.5" cy="37.5" r="2.5" fill="#fff"/><path d="M26.5 45c2 1.9 9 1.9 11 0" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg>';
   const RAE_FIG = '<svg class="rae-svg" viewBox="0 0 80 100" aria-hidden="true"><ellipse cx="40" cy="94" rx="22" ry="5" fill="rgba(8,16,28,.18)"/><rect x="22" y="56" width="36" height="34" rx="14" fill="#5526cf"/><rect x="20" y="22" width="40" height="40" rx="18" fill="#6536e4"/><path d="M40 8 66 17 40 26 14 17z" fill="#fff"/><path d="M24 31v8c0 7 7 11 16 11s16-4 16-11v-8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="33" cy="40" r="3.4" fill="#fff"/><circle cx="47" cy="40" r="3.4" fill="#fff"/><path d="M33 49c3 2.6 11 2.6 14 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M66 17v8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="66" cy="27" r="2.6" fill="#fff"/></svg>';
@@ -174,10 +175,10 @@
     stack.className = 'floatstack';
     stack.innerHTML = `
       <!-- chat panel -->
-      <div class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-label="Chat with Rae, the admission assistant">
+      <div class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-label="Chat with Erica, the admission assistant">
         <div class="chat-head">
           <span class="chat-ava">${RAE_HEAD}</span>
-          <span class="chat-title">Rae AI <span class="verified" aria-label="Verified">${ICON.check}</span></span>
+          <span class="chat-title">Erica AI <span class="verified" aria-label="Verified">${ICON.check}</span></span>
           <button class="x" data-action="chat:close" aria-label="Close chat">&times;</button>
         </div>
         <div class="chat-body" id="chat-body">
@@ -209,13 +210,13 @@
       <!-- greeting bubble -->
       <div class="rae-greet" id="rae-greet">
         <span class="avatar"><span class="rae-av">${RAE_AV}</span><span class="live"></span></span>
-        <span class="text" data-action="chat:open">Hi! I&rsquo;m <b>Rae</b> <span class="ai">AI</span> &mdash; your Admission Assistant. <span style="opacity:.8;">Tap to chat.</span></span>
+        <span class="text" data-action="chat:open">Hi! I&rsquo;m <b>Erica</b> <span class="ai">AI</span> &mdash; your Admission Assistant. <span style="opacity:.8;">Tap to chat.</span></span>
         <button class="dismiss" data-action="greet:dismiss" aria-label="Dismiss greeting">&times;</button>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
-        <button class="rae-trigger" data-action="chat:open" aria-label="Chat with Rae AI">
-          <span class="rae-badge"><span class="dot"></span>Rae AI<span class="ai">AI</span></span>
+        <button class="rae-trigger" data-action="chat:open" aria-label="Chat with Erica AI">
+          <span class="rae-badge"><span class="dot"></span>Erica AI<span class="ai">AI</span></span>
           <span class="rae-fig">${RAE_FIG}</span>
         </button>
         <a class="fab fab-wa" href="https://wa.me/${SCHOOL.whatsapp}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">${ICON.wa}</a>
@@ -375,6 +376,16 @@
         <div class="pano-stage" id="pano-stage">
           <div class="pano-loading" id="pano-loading"><span class="sp"></span> Loading panorama…</div>
         </div>
+      </div>`;
+
+    // Head's message video modal
+    html += `
+      <div class="video-overlay" id="video-overlay" role="dialog" aria-modal="true" aria-label="Head's message video">
+        <div class="pano-bar">
+          <h3>Head&rsquo;s Message &middot; Dr. A. Mercer</h3>
+          <button class="x" data-action="video:close" aria-label="Close video">&times;</button>
+        </div>
+        <div class="video-stage" id="video-stage"></div>
       </div>`;
 
     wrap.innerHTML = html;
@@ -773,6 +784,37 @@
     if (panoViewer) { try { panoViewer.destroy(); } catch (_) {} panoViewer = null; }
   }
 
+  function openVideo() {
+    const ov = document.getElementById('video-overlay');
+    const stage = document.getElementById('video-stage');
+    if (!ov || !stage) return;
+    const restore = document.activeElement;
+    // (re)build a fresh <video> each open so it autoplays from the start
+    stage.innerHTML = '';
+    const v = document.createElement('video');
+    v.src = HEAD_VIDEO;
+    v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
+    v.setAttribute('playsinline', '');
+    stage.appendChild(v);
+    ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    layers.push({ kind: 'video', node: ov, restore: restore });
+    const p = v.play(); if (p && p.catch) p.catch(function () {/* autoplay blocked — controls remain */});
+    const x = ov.querySelector('.x'); if (x) setTimeout(() => x.focus(), 60);
+  }
+  function closeVideo() {
+    const ov = document.getElementById('video-overlay');
+    const stage = document.getElementById('video-stage');
+    if (!ov) return;
+    const vid = stage && stage.querySelector('video');
+    if (vid) { try { vid.pause(); } catch (_) {} }
+    if (stage) stage.innerHTML = '';
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true');
+    const layer = layers.filter(l => l.node === ov)[0];
+    popLayer(ov);
+    if (layer && layer.restore && layer.restore.focus) try { layer.restore.focus(); } catch (_) {}
+  }
+
   /* ---------- ACTION DELEGATION ---------------------------- */
   function wireActions() {
     document.addEventListener('click', function (e) {
@@ -795,6 +837,8 @@
           case 'greet:dismiss': e.preventDefault(); { const g = document.getElementById('rae-greet'); if (g) g.style.display = 'none'; } return;
           case 'pano:open': e.preventDefault(); openPano(); return;
           case 'pano:close': e.preventDefault(); closePano(); return;
+          case 'video:open': e.preventDefault(); openVideo(); return;
+          case 'video:close': e.preventDefault(); closeVideo(); return;
           case 'scrolltop': e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return;
         }
       }
@@ -807,6 +851,8 @@
       if (ov && ov.classList.contains('open')) { closeModal(ov); return; }
       const panoOv = e.target.id === 'pano-overlay' ? e.target : null;
       if (panoOv) { closePano(); return; }
+      const videoOv = e.target.id === 'video-overlay' ? e.target : null;
+      if (videoOv) { closeVideo(); return; }
     });
 
     // chat input form
@@ -825,6 +871,7 @@
         if (top) {
           if (top.kind === 'modal') closeModal(top.node);
           else if (top.kind === 'pano') closePano();
+          else if (top.kind === 'video') closeVideo();
           else if (top.kind === 'menu') closeMenu();
           else if (top.kind === 'chat') closeChat();
         } else {
