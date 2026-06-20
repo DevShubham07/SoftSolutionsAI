@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News · Redwood Science Academy</title>
+<meta name="description" content="The latest news and stories from Redwood Science Academy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root="../" data-page="news-article">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header id="site-header"></header>
+
+<main id="main" role="main">
+  <div id="article-root"></div>
+</main>
+
+<footer id="site-footer"></footer>
+<div id="site-floating"></div>
+<div id="site-modals"></div>
+
+<!-- Article data + renderer. The only page-specific script in the site;
+     reads ?id= and renders one of the articles below. -->
+<script>
+(function () {
+  var IMG = function (id, w) { return 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=' + (w || 1400) + '&q=80'; };
+  var ARTICLES = {
+    'maths-olympiad': {
+      date: '12 June 2026', cat: 'Academic Achievement',
+      title: 'Students Shine at International Maths Olympiad',
+      img: 'photo-1509062522246-3755977927d7',
+      body: [
+        'Three of our Diploma Programme students have returned from the International Mathematics Olympiad with gold medals, capping a record-breaking season for the department and placing Redwood among the top-performing schools in the region.',
+        'Competing against more than four hundred young mathematicians from over thirty countries, our students distinguished themselves across the gruelling two-day examination, which tests not only technical fluency but the creativity and resilience to solve problems no textbook prepares you for.',
+        { quote: 'They did not simply memorise methods — they learned to love the questions. That is what the IB does at its best, and it is what these results represent.' },
+        'Head of Mathematics, Mr. J. Okonkwo, credited the achievement to a culture of curiosity that begins in the Primary Years. "We teach children that a wrong answer is just a question that is not finished yet," he said. "By the time they reach the Diploma, they relish a hard problem."',
+        'The department will host a celebration assembly next week, and the medallists have offered to run a series of lunchtime problem-solving clinics for younger pupils — a fitting expression of the school motto: Curiosity, Character, Community.'
+      ]
+    },
+    'sports-day': {
+      date: '08 June 2026', cat: 'Community',
+      title: 'Annual Sports Day Brings the Whole School Together',
+      img: 'photo-1461896836934-ffe607ba8211',
+      body: [
+        'Under clear skies, the whole school gathered on the main field and at the aquatics centre for a day of athletics, house spirit and a remarkable number of personal bests. From the Early Years dash to the senior relays, every pupil took part.',
+        'The afternoon belonged to Cedar House, who edged ahead in the final relay to lift the Founders’ Cup, but the loudest cheers were reserved for the inclusive 800 metres, run side by side by pupils, staff and a few brave parents.',
+        { quote: 'Sports Day is not about the winners. It is about a thousand small acts of encouragement between children who will remember this day for years.' },
+        'Beyond the ribbons, the day showcased the breadth of our sporting programme — cricket, football, tennis, swimming and athletics — and the coaching that helps every child find a discipline to call their own.',
+        'Thank you to the Parents’ Association, whose refreshment stalls raised funds for new equipment, and to the grounds team, who once again made the campus look magnificent.'
+      ]
+    },
+    'admissions-webinar': {
+      date: '02 June 2026', cat: 'Admissions',
+      title: 'Admissions Webinar for Prospective Families',
+      img: 'photo-1524178232363-1fb2b075b655',
+      body: [
+        'Prospective families are warmly invited to join our Director and admissions team for a live online walkthrough of life and learning at Redwood Science Academy. The session is ideal for families exploring the IB Continuum for the first time.',
+        'Over the course of an hour we will cover the four IB programmes, our year-round admissions process, fees and scholarships, and what makes our 13-acre campus a special place to grow up. A generous question-and-answer session will follow.',
+        { quote: 'The best decisions are informed ones. We would rather you ask us everything now than wonder later — so bring your questions.' },
+        'Whether you are relocating, considering boarding, or simply curious about an education built on curiosity, character and community, you are welcome. Places are limited to keep the session personal.',
+        'Register your interest and we will send you the joining link and a short guide to prepare. If you cannot make the date, let us know and we will arrange a private call.'
+      ]
+    }
+  };
+
+  function param(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]+)').exec(window.location.search);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+
+  var id = param('id');
+  var a = (id && ARTICLES[id]) ? ARTICLES[id] : null;
+  var root = document.getElementById('article-root');
+
+  if (!a) {
+    root.innerHTML =
+      '<section class="page-section" style="padding-top:calc(var(--header-h) + 50px)">' +
+        '<div class="container"><div class="prose center">' +
+        '<span class="eyebrow">News</span><h2>Article not found</h2>' +
+        '<p class="lead">We couldn’t find that story. It may have moved or been archived.</p>' +
+        '<p><a class="btn btn-gold" href="news.html">Back to all news &rarr;</a></p>' +
+        '</div></div></section>';
+    return;
+  }
+
+  document.title = a.title + ' · Redwood Science Academy';
+
+  var bodyHtml = a.body.map(function (b) {
+    if (typeof b === 'object' && b.quote) return '<blockquote>' + b.quote + '</blockquote>';
+    return '<p>' + b + '</p>';
+  }).join('');
+
+  root.innerHTML =
+    '<section class="subhero" data-reveal>' +
+      '<img src="' + IMG(a.img, 1700) + '" alt="" aria-hidden="true" loading="lazy">' +
+      '<div class="inner">' +
+        '<nav class="breadcrumb" aria-label="Breadcrumb">' +
+          '<a href="../index.html#top">Home</a><span class="sep">/</span>' +
+          '<a href="news.html">News &amp; Events</a><span class="sep">/</span>' +
+          '<span class="current">' + a.cat + '</span>' +
+        '</nav>' +
+        '<h1>' + a.title + '</h1>' +
+      '</div>' +
+    '</section>' +
+    '<section class="page-section">' +
+      '<div class="container"><article class="article" data-reveal>' +
+        '<div class="meta">' + a.date + ' &middot; ' + a.cat + '</div>' +
+        '<img class="hero-img" src="' + IMG(a.img, 1400) + '" alt="' + a.title + '" loading="lazy">' +
+        bodyHtml +
+        '<p style="margin-top:30px;"><a class="btn btn-outline-navy btn-sm" href="news.html">&larr; All news &amp; events</a></p>' +
+      '</article></div>' +
+    '</section>' +
+    '<section class="cta-band">' +
+      '<h2>Stay in the loop</h2>' +
+      '<p>Get school news, events and admissions deadlines delivered to your inbox once a month.</p>' +
+      '<div class="row">' +
+        '<a href="#" class="btn btn-gold" data-action="modal:newsletter">Get the newsletter</a>' +
+        '<a href="#" class="btn btn-ghost" data-action="modal:visit">Book a visit</a>' +
+      '</div>' +
+    '</section>';
+})();
+</script>
+
+<script defer src="../assets/js/site.js"></script>
+</body>
+</html>
