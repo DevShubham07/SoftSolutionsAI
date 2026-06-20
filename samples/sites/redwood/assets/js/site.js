@@ -58,7 +58,7 @@
     up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>'
   };
-  // Rae — the AI admission assistant. Inline SVG (no external asset needed). Violet "eSkooly"-style mascot.
+  // Erica — the AI admission assistant. Inline SVG (no external asset needed). Violet "eSkooly"-style mascot.
   const RAE_AV = '<svg class="rae-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#6536e4"/><path d="M32 16 50 23 32 30 14 23z" fill="#fff"/><path d="M20 27v7c0 5 5.4 8 12 8s12-3 12-8v-7" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="26" cy="38" r="2.6" fill="#fff"/><circle cx="38" cy="38" r="2.6" fill="#fff"/><path d="M26 46c2 2 10 2 12 0" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M50 23v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="31" r="2.2" fill="#fff"/></svg>';
   const RAE_HEAD = '<svg class="rae-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="2.5"/><path d="M32 17 49 23.5 32 30 15 23.5z" fill="#fff"/><path d="M21 27.5v6.5c0 4.8 5 7.6 11 7.6s11-2.8 11-7.6v-6.5" fill="none" stroke="#fff" stroke-width="2.3"/><circle cx="26.5" cy="37.5" r="2.5" fill="#fff"/><circle cx="37.5" cy="37.5" r="2.5" fill="#fff"/><path d="M26.5 45c2 1.9 9 1.9 11 0" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg>';
   const RAE_FIG = '<svg class="rae-svg" viewBox="0 0 80 100" aria-hidden="true"><ellipse cx="40" cy="94" rx="22" ry="5" fill="rgba(8,16,28,.18)"/><rect x="22" y="56" width="36" height="34" rx="14" fill="#5526cf"/><rect x="20" y="22" width="40" height="40" rx="18" fill="#6536e4"/><path d="M40 8 66 17 40 26 14 17z" fill="#fff"/><path d="M24 31v8c0 7 7 11 16 11s16-4 16-11v-8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="33" cy="40" r="3.4" fill="#fff"/><circle cx="47" cy="40" r="3.4" fill="#fff"/><path d="M33 49c3 2.6 11 2.6 14 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M66 17v8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="66" cy="27" r="2.6" fill="#fff"/></svg>';
@@ -175,10 +175,10 @@
     stack.className = 'floatstack';
     stack.innerHTML = `
       <!-- chat panel -->
-      <div class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-label="Chat with Rae, the admission assistant">
+      <div class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-label="Chat with Erica, the admission assistant">
         <div class="chat-head">
           <span class="chat-ava">${RAE_HEAD}</span>
-          <span class="chat-title">Rae AI <span class="verified" aria-label="Verified">${ICON.check}</span></span>
+          <span class="chat-title">Erica AI <span class="verified" aria-label="Verified">${ICON.check}</span></span>
           <button class="x" data-action="chat:close" aria-label="Close chat">&times;</button>
         </div>
         <div class="chat-body" id="chat-body">
@@ -210,13 +210,13 @@
       <!-- greeting bubble -->
       <div class="rae-greet" id="rae-greet">
         <span class="avatar"><span class="rae-av">${RAE_AV}</span><span class="live"></span></span>
-        <span class="text" data-action="chat:open">Hi! I&rsquo;m <b>Rae</b> <span class="ai">AI</span> &mdash; your Admission Assistant. <span style="opacity:.8;">Tap to chat.</span></span>
+        <span class="text" data-action="chat:open">Hi! I&rsquo;m <b>Erica</b> <span class="ai">AI</span> &mdash; your Admission Assistant. <span style="opacity:.8;">Tap to chat.</span></span>
         <button class="dismiss" data-action="greet:dismiss" aria-label="Dismiss greeting">&times;</button>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
-        <button class="rae-trigger" data-action="chat:open" aria-label="Chat with Rae AI">
-          <span class="rae-badge"><span class="dot"></span>Rae AI<span class="ai">AI</span></span>
+        <button class="rae-trigger" data-action="chat:open" aria-label="Chat with Erica AI">
+          <span class="rae-badge"><span class="dot"></span>Erica AI<span class="ai">AI</span></span>
           <span class="rae-fig">${RAE_FIG}</span>
         </button>
         <a class="fab fab-wa" href="https://wa.me/${SCHOOL.whatsapp}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">${ICON.wa}</a>

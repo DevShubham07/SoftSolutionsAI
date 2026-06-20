@@ -634,13 +634,17 @@ textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{
   .footer-grid{grid-template-columns:1fr 1fr!important}
   .cta3{flex-direction:column!important;align-items:stretch!important}
   .mob-nav{display:flex!important}
-  /* declutter the floating assistant on phones — it was covering the hero */
-  .floatstack{right:14px!important;bottom:78px!important;gap:10px!important}
-  .rae-greet{display:none!important}
+  /* compact the floating assistant on phones — keep Erica's greeting, but
+     small enough that it no longer covers the hero headline */
+  .floatstack{right:12px!important;bottom:78px!important;gap:8px!important}
+  .rae-greet{max-width:190px!important;padding:9px 11px!important;gap:8px!important;border-radius:12px 12px 4px 12px!important}
+  .rae-greet .text{font-size:11.5px!important;line-height:1.4!important}
+  .rae-greet .avatar .rae-av,.rae-greet .avatar .rae-svg{width:30px!important;height:30px!important}
   .rae-badge{display:none!important}
-  .rae-fig,.rae-fig .rae-svg{width:50px!important}
-  .fab{width:46px!important;height:46px!important}
-  .fab svg{width:21px!important;height:21px!important}
+  .rae-fig,.rae-fig .rae-svg{width:46px!important}
+  .fab{width:44px!important;height:44px!important}
+  .fab svg{width:20px!important;height:20px!important}
+  .fab-top{display:none!important}
   body{padding-bottom:60px!important}
   .pad-x{padding-left:22px!important;padding-right:22px!important}
   .container{padding-left:22px;padding-right:22px}
