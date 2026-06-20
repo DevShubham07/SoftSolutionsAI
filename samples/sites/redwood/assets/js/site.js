@@ -16,6 +16,7 @@
 
   // Swap in your real equirectangular campus panorama (2:1 ratio JPG).
   const PANO_IMAGE = 'https://pannellum.org/images/alma.jpg';
+  const HEAD_VIDEO = 'https://assets.mixkit.co/videos/49581/49581-720.mp4';
 
   const PANNELLUM_CSS = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css';
   const PANNELLUM_JS  = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
@@ -375,6 +376,16 @@
         <div class="pano-stage" id="pano-stage">
           <div class="pano-loading" id="pano-loading"><span class="sp"></span> Loading panorama…</div>
         </div>
+      </div>`;
+
+    // Head's message video modal
+    html += `
+      <div class="video-overlay" id="video-overlay" role="dialog" aria-modal="true" aria-label="Head's message video">
+        <div class="pano-bar">
+          <h3>Head&rsquo;s Message &middot; Dr. A. Mercer</h3>
+          <button class="x" data-action="video:close" aria-label="Close video">&times;</button>
+        </div>
+        <div class="video-stage" id="video-stage"></div>
       </div>`;
 
     wrap.innerHTML = html;
@@ -773,6 +784,37 @@
     if (panoViewer) { try { panoViewer.destroy(); } catch (_) {} panoViewer = null; }
   }
 
+  function openVideo() {
+    const ov = document.getElementById('video-overlay');
+    const stage = document.getElementById('video-stage');
+    if (!ov || !stage) return;
+    const restore = document.activeElement;
+    // (re)build a fresh <video> each open so it autoplays from the start
+    stage.innerHTML = '';
+    const v = document.createElement('video');
+    v.src = HEAD_VIDEO;
+    v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
+    v.setAttribute('playsinline', '');
+    stage.appendChild(v);
+    ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    layers.push({ kind: 'video', node: ov, restore: restore });
+    const p = v.play(); if (p && p.catch) p.catch(function () {/* autoplay blocked — controls remain */});
+    const x = ov.querySelector('.x'); if (x) setTimeout(() => x.focus(), 60);
+  }
+  function closeVideo() {
+    const ov = document.getElementById('video-overlay');
+    const stage = document.getElementById('video-stage');
+    if (!ov) return;
+    const vid = stage && stage.querySelector('video');
+    if (vid) { try { vid.pause(); } catch (_) {} }
+    if (stage) stage.innerHTML = '';
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true');
+    const layer = layers.filter(l => l.node === ov)[0];
+    popLayer(ov);
+    if (layer && layer.restore && layer.restore.focus) try { layer.restore.focus(); } catch (_) {}
+  }
+
   /* ---------- ACTION DELEGATION ---------------------------- */
   function wireActions() {
     document.addEventListener('click', function (e) {
@@ -795,6 +837,8 @@
           case 'greet:dismiss': e.preventDefault(); { const g = document.getElementById('rae-greet'); if (g) g.style.display = 'none'; } return;
           case 'pano:open': e.preventDefault(); openPano(); return;
           case 'pano:close': e.preventDefault(); closePano(); return;
+          case 'video:open': e.preventDefault(); openVideo(); return;
+          case 'video:close': e.preventDefault(); closeVideo(); return;
           case 'scrolltop': e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return;
         }
       }
@@ -807,6 +851,8 @@
       if (ov && ov.classList.contains('open')) { closeModal(ov); return; }
       const panoOv = e.target.id === 'pano-overlay' ? e.target : null;
       if (panoOv) { closePano(); return; }
+      const videoOv = e.target.id === 'video-overlay' ? e.target : null;
+      if (videoOv) { closeVideo(); return; }
     });
 
     // chat input form
@@ -825,6 +871,7 @@
         if (top) {
           if (top.kind === 'modal') closeModal(top.node);
           else if (top.kind === 'pano') closePano();
+          else if (top.kind === 'video') closeVideo();
           else if (top.kind === 'menu') closeMenu();
           else if (top.kind === 'chat') closeChat();
         } else {
