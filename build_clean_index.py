@@ -88,7 +88,9 @@ inject = (
     '<meta property="og:type" content="website" />\n'
     '<meta property="og:title" content="SofSolutionsAI — your business problem, our software solution" />\n'
     '<meta property="og:description" content="End-to-end custom software for any business. Talk to an engineer directly on WhatsApp — no form, no sales call, no slide deck." />\n'
-    "<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'6'%20fill%3D'%2316131f'%2F%3E%3Ctext%20x%3D'16'%20y%3D'23'%20font-family%3D'monospace'%20font-size%3D'20'%20font-weight%3D'700'%20fill%3D'%23EF9F27'%20text-anchor%3D'middle'%3ES%3C%2Ftext%3E%3C%2Fsvg%3E\" />\n"
+    '<link rel="icon" href="favicon.ico?v=2" sizes="any" />\n'
+    '<link rel="icon" type="image/png" href="favicon.png?v=2" />\n'
+    '<link rel="apple-touch-icon" href="favicon.png?v=2" />\n'
 )
 if '</title>\n' in txt:
     txt = txt.replace('</title>\n', '</title>\n' + inject, 1)
