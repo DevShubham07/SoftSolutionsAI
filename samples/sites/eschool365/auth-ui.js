@@ -56,14 +56,6 @@
 
       h('button', { onClick: function () { setChooser(true); }, style: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, width: '100%', padding: '11px', border: '1px solid ' + C.line, borderRadius: 10, background: '#fff', cursor: 'pointer', fontSize: 13.5, fontWeight: 600, color: '#3c4043' } }, googleG(18), 'Continue with Google'),
 
-      h('div', { style: { marginTop: 18 } },
-        h('div', { style: { fontSize: 11, fontWeight: 700, color: C.mut2, textTransform: 'uppercase', letterSpacing: .5, marginBottom: 9 } }, 'Just exploring? Continue as guest'),
-        h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 } },
-          RWAuth.ROLES.map(function (r) {
-            return h('button', { key: r.role, onClick: function () { doLogin(r.role, { guest: true }); },
-              style: { padding: '9px 10px', border: '1px dashed ' + C.line, borderRadius: 9, background: C.bg, cursor: 'pointer', fontSize: 12, fontWeight: 600, color: C.mut, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, 'Guest ' + r.label);
-          }))),
-
       h('div', { style: { marginTop: 20, padding: '10px 12px', background: '#FDF3E5', border: '1px solid #D9770633', borderRadius: 9, fontSize: 11.5, color: '#9a6a12', textAlign: 'center', lineHeight: 1.5 } },
         'Demo only — authentication is mocked for testing. No real account, no Google sign-in, no network. Your data stays in this browser.'));
 
