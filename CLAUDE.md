@@ -43,12 +43,27 @@ python3 build_clean_index.py     # project/index.html -> index.html (strips desi
 python3 apply_hero_handoff_fix.py   # then patch index.html in place (each is idempotent)
 python3 apply_mobile_fixes.py
 python3 apply_deck_mobile_stack.py
+python3 apply_seo_meta.py        # SEO: canonical + OG/Twitter + JSON-LD into index/samples/viewers,
+                                 #      demote 2 secondary <h1>->h2, preload hero poster (idempotent)
+python3 gen_sitemap.py           # regenerate sitemap.xml + robots.txt from the ROUTES list
 ```
 
-Each `apply_*.py` reads and rewrites `index.html` in place, asserting that every edit matches
-**exactly once** — so they fail loudly if `index.html` has drifted from what they expect. Run
+Each `apply_*.py` reads and rewrites its target(s) in place, asserting that every edit matches
+**exactly once** — so they fail loudly if the file has drifted from what they expect. Run
 `build_clean_index.py` first if regenerating from scratch. Note the apply scripts target the
-current `index.html`, not the prototype.
+current `index.html`, not the prototype. `apply_seo_meta.py` also patches `samples.html` and the
+5 `samples/*.html` viewer pages (canonical/OG/JSON-LD); if the viewer generator is ever restored,
+fold those head tags into it. Re-run `gen_sitemap.py` (and add the new route to its `ROUTES` list)
+whenever a page is added — there is no build-time sitemap step.
+
+**SEO assets at repo root** (not generated): `og-default.png` (1200×630 social card, rendered from
+a headless-Chrome HTML card), `llms.txt` (AI-crawler summary), `vercel.json` (security headers +
+CSP + apex→www 301 + `/samples`→`/samples.html`).
+
+**Deferred perf work (needs real-browser verification before shipping):** three.js r128 loads
+synchronously (603KB) and the hero video is `fetch()`+Blob'd in full (4.79MB) on load; deferring/
+gating either requires restructuring the inline WebGL/scrub init and must be checked with
+puppeteer (static screenshots can't render the hero) so the animation doesn't silently fall back.
 
 ## Serve & verify (no test framework)
 
