@@ -175,6 +175,23 @@ def head_block(canonical, og_img, graph, extra_head=""):
     return "\n".join(lines) + "\n"
 
 
+# --- GA4 (gtag.js) — injected at end of <head> on every page, idempotently.
+# Requires the CSP in vercel.json to allow googletagmanager.com + google-analytics.com. ---
+GA_ID = "G-BJHB9E66T4"
+GA_BLOCK = (
+    '<!-- Google tag (gtag.js) -->\n'
+    f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n'
+    '<script>\n'
+    '  window.dataLayer = window.dataLayer || [];\n'
+    '  function gtag(){dataLayer.push(arguments);}\n'
+    "  gtag('js', new Date());\n"
+    f"  gtag('config', '{GA_ID}');\n"
+    '</script>\n'
+)
+GA_OLD = "</style>\n</head>"
+GA_NEW = "</style>\n" + GA_BLOCK + "</head>"
+
+
 # Anchor present (once) in every page: theme-color line immediately followed by
 # the og:type line. We insert our block between them so the anchor is consumed
 # (guarantees clean idempotency under replace_once).
@@ -206,6 +223,7 @@ def process_file(path, canonical, og_img, graph, results, extra_head="", extra_e
     with open(path, encoding="utf-8") as f:
         src = orig = f.read()
     src = inject(src, canonical, og_img, graph, f"{path}: head meta+jsonld", results, extra_head)
+    src = replace_once(src, GA_OLD, GA_NEW, f"{path}: GA4 gtag", results)
     if extra_edits:
         for old, new, lbl in extra_edits:
             src = replace_once(src, old, new, f"{path}: {lbl}", results)
