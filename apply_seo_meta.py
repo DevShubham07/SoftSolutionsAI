@@ -80,6 +80,9 @@ def homepage_graph():
 
 # --- portfolio items for samples.html ItemList + per-viewer CreativeWork ---
 SAMPLES = [
+    ("dinevibes", "DineVibe Studio", "Marketing agency website",
+     "A restaurant-growth marketing agency site — data-driven ads, social, influencer "
+     "campaigns, CRM and platform optimisation, on a conversion-focused site."),
     ("eschool365", "E-School 365", "School ERP web application",
      "A full school ERP web app — role-based logins for admins, teachers and parents, "
      "with attendance, fees, salary, exams and live dashboards."),
@@ -121,10 +124,10 @@ def samples_graph():
          ]},
         {"@type": "CollectionPage", "@id": f"{SITE}/samples.html#webpage",
          "url": f"{SITE}/samples.html", "name": "Samples — SoftSolutionsAI",
-         "description": ("Sample sites we design and ship at SoftSolutionsAI — a full "
-                         "school ERP web app, a premium school website, a skincare "
-                         "e-commerce storefront, a developer deploy-platform, and an AI "
-                         "customer-ops workspace app."),
+         "description": ("Sample sites we design and ship at SoftSolutionsAI — a restaurant "
+                         "marketing agency site, a full school ERP web app, a premium school "
+                         "website, a skincare e-commerce storefront, a developer deploy-platform, "
+                         "and an AI customer-ops workspace app."),
          "isPartOf": {"@id": f"{SITE}/#website"},
          "about": {"@id": f"{SITE}/#organization"},
          "breadcrumb": {"@id": f"{SITE}/samples.html#breadcrumb"},
