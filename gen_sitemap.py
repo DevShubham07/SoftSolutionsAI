@@ -23,6 +23,7 @@ SITE = "https://www.softsolutionsai.com"
 ROUTES = [
     ("/",                        "index.html"),
     ("/samples.html",            "samples.html"),
+    ("/samples/dinevibes.html",  "samples/dinevibes.html"),
     ("/samples/redwood.html",    "samples/redwood.html"),
     ("/samples/eschool365.html", "samples/eschool365.html"),
     ("/samples/solene.html",     "samples/solene.html"),
