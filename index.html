@@ -1048,7 +1048,34 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-05 .btn-call:hover{border-color: var(--accent-amber); color: var(--accent-amber); transform: translateY(-1px);}
 #sec-05 .link-ghost{font-family: "Space Mono", monospace; font-size: 13px; letter-spacing: 0.04em; color: var(--muted-on-dark); text-decoration: none; border-bottom: 1px solid var(--border-dark); padding-bottom: 2px; transition: color .2s var(--ease),border-color .2s var(--ease);}
 #sec-05 .link-ghost:hover{color: var(--text-on-dark); border-color: var(--accent-amber);}
+#sec-05 .faq{position: relative; z-index: 1; max-width: 820px; margin: 112px auto 0px; padding: 96px 32px 0px; border-top: 1px solid var(--border-dark);}
+#sec-05 .faq .faq-head{text-align: center; margin-bottom: 52px;}
+#sec-05 .faq h2{margin: 16px auto 0px; max-width: 20ch; font-weight: 500; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -0.02em;}
+#sec-05 .faq .faq-sub{margin: 16px auto 0px; max-width: 520px; font-size: 17px; line-height: 1.55; color: var(--muted-on-dark);}
+#sec-05 .faq-item{border-top: 1px solid var(--border-dark);}
+#sec-05 .faq-item:last-child{border-bottom: 1px solid var(--border-dark);}
+#sec-05 .faq-item summary{list-style: none; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 26px 4px; font-family: var(--font-sans); font-weight: 500; font-size: clamp(17px, 2vw, 20px); line-height: 1.4; letter-spacing: -0.01em; color: var(--text-on-dark); -webkit-tap-highlight-color: transparent; transition: color .2s var(--ease);}
+#sec-05 .faq-item summary::-webkit-details-marker{display: none;}
+#sec-05 .faq-item summary:hover{color: var(--accent-amber);}
+#sec-05 .faq-item summary:focus-visible{outline: 2px solid var(--accent-amber); outline-offset: 3px; border-radius: 4px;}
+#sec-05 .faq-item .faq-icon{flex: 0 0 auto; position: relative; width: 14px; height: 14px; margin-top: 6px;}
+#sec-05 .faq-item .faq-icon::before, #sec-05 .faq-item .faq-icon::after{content: ""; position: absolute; background: var(--accent-amber); transition: transform .3s var(--ease), opacity .3s var(--ease);}
+#sec-05 .faq-item .faq-icon::before{top: 6px; left: 0; width: 14px; height: 2px;}
+#sec-05 .faq-item .faq-icon::after{top: 0; left: 6px; width: 2px; height: 14px;}
+#sec-05 .faq-item[open] .faq-icon::after{transform: scaleY(0); opacity: 0;}
+#sec-05 .faq-item .faq-body{overflow: hidden; padding: 0 4px 4px;}
+#sec-05 .faq-item .faq-body p{margin: 0 0 14px; max-width: 62ch; font-size: 16px; line-height: 1.62; color: var(--muted-on-dark);}
+#sec-05 .faq-item .faq-body p.faq-lead{color: var(--text-on-dark);}
+#sec-05 .faq-item .faq-body ul{list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0 0 22px; padding: 0;}
+#sec-05 .faq-item .faq-body li{position: relative; padding-left: 20px; font-size: 16px; line-height: 1.55; color: var(--muted-on-dark);}
+#sec-05 .faq-item .faq-body li::before{content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber);}
+#sec-05 .faq-item .faq-body li b, #sec-05 .faq-item .faq-body p b{color: var(--text-on-dark); font-weight: 500;}
+#sec-05 .faq-item .faq-body a{color: var(--accent-amber); text-decoration: none; border-bottom: 1px solid var(--border-dark); transition: border-color .2s var(--ease);}
+#sec-05 .faq-item .faq-body a:hover{border-color: var(--accent-amber);}
 @media (max-width: 760px){
+#sec-05 .faq{margin-top: 72px; padding: 64px 4px 0px;}
+#sec-05 .faq .faq-head{margin-bottom: 36px;}
+#sec-05 .faq-item summary{padding: 22px 4px; gap: 14px;}
 #sec-05{padding-top: 80px;}
 #sec-05 .wrap{padding: 0px 20px;}
 #sec-05 .cmp-head{display: none;}
@@ -1685,6 +1712,65 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
       <!-- rows injected by JS from DATA -->
     </div>
   </div>
+
+  <section class="faq" aria-label="Frequently asked questions">
+    <div class="faq-head">
+      <span class="eyebrow"><span class="dot"></span>faq</span>
+      <h2>Questions, answered by an engineer.</h2>
+      <p class="faq-sub">The things people ask before they send us that first WhatsApp message.</p>
+    </div>
+
+    <details class="faq-item" open>
+      <summary>What types of custom software solutions does SoftSolutionsAI build?<span class="faq-icon" aria-hidden="true"></span></summary>
+      <div class="faq-body">
+        <p class="faq-lead">SoftSolutionsAI is a full-stack software development company in India that builds end-to-end, custom software tailored to your core business operations. We can architect a custom solution for almost any industry, but our production suites and live working demos cover four core sectors:</p>
+        <ul>
+          <li><b>Banking &amp; fintech software:</b> Transaction dashboards, real-time fraud-detection consoles, and automated reconciliation systems.</li>
+          <li><b>School management software (ERP):</b> Instant classroom attendance, parent-sync apps, fee tracking, and automated report cards.</li>
+          <li><b>Restaurant management software:</b> Table reservations, floor and cover management, waitlists, and kitchen-ordering workflows.</li>
+          <li><b>E-commerce development:</b> Fully bespoke storefronts, shopping carts, inventory management, and custom checkout experiences.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>We already use existing software. Can SoftSolutionsAI add AI capabilities without a complete rebuild?<span class="faq-icon" aria-hidden="true"></span></summary>
+      <div class="faq-body">
+        <p class="faq-lead">Yes. As a specialized AI automation agency in India, our "AI Layer" is built to bolt intelligence onto your existing tools—with zero rip-and-replace. We integrate modern AI directly into what your team already runs:</p>
+        <ul>
+          <li><b>AI email management:</b> Drops into your existing inbox to automatically categorize messages, summarize urgent client requests, and draft context-aware replies.</li>
+          <li><b>Custom AI chatbots:</b> Trained strictly on your own documentation, store policies, and help files to answer customer queries directly inside your product.</li>
+          <li><b>Plain-English AI dashboards:</b> Connect to your live business data so you can ask analytical questions in plain English and generate real-time charts and revenue forecasts on demand.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How does your development process differ from a typical software agency?<span class="faq-icon" aria-hidden="true"></span></summary>
+      <div class="faq-body">
+        <p class="faq-lead">Most agencies slow you down with sales teams, discovery calls, slide decks, and black-box offshoring. We strip out the friction:</p>
+        <ul>
+          <li><b>Engineers, not salesmen:</b> From your first WhatsApp message, you talk directly to the software engineer who will actually build and support your product.</li>
+          <li><b>A prototype before you commit:</b> We build a clickable, interactive prototype for you to test—and try to break—before development begins.</li>
+          <li><b>Weekly Friday demos:</b> You see real, working software every week, deployed continuously to a staging URL you can check anytime. We build directly on your servers and repositories, so there's never a black box.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What kind of post-launch support and maintenance do you provide?<span class="faq-icon" aria-hidden="true"></span></summary>
+      <div class="faq-body">
+        <p>You won't be handed off to account managers, ticket queues, or escalation matrices. You get direct WhatsApp access to the same engineer who built your software from day one. If something breaks, you message us and we fix it. As your business grows, the same hands stay available to build new features, ship upgrades, and keep your systems running.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I get started or request a quote for my project?<span class="faq-icon" aria-hidden="true"></span></summary>
+      <div class="faq-body">
+        <p>There are no tedious contact forms, NDA delays, or multi-week discovery phases. Just send a direct <a href="https://wa.me/919258494901" target="_blank" rel="noopener">WhatsApp message</a> or email us at <a href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com</a> with a short description of what you need built—or what problem is slowing your business down. An engineer replies the same day to talk through the architecture and send you a straightforward, written quote.</p>
+      </div>
+    </details>
+  </section>
 
   <div class="cta">
     <h2>Tell us what's broken. An engineer replies — not a sales team.</h2>
