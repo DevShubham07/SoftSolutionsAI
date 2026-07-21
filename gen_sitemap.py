@@ -30,6 +30,7 @@ ROUTES = [
     ("/samples/vector.html",     "samples/vector.html"),
     ("/samples/atlas.html",      "samples/atlas.html"),
     # --- Phase 3 vertical service pages ---
+    ("/ai-solutions.html",               "ai-solutions.html"),
     ("/restaurant-pos-software.html",    "restaurant-pos-software.html"),
     ("/core-banking-software.html",      "core-banking-software.html"),
     ("/school-management-software.html", "school-management-software.html"),

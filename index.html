@@ -1700,6 +1700,88 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
   <div class="fallback" id="fallback"></div>
 </section>
 </div>
+<!-- ===== AI ECOSYSTEM (value-framed teaser → ai-solutions.html) ===== -->
+<style id="scope-ai-ecosystem">
+#ai-ecosystem{position:relative;background:var(--bg-dark);padding:120px 0 120px;overflow:hidden;}
+#ai-ecosystem .container{position:relative;z-index:1;}
+#ai-ecosystem .ai-eco-head{max-width:660px;}
+#ai-ecosystem h2{margin-top:20px;font-weight:500;font-size:clamp(32px,4.4vw,48px);line-height:1.08;letter-spacing:-0.02em;}
+#ai-ecosystem .ai-eco-sub{margin-top:18px;max-width:600px;font-size:18px;line-height:1.55;color:var(--muted-on-dark);}
+#ai-ecosystem .ai-tiles{margin-top:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+#ai-ecosystem .ai-tile{position:relative;display:flex;flex-direction:column;gap:12px;border:1px solid var(--border-dark);border-radius:14px;padding:24px 24px 26px;background:rgba(245,244,249,0.015);text-decoration:none;color:var(--text-on-dark);transition:border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease);}
+#ai-ecosystem .ai-tile:hover{border-color:var(--accent-amber);background:rgba(239,159,39,0.05);transform:translateY(-2px);}
+#ai-ecosystem .ai-tile:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;}
+#ai-ecosystem .ai-tile-ico{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--border-dark-strong);background:rgba(239,159,39,0.08);color:var(--accent-amber);font-size:21px;flex:none;}
+#ai-ecosystem .ai-tile-name{display:flex;align-items:center;gap:8px;font-weight:500;font-size:18px;letter-spacing:-0.01em;}
+#ai-ecosystem .ai-tile-name .arr{margin-left:auto;color:var(--muted-on-dark);font-size:15px;transition:transform .2s var(--ease),color .2s var(--ease);}
+#ai-ecosystem .ai-tile:hover .ai-tile-name .arr{color:var(--accent-amber);transform:translateX(3px);}
+#ai-ecosystem .ai-tile-desc{font-size:14.5px;line-height:1.55;color:var(--muted-on-dark);}
+#ai-ecosystem .ai-eco-cta{margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;}
+#ai-ecosystem .ai-eco-note{font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.02em;color:var(--muted-on-dark);opacity:.9;}
+@media (max-width:760px){
+#ai-ecosystem{padding:80px 0;}
+#ai-ecosystem .ai-tiles{grid-template-columns:1fr;gap:12px;margin-top:40px;}
+#ai-ecosystem .ai-tile{padding:20px;}
+}
+</style>
+<section id="ai-ecosystem" class="tex-dots-dark" aria-label="AI ecosystem">
+  <div class="container">
+    <div class="ai-eco-head">
+      <span class="eyebrow">ai ecosystem</span>
+      <h2>AI that does real work for your business.</h2>
+      <p class="ai-eco-sub">Not a chatbot demo — practical AI wired into how you already operate. Here's what we can build. Tap any one for the full story.</p>
+    </div>
+
+    <div class="ai-tiles">
+      <a class="ai-tile" href="ai-solutions.html#receptionist">
+        <span class="ai-tile-ico"><i class="ti ti-headset" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI receptionist <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Answers calls, chats and DMs 24/7 — books appointments, answers FAQs, and qualifies leads while you sleep.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#gift-picker">
+        <span class="ai-tile-ico"><i class="ti ti-gift" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI gift picker <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Turns "I don't know what to buy" into a confident purchase — a few questions, the perfect pick, a bigger cart.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#recommender">
+        <span class="ai-tile-ico"><i class="ti ti-basket" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI product recommender <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Personalizes what every shopper sees and upsells automatically — your best salesperson on every page.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#document-extractor">
+        <span class="ai-tile-ico"><i class="ti ti-file-text" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI document extractor <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Invoices, forms, receipts and IDs turned into clean structured data — no manual typing, no errors.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#scheduler">
+        <span class="ai-tile-ico"><i class="ti ti-calendar" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI booking &amp; scheduler <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Fills your calendar, handles reschedules and no-show reminders, and syncs to the tools you already use.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#review-responder">
+        <span class="ai-tile-ico"><i class="ti ti-star" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI review responder <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Drafts on-brand replies to every review in seconds and flags the ones that actually need you.</span>
+      </a>
+
+      <a class="ai-tile" href="ai-solutions.html#support-chatbot">
+        <span class="ai-tile-ico"><i class="ti ti-message-chatbot" aria-hidden="true"></i></span>
+        <span class="ai-tile-name">AI support chatbot <span class="arr" aria-hidden="true">→</span></span>
+        <span class="ai-tile-desc">Trained on your own docs and policies; answers customers instantly, right inside your product.</span>
+      </a>
+    </div>
+
+    <div class="ai-eco-cta">
+      <a class="btn btn--primary" href="ai-solutions.html">Explore AI solutions <span aria-hidden="true">→</span></a>
+      <span class="ai-eco-note">custom-built and run on your own stack — you own it, not us.</span>
+    </div>
+  </div>
+</section>
 <div id="sec-05" class="region" data-screen-label="05 What you don't have to do">
 <section aria-label="What you don't have to do" data-screen-label="06 what you don't have to do">
   <div class="wrap">
@@ -1796,6 +1878,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
       <span class="wm"><span class="sof">Soft</span>SolutionsAI</span>
     </a>
     <div class="footer-links">
+      <a href="ai-solutions.html">AI solutions</a>
       <a href="restaurant-pos-software.html">Restaurant POS</a>
       <a href="core-banking-software.html">Core banking</a>
       <a href="school-management-software.html">School ERP</a>
