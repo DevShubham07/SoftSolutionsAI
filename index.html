@@ -102,6 +102,8 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 .btn .ti{font-size:14px;}
 .btn--primary{background:var(--accent-amber);color:#1a1a1a;border-color:var(--accent-amber);}
 .btn--primary:hover{transform:translateY(-1px);border-color:var(--accent-amber-2);}
+.btn--ghost{background:transparent;color:var(--text-on-dark);border-color:var(--border-dark-strong);}
+.btn--ghost:hover{transform:translateY(-1px);border-color:var(--accent-amber);color:var(--accent-amber);}
 .trailing{min-height:20vh;background:var(--bg-dark);}
 @media (max-width:900px){.trailing{display:none;}}
 
@@ -158,6 +160,7 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 .nav-panel-link .ix{font-family:var(--font-mono);font-weight:400;font-size:13px;letter-spacing:0.1em;color:var(--muted-on-dark);}
 .nav-panel-link[aria-current="true"] .ix{color:var(--accent-amber);}
 .nav-panel-cta{margin-top:20px;justify-content:center;font-size:15px;padding:14px 20px;}
+.nav-panel-cta.is-call{margin-top:10px;}
 
 /* ---- footer ---- */
 .site-footer{position:relative;z-index:1;background:var(--bg-dark);border-top:1px solid var(--border-dark);padding:56px max(var(--pad),24px) 64px;}
@@ -1032,6 +1035,9 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-05 .btn-wa{display: inline-flex; align-items: center; gap: 10px; background: var(--accent-amber); color: rgb(22, 19, 31); font-weight: 500; font-size: 16px; padding: 15px 26px; border-radius: 999px; text-decoration: none; transition: background .2s var(--ease),transform .2s var(--ease);}
 #sec-05 .btn-wa .dot{width: 7px; height: 7px; border-radius: 50%; background: rgb(22, 19, 31);}
 #sec-05 .btn-wa:hover{background: var(--accent-amber-2); transform: translateY(-1px);}
+#sec-05 .btn-call{display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text-on-dark); font-weight: 500; font-size: 16px; padding: 15px 26px; border-radius: 999px; border: 1px solid var(--border-dark-strong); text-decoration: none; transition: border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease);}
+#sec-05 .btn-call .ti{font-size: 17px;}
+#sec-05 .btn-call:hover{border-color: var(--accent-amber); color: var(--accent-amber); transform: translateY(-1px);}
 #sec-05 .link-ghost{font-family: "Space Mono", monospace; font-size: 13px; letter-spacing: 0.04em; color: var(--muted-on-dark); text-decoration: none; border-bottom: 1px solid var(--border-dark); padding-bottom: 2px; transition: color .2s var(--ease),border-color .2s var(--ease);}
 #sec-05 .link-ghost:hover{color: var(--text-on-dark); border-color: var(--accent-amber);}
 @media (max-width: 760px){
@@ -1059,6 +1065,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-05 .strike line{transition: none !important;}
 #sec-05 .cmp-row.is-on .us-cell{animation: auto ease 0s 1 normal none running none !important;}
 #sec-05 .btn-wa:hover{transform: none;}
+#sec-05 .btn-call:hover{transform: none;}
 }
 
 </style>
@@ -1093,6 +1100,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 
     <div class="nav-cta-group">
       <span class="nav-status" aria-hidden="true"><span class="dot"></span>an engineer is online</span>
+      <a class="btn btn--ghost nav-cta" href="tel:+919258494901" aria-label="Call SoftSolutionsAI now"><i class="ti ti-phone" aria-hidden="true"></i>Call now</a>
       <a class="btn btn--primary nav-cta" id="header-whatsapp" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-panel"><span></span><span></span><span></span></button>
     </div>
@@ -1107,6 +1115,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
   <a class="nav-panel-link" href="#sec-05" data-target="sec-05"><span class="ix">04</span> why us</a>
   <a class="nav-panel-link" href="samples.html"><span class="ix">05</span> samples</a>
   <a class="btn btn--primary nav-panel-cta" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
+  <a class="btn btn--ghost nav-panel-cta is-call" href="tel:+919258494901" aria-label="Call SoftSolutionsAI now"><i class="ti ti-phone" aria-hidden="true"></i>Call now</a>
 </div>
 <div class="journey" aria-hidden="true">
   <span class="line"></span>
@@ -1674,6 +1683,7 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
     <p class="cta-sub">No form. No discovery call. No slide deck.</p>
     <div class="cta-actions">
       <a class="btn-wa" href="https://wa.me/919258494901?text=Hi%20—%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp →</a>
+      <a class="btn-call" href="tel:+919258494901" aria-label="Call SoftSolutionsAI now"><i class="ti ti-phone" aria-hidden="true"></i>Call now</a>
       <a class="link-ghost" href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com →</a>
     </div>
   </div>
