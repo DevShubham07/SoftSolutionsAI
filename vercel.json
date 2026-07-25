@@ -7,7 +7,8 @@
       "destination": "https://www.softsolutionsai.com/$1",
       "permanent": true
     },
-    { "source": "/samples", "destination": "/samples.html", "permanent": true }
+    { "source": "/samples", "destination": "/samples.html", "permanent": true },
+    { "source": "/blog", "destination": "/blog.html", "permanent": true }
   ],
   "headers": [
     {

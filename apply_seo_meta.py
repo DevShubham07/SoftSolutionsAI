@@ -261,6 +261,7 @@ def main():
          '      <a href="school-management-software.html">School ERP</a>\n'
          '      <a href="ecommerce-development.html">E-commerce</a>\n'
          '      <a href="samples.html">Samples</a>\n'
+         '      <a href="blog.html">Blog</a>\n'
          '      <a href="mailto:info.softsolutionsai@gmail.com">info.softsolutionsai@gmail.com</a>',
          "footer: vertical-page links"),
     ]

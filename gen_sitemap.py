@@ -35,7 +35,10 @@ ROUTES = [
     ("/core-banking-software.html",      "core-banking-software.html"),
     ("/school-management-software.html", "school-management-software.html"),
     ("/ecommerce-development.html",      "ecommerce-development.html"),
-    # --- Phase 3.5 blog: add /blog/index.html and each /blog/<slug>.html ---
+    # --- Phase 3.5 blog ---
+    ("/blog.html",                                                   "blog.html"),
+    ("/blog/from-ecommerce-to-core-banking-scaling-operations.html", "blog/from-ecommerce-to-core-banking-scaling-operations.html"),
+    ("/blog/how-to-choose-software-development-company-india.html",  "blog/how-to-choose-software-development-company-india.html"),
 ]
 
 # Non-indexable paths (raw iframed demos + design prototype scaffolding).
