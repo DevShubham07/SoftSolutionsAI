@@ -26,7 +26,6 @@ ORG = {
     "name": "SoftSolutionsAI", "url": f"{SITE}/",
     "legalName": "LABHFORCE SOLUTION PRIVATE LIMITED",
     "taxID": "06AAGCL4957L1Z0",
-    "identifier": {"@type": "PropertyValue", "name": "PAN", "value": "AAGCL4957"},
     "logo": {"@type": "ImageObject", "url": f"{SITE}/favicon.png", "width": 128, "height": 128},
     "image": f"{SITE}/og-default.png",
     "description": ("SoftSolutionsAI is a small engineering studio that ships end-to-end custom "

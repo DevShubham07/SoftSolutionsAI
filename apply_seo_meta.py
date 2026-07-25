@@ -38,7 +38,6 @@ def org_node():
         "name": "SoftSolutionsAI",
         "legalName": "LABHFORCE SOLUTION PRIVATE LIMITED",
         "taxID": "06AAGCL4957L1Z0",
-        "identifier": {"@type": "PropertyValue", "name": "PAN", "value": "AAGCL4957"},
         "url": f"{SITE}/",
         "logo": LOGO,
         "image": OG_DEFAULT[0],
