@@ -24,13 +24,16 @@ ORG = {
     "@type": ["ProfessionalService", "Organization"],
     "@id": f"{SITE}/#organization",
     "name": "SoftSolutionsAI", "url": f"{SITE}/",
+    "legalName": "LABHFORCE SOLUTION PRIVATE LIMITED",
+    "taxID": "06AAGCL4957L1Z0",
+    "identifier": {"@type": "PropertyValue", "name": "PAN", "value": "AAGCL4957"},
     "logo": {"@type": "ImageObject", "url": f"{SITE}/favicon.png", "width": 128, "height": 128},
     "image": f"{SITE}/og-default.png",
     "description": ("SoftSolutionsAI is a small engineering studio that ships end-to-end custom "
                     "software — from restaurant POS to core banking. Talk directly to the engineer who builds it."),
-    "email": "admin.softsolutionsai@gmail.com",
+    "email": "info.softsolutionsai@gmail.com",
     "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support",
-                      "email": "admin.softsolutionsai@gmail.com", "telephone": "+91-9258494901",
+                      "email": "info.softsolutionsai@gmail.com", "telephone": "+91-9258494901",
                       "url": "https://wa.me/919258494901", "availableLanguage": ["English", "Hindi"]}],
     "areaServed": "Worldwide",
 }
@@ -557,10 +560,10 @@ section.block .sec-sub{{color:var(--muted-on-dark);margin:0 0 26px;max-width:60c
     <div class="footer-links">
       <a href="index.html#top">← back to site</a>
       <a href="samples.html">samples</a>
-      <a href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com</a>
+      <a href="mailto:info.softsolutionsai@gmail.com">info.softsolutionsai@gmail.com</a>
       <a href="https://wa.me/919258494901" target="_blank" rel="noopener"><span class="dot-wa"></span>WhatsApp</a>
     </div>
-    <div class="footer-copy">© 2026 SoftSolutionsAI — talk to an engineer, not a sales team.</div>
+    <div class="footer-copy">© 2026 SoftSolutionsAI — talk to an engineer, not a sales team.<br>SoftSolutionsAI is a brand of LABHFORCE SOLUTION PRIVATE LIMITED · GSTIN 06AAGCL4957L1Z0</div>
   </div>
 </footer>
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Idempotent mobile-bug fixes for index.html (the clean SofSolutionsAI page).
+Idempotent mobile-bug fixes for index.html (the clean SoftSolutionsAI page).
 Matches against true file bytes and asserts each edit hits exactly once.
 
 A) nav "what we build" (#sec-02) lands on the hero, because #sec-02 has

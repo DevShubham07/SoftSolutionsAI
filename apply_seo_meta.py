@@ -36,15 +36,18 @@ def org_node():
         "@type": ["ProfessionalService", "Organization"],
         "@id": f"{SITE}/#organization",
         "name": "SoftSolutionsAI",
+        "legalName": "LABHFORCE SOLUTION PRIVATE LIMITED",
+        "taxID": "06AAGCL4957L1Z0",
+        "identifier": {"@type": "PropertyValue", "name": "PAN", "value": "AAGCL4957"},
         "url": f"{SITE}/",
         "logo": LOGO,
         "image": OG_DEFAULT[0],
         "description": ORG_DESC,
-        "email": "admin.softsolutionsai@gmail.com",
+        "email": "info.softsolutionsai@gmail.com",
         "contactPoint": [{
             "@type": "ContactPoint",
             "contactType": "customer support",
-            "email": "admin.softsolutionsai@gmail.com",
+            "email": "info.softsolutionsai@gmail.com",
             "telephone": "+91-9258494901",
             "url": "https://wa.me/919258494901",
             "availableLanguage": ["English", "Hindi"],
@@ -252,14 +255,14 @@ def main():
          "css #sec-05 h1 -> h2"),
         # discoverability: link the vertical service pages from the homepage footer
         ('    <div class="footer-links">\n'
-         '      <a href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com</a>',
+         '      <a href="mailto:info.softsolutionsai@gmail.com">info.softsolutionsai@gmail.com</a>',
          '    <div class="footer-links">\n'
          '      <a href="restaurant-pos-software.html">Restaurant POS</a>\n'
          '      <a href="core-banking-software.html">Core banking</a>\n'
          '      <a href="school-management-software.html">School ERP</a>\n'
          '      <a href="ecommerce-development.html">E-commerce</a>\n'
          '      <a href="samples.html">Samples</a>\n'
-         '      <a href="mailto:admin.softsolutionsai@gmail.com">admin.softsolutionsai@gmail.com</a>',
+         '      <a href="mailto:info.softsolutionsai@gmail.com">info.softsolutionsai@gmail.com</a>',
          "footer: vertical-page links"),
     ]
     jobs.append(("index.html", f"{SITE}/", OG_DEFAULT, homepage_graph(),
