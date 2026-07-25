@@ -83,10 +83,10 @@ txt = txt.replace('<html lang="en">', '<html lang="en" data-energy="electric">',
 
 # production head additions (no visual change)
 inject = (
-    '<meta name="description" content="SofSolutionsAI is a small engineering studio that ships end-to-end custom software — from restaurant POS to core banking. Talk directly to the engineer who builds it, on WhatsApp. No agency, no sales team, no slide decks." />\n'
+    '<meta name="description" content="SoftSolutionsAI is a small engineering studio that ships end-to-end custom software — from restaurant POS to core banking. Talk directly to the engineer who builds it, on WhatsApp. No agency, no sales team, no slide decks." />\n'
     '<meta name="theme-color" content="#16131f" />\n'
     '<meta property="og:type" content="website" />\n'
-    '<meta property="og:title" content="SofSolutionsAI — your business problem, our software solution" />\n'
+    '<meta property="og:title" content="SoftSolutionsAI — your business problem, our software solution" />\n'
     '<meta property="og:description" content="End-to-end custom software for any business. Talk to an engineer directly on WhatsApp — no form, no sales call, no slide deck." />\n'
     '<link rel="icon" href="favicon.ico?v=2" sizes="any" />\n'
     '<link rel="icon" type="image/png" href="favicon.png?v=2" />\n'
