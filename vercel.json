@@ -10,6 +10,15 @@
     { "source": "/samples", "destination": "/samples.html", "permanent": true },
     { "source": "/blog", "destination": "/blog.html", "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }], "destination": "/samples/sites/eschool365/index.html" },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }], "destination": "/samples/sites/eschool365/:path*" },
+    { "source": "/", "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }], "destination": "/samples/sites/redwood/index.html" },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }], "destination": "/samples/sites/redwood/:path*" },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "atlas.softsolutionsai.com" }], "destination": "/samples/sites/atlas.html" },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "solene.softsolutionsai.com" }], "destination": "/samples/sites/solene.html" },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "vector.softsolutionsai.com" }], "destination": "/samples/sites/vector.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
