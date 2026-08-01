@@ -37,6 +37,7 @@ ROUTES = [
     ("/ecommerce-development.html",      "ecommerce-development.html"),
     # --- Phase 3.5 blog ---
     ("/blog.html",                                                   "blog.html"),
+    ("/blog/custom-software-development-for-restaurants.html",       "blog/custom-software-development-for-restaurants.html"),
     ("/blog/from-ecommerce-to-core-banking-scaling-operations.html", "blog/from-ecommerce-to-core-banking-scaling-operations.html"),
     ("/blog/how-to-choose-software-development-company-india.html",  "blog/how-to-choose-software-development-company-india.html"),
 ]

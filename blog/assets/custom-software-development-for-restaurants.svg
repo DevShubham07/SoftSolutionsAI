@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-hidden="true">
+<defs>
+  <linearGradient id="bgg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1b1727"/><stop offset="1" stop-color="#14111d"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#EF9F27" stop-opacity="0.20"/>
+    <stop offset="1" stop-color="#EF9F27" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="amberdown" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#EF9F27"/><stop offset="1" stop-color="#BA7517"/>
+  </linearGradient>
+  <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0 L0 0 0 50" fill="none" stroke="#f5f4f9" stroke-opacity="0.045" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="1600" height="900" fill="url(#bgg)"/>
+<rect width="1600" height="900" fill="url(#grid)"/>
+<ellipse cx="800" cy="450" rx="760" ry="430" fill="url(#glow)"/>
+<rect x="150" y="360" width="340" height="190" rx="14" fill="#1f1a2e" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="178" y="404" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#EF9F27" letter-spacing="3" text-anchor="start">01</text>
+<text x="178" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="30" font-weight="700" fill="#f5f4f9" letter-spacing="1.4" text-anchor="start">POS</text>
+<text x="178" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#908ba3" letter-spacing="0.6" text-anchor="start">tableside · kiosk · app</text>
+<rect x="178" y="512" width="120" height="3" rx="1.5" fill="#EF9F27" opacity="0.55"/>
+<rect x="630" y="360" width="340" height="190" rx="14" fill="#1f1a2e" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="658" y="404" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#EF9F27" letter-spacing="3" text-anchor="start">02</text>
+<text x="658" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="30" font-weight="700" fill="#f5f4f9" letter-spacing="1.4" text-anchor="start">KDS</text>
+<text x="658" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#908ba3" letter-spacing="0.6" text-anchor="start">bar · fry · pass</text>
+<rect x="658" y="512" width="120" height="3" rx="1.5" fill="#EF9F27" opacity="0.55"/>
+<rect x="1110" y="360" width="340" height="190" rx="14" fill="#1f1a2e" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="1138" y="404" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#EF9F27" letter-spacing="3" text-anchor="start">03</text>
+<text x="1138" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="30" font-weight="700" fill="#f5f4f9" letter-spacing="1.4" text-anchor="start">INVENTORY</text>
+<text x="1138" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#908ba3" letter-spacing="0.6" text-anchor="start">recipe-level deduction</text>
+<rect x="1138" y="512" width="120" height="3" rx="1.5" fill="#EF9F27" opacity="0.55"/>
+<line x1="490" y1="455" x2="616" y2="455" stroke="#EF9F27" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 0"/><path d="M630 455 l-16 -9 v18 z" fill="#EF9F27"/>
+<line x1="970" y1="455" x2="1096" y2="455" stroke="#EF9F27" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 0"/><path d="M1110 455 l-16 -9 v18 z" fill="#EF9F27"/>
+<rect x="150" y="214" width="150" height="84" rx="10" fill="#14111d" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="168" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#908ba3" letter-spacing="1.6" text-anchor="start">#1041</text>
+<rect x="168" y="264" width="90" height="5" rx="3" fill="#f5f4f9" opacity="0.16"/>
+<rect x="168" y="278" width="60" height="5" rx="3" fill="#f5f4f9" opacity="0.1"/>
+<line x1="225.0" y1="298" x2="225.0" y2="360" stroke="#f5f4f9" stroke-opacity="0.13" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="350" y="214" width="130" height="84" rx="10" fill="#14111d" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="368" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#EF9F27" letter-spacing="1.6" text-anchor="start">#1042</text>
+<rect x="368" y="264" width="70" height="5" rx="3" fill="#f5f4f9" opacity="0.16"/>
+<rect x="368" y="278" width="40" height="5" rx="3" fill="#f5f4f9" opacity="0.1"/>
+<line x1="415.0" y1="298" x2="415.0" y2="360" stroke="#f5f4f9" stroke-opacity="0.13" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="550" y="214" width="165" height="84" rx="10" fill="#14111d" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="568" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#908ba3" letter-spacing="1.6" text-anchor="start">#1043</text>
+<rect x="568" y="264" width="105" height="5" rx="3" fill="#f5f4f9" opacity="0.16"/>
+<rect x="568" y="278" width="75" height="5" rx="3" fill="#f5f4f9" opacity="0.1"/>
+<line x1="632.5" y1="298" x2="632.5" y2="360" stroke="#f5f4f9" stroke-opacity="0.13" stroke-width="2" stroke-dasharray="4 6"/>
+<rect x="750" y="214" width="140" height="84" rx="10" fill="#14111d" stroke="rgba(245,244,249,0.10)" stroke-width="2"/>
+<text x="768" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#908ba3" letter-spacing="1.6" text-anchor="start">#1044</text>
+<rect x="768" y="264" width="80" height="5" rx="3" fill="#f5f4f9" opacity="0.16"/>
+<rect x="768" y="278" width="50" height="5" rx="3" fill="#f5f4f9" opacity="0.1"/>
+<line x1="820.0" y1="298" x2="820.0" y2="360" stroke="#f5f4f9" stroke-opacity="0.13" stroke-width="2" stroke-dasharray="4 6"/>
+<line x1="150" y1="640" x2="1450" y2="640" stroke="#f5f4f9" stroke-opacity="0.10" stroke-width="2"/>
+<rect x="150" y="614" width="44" height="26" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="250" y="600" width="44" height="40" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="350" y="607" width="44" height="33" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="450" y="588" width="44" height="52" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="550" y="596" width="44" height="44" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="650" y="579" width="44" height="61" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="750" y="585" width="44" height="55" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="850" y="568" width="44" height="72" rx="3" fill="#f5f4f9" opacity="0.13"/>
+<rect x="950" y="574" width="44" height="66" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<rect x="1050" y="556" width="44" height="84" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<rect x="1150" y="562" width="44" height="78" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<rect x="1250" y="545" width="44" height="95" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<rect x="1350" y="552" width="44" height="88" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<rect x="1450" y="536" width="44" height="104" rx="3" fill="url(#amberdown)" opacity="1.0"/>
+<text x="150" y="686" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#908ba3" letter-spacing="2" text-anchor="start">food waste ↓   table turns ↑   margin ↑</text>
+<circle cx="1450" cy="455" r="9" fill="#EF9F27"/>
+<circle cx="1450" cy="455" r="20" fill="none" stroke="#EF9F27" stroke-opacity="0.35" stroke-width="2"/>
+</svg>

@@ -31,6 +31,13 @@ your servers.
 - [Vector](https://www.softsolutionsai.com/samples/vector.html): a SaaS marketing site for a developer platform.
 - [Atlas](https://www.softsolutionsai.com/samples/atlas.html): an AI customer-ops dashboard web app.
 
+## Blog
+
+- [Blog index](https://www.softsolutionsai.com/blog.html): field notes from the engineers who build the software.
+- [Custom software development for restaurants](https://www.softsolutionsai.com/blog/custom-software-development-for-restaurants.html): why off-the-shelf restaurant SaaS creates data silos, and what a unified POS + KDS + recipe-level inventory + owned CRM build actually costs and returns.
+- [From e-commerce to core banking](https://www.softsolutionsai.com/blog/from-ecommerce-to-core-banking-scaling-operations.html): scaling operations with elastic microservices, legacy modernization, open banking APIs, and real-time fraud detection.
+- [How to choose a software development company in India](https://www.softsolutionsai.com/blog/how-to-choose-software-development-company-india.html): a step-by-step evaluation framework — scope, domain expertise, portfolio, communication, Agile/DevOps maturity, and IP/security terms.
+
 ## Contact
 
 - WhatsApp: https://wa.me/919258494901
