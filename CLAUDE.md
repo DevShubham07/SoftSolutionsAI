@@ -58,7 +58,19 @@ whenever a page is added — there is no build-time sitemap step.
 
 **SEO assets at repo root** (not generated): `og-default.png` (1200×630 social card, rendered from
 a headless-Chrome HTML card), `llms.txt` (AI-crawler summary), `vercel.json` (security headers +
-CSP + apex→www 301 + `/samples`→`/samples.html`).
+CSP + apex→www 308 + `/samples`→`/samples.html` + per-subdomain sample routing).
+
+**`vercel.json` uses the legacy `routes` array — this is deliberate and load-bearing.** Vercel
+evaluates `rewrites` only *after* the filesystem, so a rewrite can never beat the root
+`index.html`: every sample subdomain served the marketing homepage at `/` while working correctly
+on every other path. Routes listed before the `{"handle":"filesystem"}` marker run *before*
+static-file lookup, which is the only way to remap `/` per-host without adding a build step or an
+npm dependency for Routing Middleware. Consequences: `routes` is mutually exclusive with
+`redirects`/`rewrites`/`headers`/`cleanUrls`/`trailingSlash`, so all of those must be expressed as
+routes; `src` is a **regex** (not path-to-regexp), captures interpolate as `$1`; the security-header
+route needs `"continue": true` so matching proceeds; and the subdomain routes now run before the
+filesystem, so those hosts can no longer reach root-level files (correct isolation — each sample is
+self-contained). Unknown top-level keys are rejected, so don't add a `_comment` field.
 
 **Deferred perf work (needs real-browser verification before shipping):** three.js r128 loads
 synchronously (603KB) and the hero video is `fetch()`+Blob'd in full (4.79MB) on load; deferring/

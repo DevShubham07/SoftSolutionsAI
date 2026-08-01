@@ -1,44 +1,64 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "redirects": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "softsolutionsai.com" }],
-      "destination": "https://www.softsolutionsai.com/$1",
-      "permanent": true
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+        "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data: blob:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; worker-src 'self' blob:; frame-src 'self' https://dinevibes.in; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
+      },
+      "continue": true
     },
-    { "source": "/samples", "destination": "/samples.html", "permanent": true },
-    { "source": "/blog", "destination": "/blog.html", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/", "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }], "destination": "/samples/sites/eschool365/index.html" },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }], "destination": "/samples/sites/eschool365/:path*" },
-    { "source": "/", "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }], "destination": "/samples/sites/redwood/index.html" },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }], "destination": "/samples/sites/redwood/:path*" },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "atlas.softsolutionsai.com" }], "destination": "/samples/sites/atlas.html" },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "solene.softsolutionsai.com" }], "destination": "/samples/sites/solene.html" },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "vector.softsolutionsai.com" }], "destination": "/samples/sites/vector.html" }
-  ],
-  "headers": [
+
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data: blob:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; worker-src 'self' blob:; frame-src 'self' https://dinevibes.in; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
-        }
-      ]
-    }
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "softsolutionsai.com" }],
+      "status": 308,
+      "headers": { "Location": "https://www.softsolutionsai.com/$1" }
+    },
+    { "src": "/samples", "status": 308, "headers": { "Location": "/samples.html" } },
+    { "src": "/blog", "status": 308, "headers": { "Location": "/blog.html" } },
+
+    {
+      "src": "/",
+      "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }],
+      "dest": "/samples/sites/eschool365/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "eschool365.softsolutionsai.com" }],
+      "dest": "/samples/sites/eschool365/$1"
+    },
+    {
+      "src": "/",
+      "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }],
+      "dest": "/samples/sites/redwood/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "redwood.softsolutionsai.com" }],
+      "dest": "/samples/sites/redwood/$1"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "atlas.softsolutionsai.com" }],
+      "dest": "/samples/sites/atlas.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "solene.softsolutionsai.com" }],
+      "dest": "/samples/sites/solene.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "vector.softsolutionsai.com" }],
+      "dest": "/samples/sites/vector.html"
+    },
+
+    { "handle": "filesystem" }
   ]
 }
