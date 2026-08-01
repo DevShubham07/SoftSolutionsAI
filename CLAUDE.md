@@ -101,6 +101,20 @@ hover / interaction / computed-style checks, drive real Chrome with puppeteer-co
   changes **data-driven** in the `products = [...]` array; static slots are set via an injected
   `<script id="ssai-photos">` whose closures survive document replacement. See `contexthandler.md`
   for the full asset→slot map.
+- **`vector.html` / `solene.html` / `atlas.html` need two things the export doesn't provide.**
+  They embed `dc-runtime` as gzip+base64 in a `<script type="__bundler/manifest">` block, and that
+  runtime (a) throws `"dc-runtime: window.React is not available yet"` unless React/ReactDOM are
+  already globals — React is *not* in the manifest (fonts + runtime only) and
+  `<script type="__bundler/ext_resources">` is `[]`; and (b) compiles the demo's logic with
+  `new Function`, so it needs `'unsafe-eval'`. Without (a) the page sits on its
+  `#__bundler_thumbnail` placeholder; without (b) it renders but every `{{ expr }}` resolves empty.
+  Fixes: `apply_sample_react_fix.py` injects React 18 UMD from `samples/sites/vendor/` (synchronous,
+  in `<head>`, so it runs before the unpacker's DOMContentLoaded hook — the tags are wiped by the
+  document swap but `window` survives), and `vercel.json` grants `'unsafe-eval'` **only** to those
+  three, scoped by path for the www context and by host for the subdomains. The main site's CSP
+  stays strict — verify with `curl -sI <url> | grep -i content-security-policy` that exactly one CSP
+  header comes back. Their vendor `src` is absolute, paired with per-host passthrough routes; keep
+  those in sync. `redwood/` (plain JS) and `eschool365/` (vendors React itself) are unaffected.
 - `#sec-02` ("what we build") uses `margin-top:-100vh` to reveal beneath the hero; nav scroll
   targeting compensates with a `+100vh` correction. The AI-layer deck cards are
   `position:absolute`, so they contribute no height — the stage height is synced from JS
