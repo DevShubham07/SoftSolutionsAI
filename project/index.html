@@ -262,18 +262,16 @@ body.hero-scrolled .hero-header-overlay{background: rgba(19, 18, 26, 0.5); backd
 #sec-02 .rail-line, #sec-02 .rail-fill{position: absolute; left: 14px; width: 2px; border-radius: 2px;}
 #sec-02 .rail-line{top: 16px; bottom: 16px; background: var(--border-dark-strong);}
 #sec-02 .rail-fill{top: 16px; height: 0px; background: var(--accent-amber); transition: height 180ms linear; z-index: 1;}
-#sec-02 .rail-item{position: relative; z-index: 2; display: grid; grid-template-columns: 30px 1fr; gap: 16px; align-items: start; padding: 13px 12px 13px 0px; cursor: pointer; border-radius: 10px; transition: background 300ms var(--ease);}
+#sec-02 .rail-item{position: relative; z-index: 2; display: grid; grid-template-columns: 30px 1fr; gap: 16px; align-items: start; padding: 18px 12px 18px 0px; cursor: pointer; border-radius: 10px; transition: background 300ms var(--ease);}
 #sec-02 .rail-item .ri-num{position: relative; z-index: 1; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--muted-on-dark); background: var(--bg-dark); border: 1.5px solid var(--border-dark-strong); transition: color 280ms var(--ease), background 280ms var(--ease), border-color 280ms var(--ease);}
-#sec-02 .ri-label{font-size: 19px; font-weight: 500; letter-spacing: -0.01em; color: var(--muted-on-dark); transition: color 280ms var(--ease); line-height: 1.1; padding-top: 4px;}
-#sec-02 .ri-desc{font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.03em; text-transform: lowercase; color: var(--muted-on-dark); opacity: 0.45; margin-top: 7px; transition: opacity 280ms var(--ease); line-height: 1.5;}
+#sec-02 .ri-label{font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--muted-on-dark); transition: color 280ms var(--ease); line-height: 1.1; padding-top: 3px;}
 #sec-02 .ri-chips{display: flex; flex-wrap: wrap; gap: 6px; max-height: 0px; opacity: 0; overflow: hidden; margin-top: 0px; transition: max-height 300ms var(--ease), opacity 280ms var(--ease), margin-top 300ms var(--ease);}
 #sec-02 .ri-chip{font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.01em; padding: 4px 9px; border-radius: var(--r-pill); border: 1px solid var(--border-dark); color: var(--muted-on-dark); white-space: nowrap;}
 #sec-02 .rail-item:hover .ri-label{color: var(--text-on-dark);}
 #sec-02 .rail-item.active{background: linear-gradient(90deg, rgba(239, 159, 39, 0.06), transparent 80%);}
 #sec-02 .rail-item.active .ri-num{color: rgb(26, 26, 26); background: var(--accent-amber); border-color: var(--accent-amber);}
 #sec-02 .rail-item.active .ri-label{color: var(--text-on-dark);}
-#sec-02 .rail-item.active .ri-desc{opacity: 0.85;}
-#sec-02 .rail-item.active .ri-chips{max-height: 48px; opacity: 1; margin-top: 12px;}
+#sec-02 .rail-item.active .ri-chips{max-height: 76px; opacity: 1; margin-top: 12px;}
 #sec-02 .rail-caption{margin-top: 30px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: lowercase; color: var(--muted-on-dark); display: inline-flex; align-items: center; gap: 8px;}
 #sec-02 .showcase-stage{width: 66%; flex: 1 1 0%; position: relative; display: flex; align-items: center; justify-content: center; padding: 0 max(var(--pad), calc((100vw - var(--container)) / 2 + var(--pad))) 0 0; transform: translateX(-26%) scale(0.72); transform-origin: center center; transition: transform 640ms var(--ease);}
 #sec-02 .showcase-entered .showcase-stage{transform: none;}
@@ -1146,8 +1144,7 @@ html[data-energy="electric"] .tex-dots-dark::before{ opacity:.028; }
         <li class="rail-item active" data-index="0">
           <span class="ri-num">01</span>
           <div class="ri-body">
-            <div class="ri-label">Custom FinTech &amp; Banking Software Development</div>
-            <div class="ri-desc">transaction ops · real-time fraud · reconciliation</div>
+            <div class="ri-label">Banking &amp; FinTech</div>
             <div class="ri-chips">
               <span class="ri-chip">₹52L balance</span>
               <span class="ri-chip">1,240 txns</span>
@@ -1159,8 +1156,7 @@ html[data-energy="electric"] .tex-dots-dark::before{ opacity:.028; }
         <li class="rail-item" data-index="1">
           <span class="ri-num">02</span>
           <div class="ri-body">
-            <div class="ri-label">School Management Systems &amp; Educational ERP Software</div>
-            <div class="ri-desc">attendance · fees · report cards · parent sync</div>
+            <div class="ri-label">School Management</div>
             <div class="ri-chips">
               <span class="ri-chip">12 students</span>
               <span class="ri-chip">75% present</span>
@@ -1172,8 +1168,7 @@ html[data-energy="electric"] .tex-dots-dark::before{ opacity:.028; }
         <li class="rail-item" data-index="2">
           <span class="ri-num">03</span>
           <div class="ri-body">
-            <div class="ri-label">Custom Restaurant POS &amp; Table Management Software</div>
-            <div class="ri-desc">floor · covers · turns · reservations</div>
+            <div class="ri-label">Restaurant POS</div>
             <div class="ri-chips">
               <span class="ri-chip">20 tables</span>
               <span class="ri-chip">11 booked</span>
@@ -1185,8 +1180,7 @@ html[data-energy="electric"] .tex-dots-dark::before{ opacity:.028; }
         <li class="rail-item" data-index="3">
           <span class="ri-num">04</span>
           <div class="ri-body">
-            <div class="ri-label">Scalable E-Commerce Platforms &amp; Custom Storefronts</div>
-            <div class="ri-desc">storefront · cart · checkout · inventory</div>
+            <div class="ri-label">E-Commerce</div>
             <div class="ri-chips">
               <span class="ri-chip">live store</span>
               <span class="ri-chip">free ship ₹2k</span>
