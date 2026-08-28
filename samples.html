@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Samples — SoftSolutionsAI</title>
-<meta name="description" content="Sample sites we design and ship at SoftSolutionsAI — a restaurant marketing agency site, a full school ERP web app, a premium school website, a skincare e-commerce storefront, a developer deploy-platform, and an AI customer-ops workspace app. Open each one and explore it live inside the site." />
+<title>Our work — SoftSolutionsAI</title>
+<meta name="description" content="The sites we have built and shipped — Uptownie, DhanBoost and Swashaa running live for their businesses, plus six more we built in-house. Open any of them and click through the real thing, right on the page." />
 <meta name="theme-color" content="#16131f" />
 <link rel="canonical" href="https://www.softsolutionsai.com/samples.html" />
 <meta property="og:url" content="https://www.softsolutionsai.com/samples.html" />
@@ -245,6 +245,8 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 .btn .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.9;}
 .btn--primary{background:var(--accent-amber);color:#1a1a1a;border-color:var(--accent-amber);}
 .btn--primary:hover{transform:translateY(-1px);border-color:var(--accent-amber-2);}
+.btn--ghost{background:transparent;color:var(--text-on-dark);border-color:var(--border-dark-strong);}
+.btn--ghost:hover{transform:translateY(-1px);border-color:var(--accent-amber);color:var(--accent-amber);}
 
 /* ---- top navbar (always solid on this page) ---- */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;background:rgba(22,19,31,0.82);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid var(--border-dark);}
@@ -264,50 +266,6 @@ body{font-family:var(--font-sans);font-weight:400;font-size:16px;line-height:1.6
 /* ---- page layout ---- */
 main{padding-top:68px;}
 .wrap{max-width:var(--container);margin:0 auto;padding:0 max(var(--pad),24px);}
-.samples-hero{padding:76px 0 8px;}
-.samples-hero .h1-display{margin-top:18px;max-width:16ch;}
-.samples-hero .sub{margin-top:18px;max-width:54ch;color:var(--muted-on-dark);}
-.samples-section{padding:0 0 110px;}
-
-/* ---- card grid ---- */
-.samples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
-.sample-card{
-  --accent:#EF9F27; --accent-soft:rgba(239,159,39,.5); --accent-faint:rgba(239,159,39,.14);
-  position:relative;display:flex;flex-direction:column;
-  background:var(--bg-dark-2);border:1px solid var(--border-dark);border-radius:var(--r-lg);
-  overflow:hidden;text-decoration:none;color:var(--text-on-dark);
-  transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);
-}
-.sample-card.is-dinevibes{--accent:#F26B21;--accent-soft:rgba(242,107,33,.5);--accent-faint:rgba(242,107,33,.16);}
-.sample-card.is-eschool{--accent:#5B47E0;--accent-soft:rgba(91,71,224,.5);--accent-faint:rgba(91,71,224,.16);}
-.sample-card.is-redwood{--accent:#b08d57;--accent-soft:rgba(176,141,87,.5);--accent-faint:rgba(176,141,87,.16);}
-.sample-card.is-solene{--accent:#EF9F27;--accent-soft:rgba(239,159,39,.5);--accent-faint:rgba(239,159,39,.16);}
-.sample-card.is-vector{--accent:#7c6cff;--accent-soft:rgba(124,108,255,.5);--accent-faint:rgba(124,108,255,.16);}
-.sample-card.is-atlas{--accent:#4ec98a;--accent-soft:rgba(78,201,138,.5);--accent-faint:rgba(78,201,138,.16);}
-.sample-card:hover{transform:translateY(-4px);border-color:var(--accent-soft);box-shadow:0 22px 48px -28px rgba(0,0,0,.85);}
-.sample-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-
-.sample-thumb{position:relative;aspect-ratio:16/10;display:flex;align-items:flex-end;padding:14px;background:var(--bg-dark-3);border-bottom:1px solid var(--border-dark);overflow:hidden;}
-.sample-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;background:var(--bg-dark-3);transition:transform .45s var(--ease);}
-.sample-card:hover .sample-shot{transform:scale(1.035);}
-.sample-thumb::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,17,29,0) 50%,rgba(20,17,29,.80) 100%);pointer-events:none;}
-.sample-tag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;text-transform:lowercase;color:var(--text-on-dark);background:rgba(22,19,31,.62);border:1px solid var(--border-dark-strong);padding:6px 11px;border-radius:var(--r-pill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
-.sample-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent-soft);}
-
-.sample-body{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1;}
-.sample-cat{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:lowercase;color:var(--accent);}
-.sample-name{font-family:var(--font-sans);font-weight:500;font-size:24px;letter-spacing:-.02em;margin:0;}
-.sample-desc{font-size:14.5px;line-height:1.55;color:var(--muted-on-dark);margin:0;}
-.sample-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
-.sample-chip{font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;color:var(--muted-on-dark);background:rgba(245,244,249,0.04);border:1px solid var(--border-dark);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap;}
-.sample-view{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:16px;font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;color:var(--text-on-dark);}
-.sample-view .arr{transition:transform .2s var(--ease);}
-.sample-card:hover .sample-view{color:var(--accent);}
-.sample-card:hover .sample-view .arr{transform:translateX(3px);}
-
-/* reveal-on-scroll (opacity only — never touches the hover transform) */
-.sample-card.reveal{opacity:0;}
-.sample-card.reveal.in{opacity:1;transition:opacity .55s var(--ease);}
 
 /* ---- footer (lifted from index.html) ---- */
 .site-footer{position:relative;z-index:1;background:var(--bg-dark);border-top:1px solid var(--border-dark);padding:56px max(var(--pad),24px) 64px;}
@@ -320,8 +278,6 @@ main{padding-top:68px;}
 
 /* ---- responsive ---- */
 @media (max-width:900px){
-  .samples-grid{grid-template-columns:1fr;gap:18px;}
-  .samples-hero{padding:56px 0 4px;}
   .footer-inner{flex-direction:column;align-items:flex-start;gap:18px;}
   .footer-links{flex-direction:column;align-items:flex-start;margin-left:0;gap:6px;}
 }
@@ -331,7 +287,365 @@ main{padding-top:68px;}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
-  .sample-card,.sample-view .arr,.back-link .arr{transition:none;}
+  .back-link .arr{transition:none;}
+}
+/* ==================== S1 shared layer + ambient ==================== */
+/* ============================================================
+   S1 — SHARED LAYER: ambient light system, background depth,
+   sticky header delta, reveal system, section rhythm helpers.
+   ============================================================ */
+
+/* :root additions only — --section-pad and the amber --accent*
+   tokens already exist in :root and are kept as-is, not restated here. */
+:root{
+  --amb:#EF9F27;                    /* current island's colour; S4's JS rewrites this */
+  --amb-soft:rgba(239,159,39,0.16);
+}
+
+/* ---- ambient light system: two fixed, heavily blurred colour blobs ----
+   Plain background-color (transitions natively) + filter:blur(). No gradient,
+   no @property. Sized/offset in viewport units so they can never widen the
+   document; overflow-x:hidden on html is a second line of defence. */
+html{overflow-x:hidden;}
+.pf-amb{
+  position:fixed;pointer-events:none;z-index:0;
+  border-radius:50%;
+  background-color:var(--amb);
+  filter:blur(110px);
+  opacity:.20;
+  transition:background-color 700ms var(--ease);
+}
+.pf-amb-a{
+  top:-12%;left:-12%;
+  width:56vw;height:56vw;max-width:640px;max-height:640px;
+}
+.pf-amb-b{
+  bottom:-16%;right:-12%;
+  width:60vw;height:60vw;max-width:680px;max-height:680px;
+}
+
+/* ---- background depth: grain overlay ---- */
+body{position:relative;isolation:isolate;}
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+/* grain + ambient blobs sit behind; content in front.
+   .site-header is intentionally excluded: it's position:fixed;z-index:300
+   already, and setting position:relative on it breaks the sticky header. */
+main,.site-footer{position:relative;z-index:1;}
+
+/* ---- sticky header delta: transparent -> solid past 80px scroll ---- */
+.site-header{
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background-color .3s var(--ease),backdrop-filter .3s var(--ease),border-color .3s var(--ease);
+}
+.site-header.scrolled{
+  background:rgba(22,19,31,0.72);
+  backdrop-filter:blur(12px) saturate(1.1);
+  -webkit-backdrop-filter:blur(12px) saturate(1.1);
+  border-bottom-color:var(--border-dark);
+}
+
+/* ---- reveal-on-scroll (progressive enhancement; content visible with JS off) ---- */
+html.js-reveal [data-reveal]{opacity:0;transform:translateY(24px);}
+html.js-reveal [data-reveal].pf-in{
+  opacity:1;transform:none;
+  transition:opacity 360ms var(--ease),transform 360ms var(--ease);
+}
+
+/* ---- section rhythm helpers ---- */
+.pf-sec{position:relative;padding:var(--section-pad) 0;}
+.pf-wrap{max-width:var(--container);margin:0 auto;padding:0 max(var(--pad),24px);position:relative;z-index:1;}
+.pf-sec-head{max-width:70ch;}
+.pf-sec-head h2{
+  font-size:clamp(1.75rem,4vw,3rem);line-height:1.08;letter-spacing:-0.02em;
+  font-weight:500;margin:10px 0 0;
+}
+.pf-sec-sub{
+  margin-top:14px;max-width:65ch;
+  font-size:clamp(16px,1.4vw,18px);line-height:1.55;
+  color:var(--muted-on-dark);
+}
+.pf-rule{height:1px;background:var(--border-dark);border:none;margin:0;}
+
+@media (prefers-reduced-motion: reduce){
+  .pf-amb,.site-header,html.js-reveal [data-reveal].pf-in{transition:none !important;}
+  html.js-reveal [data-reveal]{opacity:1;transform:none;}
+}
+
+/* ==================== S2 hero + island/stage visual system ==================== */
+/* ==================== S2 — hero + island/stage visual system ==================== */
+
+/* ---- hero ---- */
+.pf-hero{position:relative;isolation:isolate;padding-top:clamp(2.25rem,6vw,4.5rem);padding-bottom:clamp(2.5rem,6vw,4rem);}
+.pf-hero-inner{max-width:820px;}
+.pf-hero-inner .eyebrow{margin-bottom:18px;}
+.pf-hero-h1{font-size:clamp(2.25rem,4.6vw,3.9rem);line-height:1.02;letter-spacing:-0.03em;font-weight:500;max-width:26ch;color:var(--text-on-dark);margin:0 0 22px;}
+.pf-hero-sub{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.55;color:var(--muted-on-dark);max-width:52ch;margin:0 0 32px;}
+.pf-hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;}
+@media(max-width:640px){
+  .pf-hero-h1{max-width:none;}
+}
+
+/* ---- voyage container + island rhythm ---- */
+.pf-voyage{position:relative;padding-top:clamp(1.5rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,6rem);overflow:visible;}
+.pf-voyage .pf-wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:clamp(6rem,11vw,10rem);padding-left:calc(max(var(--pad),24px) + clamp(0px,2vw,26px));padding-right:calc(max(var(--pad),24px) + clamp(0px,2vw,26px));}
+
+/* ---- island: text | stage, mobile-first (stage above text, single column) ---- */
+.pf-island{position:relative;display:grid;grid-template-columns:1fr;align-items:center;gap:clamp(1.75rem,4vw,2.5rem);}
+.pf-island-stage{order:1;min-width:0;}
+.pf-island-text{order:2;min-width:0;}
+@media(min-width:900px){
+  .pf-island{grid-template-columns:1.05fr 0.95fr;gap:clamp(2.5rem,5vw,4.5rem);}
+  .pf-island-text{order:1;}
+  .pf-island-stage{order:2;}
+  .pf-island:nth-child(even) .pf-island-text{order:2;}
+  .pf-island:nth-child(even) .pf-island-stage{order:1;}
+}
+@media(min-width:1200px){
+  .pf-island{gap:clamp(3rem,5vw,5.5rem);}
+}
+
+/* ---- island text furniture ---- */
+.pf-island-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;}
+.pf-island-num{font-family:var(--font-mono);font-weight:700;font-variant-numeric:tabular-nums;font-size:clamp(3.5rem,9vw,9rem);line-height:1;color:var(--amb, var(--accent-amber));opacity:.10;transition:opacity .4s var(--ease);}
+.pf-island.is-active .pf-island-num{opacity:.22;}
+.pf-island-name{margin:0;min-width:0;overflow-wrap:break-word;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:500;letter-spacing:-0.02em;line-height:1.15;}
+
+.pf-island-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 0;}
+.pf-kind{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:lowercase;color:var(--muted-on-dark);border:1px solid var(--border-dark-strong);border-radius:var(--r-pill);padding:3px 10px;white-space:nowrap;}
+.pf-island-industry{position:relative;padding-left:13px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.02em;text-transform:lowercase;color:var(--muted-on-dark);}
+.pf-island-industry::before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--border-dark-strong);transform:translateY(-50%);}
+
+.pf-island-desc{font-size:clamp(15px,1.6vw,17px);line-height:1.6;color:var(--text-on-dark);max-width:60ch;margin:18px 0 0;}
+
+.pf-island-bullets{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:60ch;}
+.pf-island-bullets li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.55;color:var(--text-on-dark);}
+.pf-island-bullets li::before{content:"";position:absolute;left:0;top:0.6em;width:7px;height:7px;border-radius:2px;background:var(--amb, var(--accent-amber));}
+
+.pf-island-cred{margin:24px 0 0;padding:4px 0 4px 16px;border-left:2px solid var(--amb, var(--accent-amber));font-family:var(--font-mono);font-size:13.5px;line-height:1.6;color:var(--text-on-dark);}
+
+.pf-island-link{display:inline-flex;align-items:center;min-height:44px;gap:6px;margin-top:22px;font-family:var(--font-sans);font-weight:500;font-size:15px;color:var(--text-on-dark);text-decoration:none;border-bottom:1px solid var(--border-dark-strong);transition:color .2s var(--ease),border-color .2s var(--ease);}
+.pf-island:hover .pf-island-link,.pf-island-link:hover{color:var(--amb, var(--accent-amber));border-color:var(--amb, var(--accent-amber));}
+.pf-island-link:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;}
+.pf-island-arrow{display:inline-block;transition:transform .2s var(--ease);}
+.pf-island:hover .pf-island-arrow{transform:translateX(4px);}
+
+/* ---- the stage ---- */
+.pf-stage{position:relative;border-radius:var(--r-lg);border:1px solid var(--border-dark-strong);background:var(--bg-dark-3);overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.9);transition:border-color .3s var(--ease),box-shadow .3s var(--ease);}
+.pf-island:hover .pf-stage{border-color:var(--amb, var(--accent-amber));box-shadow:0 0 0 1px var(--amb, var(--accent-amber)),0 40px 90px -40px var(--amb, var(--accent-amber));}
+.pf-island:hover .pf-stage{box-shadow:0 0 0 1px color-mix(in srgb,var(--amb, var(--accent-amber)) 45%,transparent),0 40px 90px -40px color-mix(in srgb,var(--amb, var(--accent-amber)) 35%,transparent);}
+
+/* -- chrome bar (adapted from samples/vector.html .browser-bar / .dots / .urlbar / .live / .pulse) -- */
+.pf-chrome{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;background:var(--bg-dark-2);border-bottom:1px solid var(--border-dark);}
+.pf-dots{display:inline-flex;gap:7px;flex:0 0 auto;}
+.pf-dot{display:block;width:11px;height:11px;border-radius:50%;padding:0;margin:0;border:0;background-color:#3a3550;background-repeat:no-repeat;background-position:center;background-size:9px 9px;font-style:normal;text-decoration:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:filter .15s var(--ease);}
+i.pf-dot{cursor:default;}
+.pf-dot:hover{filter:brightness(1.05);}
+.pf-dot:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;}
+.pf-dot--close{background-color:#e06d63;}
+.pf-dot--min{background-color:#e3b341;}
+.pf-dot--zoom{background-color:#4ec98a;}
+.pf-dots:hover .pf-dot--close,.pf-dot--close:focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20d%3D%27M3.6%203.6l4.8%204.8M8.4%203.6l-4.8%204.8%27%20stroke%3D%27%234d0f0a%27%20stroke-width%3D%271.5%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E");}
+.pf-dots:hover .pf-dot--min,.pf-dot--min:focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20d%3D%27M3.2%206h5.6%27%20stroke%3D%27%235a3d00%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E");}
+.pf-dots:hover .pf-dot--zoom,.pf-dot--zoom:focus-visible{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpolygon%20points%3D%273%2C3%207%2C3%203%2C7%27%20fill%3D%27%230c5230%27%2F%3E%3Cpolygon%20points%3D%279%2C9%209%2C5%205%2C9%27%20fill%3D%27%230c5230%27%2F%3E%3C%2Fsvg%3E");}
+
+.pf-url{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--muted-on-dark);background:rgba(0,0,0,.28);border:1px solid var(--border-dark);border-radius:var(--r-pill);padding:5px 14px;max-width:320px;margin:0 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pf-lock{width:11px;height:11px;flex:0 0 auto;color:var(--muted-on-dark);opacity:.8;}
+.pf-live{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:lowercase;color:var(--amb, var(--accent-amber));}
+.pf-pulse{width:7px;height:7px;border-radius:50%;background:var(--amb, var(--accent-amber));box-shadow:0 0 0 0 var(--amb, var(--accent-amber));animation:pf-island-pulse 2s infinite;}
+.pf-pulse{box-shadow:0 0 0 0 color-mix(in srgb,var(--amb, var(--accent-amber)) 50%,transparent);}
+@keyframes pf-island-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--amb, var(--accent-amber)) 50%,transparent);}70%{box-shadow:0 0 0 7px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+
+/* -- screen: poster / shot / panel / iframe -- */
+.pf-screen{position:relative;aspect-ratio:16/10;overflow:hidden;background:#fff;}
+.pf-screen iframe{display:block;width:100%;height:100%;border:0;background:#fff;position:absolute;inset:0;opacity:0;transition:opacity .3s var(--ease);}
+.pf-stage.is-live .pf-screen iframe{opacity:1;}
+.pf-stage.is-loading .pf-screen::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);background-size:200% 100%;animation:pf-shimmer 1.4s linear infinite;pointer-events:none;}
+@keyframes pf-shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+.pf-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:opacity .3s var(--ease);}
+.pf-stage.is-live .pf-poster{opacity:0;pointer-events:none;}
+
+.pf-shot{position:absolute;top:0;left:0;width:100%;height:auto;transform:translateY(0);transition:opacity .3s var(--ease);}
+.pf-shot.is-panning{animation:pf-shot-pan 14s linear infinite alternate;}
+@keyframes pf-shot-pan{from{transform:translateY(0);}to{transform:translateY(-68.75%);}}
+
+.pf-panel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;background:linear-gradient(160deg,var(--bg-dark-2),var(--bg-dark-3));}
+.pf-panel::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--border-dark) 1px,transparent 1px),linear-gradient(90deg,var(--border-dark) 1px,transparent 1px);background-size:32px 32px;opacity:.5;}
+.pf-panel::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,var(--accent-glow),transparent 60%);}
+.pf-panel::after{background:radial-gradient(circle at 30% 20%,color-mix(in srgb,var(--amb, var(--accent-amber)) 22%,transparent),transparent 60%);}
+.pf-panel-word{position:relative;font-family:var(--font-sans);font-weight:500;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-0.02em;color:var(--text-on-dark);text-align:center;}
+.pf-panel-stat{position:relative;font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--amb, var(--accent-amber));text-align:center;}
+
+.pf-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 20px;font-family:var(--font-sans);font-weight:500;font-size:14px;color:#1a1a1a;background:var(--accent-amber);border:1px solid var(--accent-amber);border-radius:var(--r-pill);cursor:pointer;transition:transform .2s var(--ease),border-color .2s var(--ease);}
+.pf-load:hover{transform:translate(-50%,-54%);border-color:var(--accent-amber-2);}
+.pf-load:focus-visible{outline:2px solid var(--accent-amber);outline-offset:2px;}
+.pf-stage.is-live .pf-load{opacity:0;pointer-events:none;}
+
+/* ---- responsive ---- */
+@media(max-width:1200px){
+  .pf-voyage .pf-wrap{padding-left:max(var(--pad),24px);padding-right:max(var(--pad),24px);}
+}
+@media(max-width:900px){
+  .pf-island-head{gap:12px;}
+}
+@media(max-width:640px){
+  .pf-island-num{font-size:2.5rem;}
+  .pf-island-name{font-size:1.4rem;}
+  .pf-url{max-width:150px;font-size:10.5px;}
+  .pf-chrome{gap:8px;padding:0 10px;}
+  .pf-load{padding:9px 16px;font-size:13px;}
+}
+
+/* ---- reduced motion: neutralise everything above that moves ---- */
+@media(prefers-reduced-motion:reduce){
+  .pf-island-num,.pf-island-link,.pf-island-arrow,.pf-island:hover .pf-island-arrow,
+  .pf-stage,.pf-island:hover .pf-stage,
+  .pf-dot,.pf-poster,.pf-shot,.pf-load{transition:none;}
+  .pf-island:hover .pf-island-arrow{transform:none;}
+  .pf-island:hover .pf-stage{box-shadow:0 40px 90px -50px rgba(0,0,0,.9);}
+  .pf-pulse{animation:none;box-shadow:none;}
+  .pf-stage.is-loading .pf-screen::after{animation:none;display:none;}
+  .pf-shot.is-panning{animation:none;transform:none;}
+  .pf-load:hover{transform:translate(-50%,-50%);}
+}
+
+/* ==================== S4 trail + waypoint nodes ==================== */
+.pf-trail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible;}
+.pf-trail-bg{fill:none;stroke:var(--border-dark-strong);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round;opacity:.5;}
+.pf-trail-fg{fill:none;stroke:var(--amb, var(--accent-amber));stroke-width:2;stroke-linecap:round;filter:drop-shadow(0 0 6px var(--amb, var(--accent-amber)));transition:stroke .3s var(--ease), filter .3s var(--ease);}
+
+/* Islands must paint above the trail (z-index:0). Scoped to only what S4 needs. */
+.pf-island,.pf-island-text,.pf-island-stage{position:relative;z-index:1;}
+
+.pf-node{position:absolute;top:32px;left:0;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--bg-dark);border:2px solid var(--border-dark-strong);z-index:2;transition:border-color .3s var(--ease), background-color .3s var(--ease), box-shadow .3s var(--ease);}
+.pf-island:nth-child(even) .pf-node{left:100%;}
+.pf-node.is-passed{background:var(--amb, var(--accent-amber));border-color:var(--amb, var(--accent-amber));}
+.pf-island.is-active .pf-node{border-color:var(--amb, var(--accent-amber));box-shadow:0 0 0 4px color-mix(in srgb, var(--amb, var(--accent-amber)) 25%, transparent), 0 0 14px var(--amb, var(--accent-amber));animation:pf-node-pulse 2s var(--ease) infinite;}
+
+@keyframes pf-node-pulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);}
+  50%{transform:translate(-50%,-50%) scale(1.18);}
+}
+
+@media (max-width:899px){
+  /* Single left rail on mobile. The island is inset so the trail gets its own lane
+     instead of running straight through the first character of every line. */
+  .pf-island{padding-left:26px;}
+  .pf-island .pf-node{left:0;}
+  .pf-island:nth-child(even) .pf-node{left:0;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .pf-trail-fg{transition:none;}
+  .pf-node{transition:none;}
+  .pf-island.is-active .pf-node{animation:none;}
+}
+
+.pf-load[hidden]{display:none !important;}
+/* ==================== S5 how-we-work + closing CTA ==================== */
+/* ---- pf-how (How We Work strip) ---- */
+.pf-how-grid{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+}
+.pf-how-item{
+  background:var(--bg-dark-2);
+  border:1px solid var(--border-dark);
+  border-radius:var(--r-md);
+  padding:1.75rem 1.5rem;
+}
+.pf-how-label{
+  font-family:var(--font-mono);
+  text-transform:lowercase;
+  letter-spacing:0.02em;
+  color:var(--accent);
+  font-size:0.85rem;
+  margin:0 0 1rem;
+}
+.pf-how-points{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:0.55rem;
+}
+.pf-how-points li{
+  color:var(--muted-on-dark);
+  font-size:0.95rem;
+  line-height:1.45;
+  padding-left:0.9rem;
+  position:relative;
+}
+.pf-how-points li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0.55em;
+  width:5px;
+  height:1px;
+  background:var(--border-dark-strong);
+}
+@media (max-width:900px){
+  .pf-how-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  .pf-how-grid{grid-template-columns:1fr;}
+}
+
+/* ---- pf-cta (Closing CTA) ---- */
+.pf-cta-panel{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border-radius:var(--r-lg);
+  border:1px solid var(--border-dark);
+  background:linear-gradient(180deg,var(--accent-faint),transparent 65%) var(--bg-dark-2);
+  padding:clamp(2.5rem,6vw,4.5rem);
+  text-align:center;
+}
+.pf-cta-inner{
+  position:relative;
+  z-index:1;
+  max-width:640px;
+  margin:0 auto;
+}
+.pf-cta-sub{
+  margin:0.9rem auto 0;
+  max-width:46ch;
+}
+.pf-cta-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  margin-top:2rem;
+}
+.pf-cta-actions .btn{
+  min-height:44px;
+}
+.pf-cta-note{
+  margin:1.5rem 0 0;
+  font-size:0.85rem;
+}
+.pf-cta-note a{
+  color:var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .pf-how-item,.pf-cta-panel{transition:none;}
 }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -344,6 +658,9 @@ main{padding-top:68px;}
 </script>
 </head>
 <body>
+
+<div class="pf-amb pf-amb-a" aria-hidden="true"></div>
+<div class="pf-amb pf-amb-b" aria-hidden="true"></div>
 
 <header class="site-header">
   <nav class="nav-inner" aria-label="primary">
@@ -359,106 +676,490 @@ main{padding-top:68px;}
 </header>
 
 <main>
-  <section class="samples-hero">
-    <div class="wrap">
-      <span class="eyebrow">samples</span>
-      <h1 class="h1-display">Sites we design &amp; ship.</h1>
-      <p class="body-lg sub">Six example builds — six different kinds of project: a restaurant marketing agency site, a full school ERP web app, a premium school website, an online store, a SaaS marketing site, and a web-app dashboard. Open any one and click through it live, right here inside our site — each is a real, working front-end, not a screenshot. Every SoftSolutionsAI project is custom; these just show the range.</p>
+
+<section class="pf-sec pf-hero" id="top">
+  <div class="pf-wrap pf-hero-inner" data-reveal-group>
+    <span class="eyebrow" data-reveal>selected work</span>
+    <h1 class="pf-hero-h1">Sites we've shipped. Open any of them right here.</h1>
+    <p class="pf-hero-sub" data-reveal>Follow the trail &mdash; every stop is a real site, running live.</p>
+    <div class="pf-hero-cta" data-reveal>
+      <a class="btn btn--primary" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
+      <a class="btn btn--ghost" href="#voyage">Start the tour &#8595;</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="samples-section">
-    <div class="wrap">
-      <div class="samples-grid">
 
-        <a class="sample-card is-dinevibes" href="samples/dinevibes.html" aria-label="Open the DineVibe Studio restaurant marketing agency sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/dinevibes.jpg" alt="Preview of the DineVibe Studio site — 'Your Restaurant Deserves to Be Fully Booked' hero for a restaurant marketing agency" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>marketing agency</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">marketing site · restaurant growth agency</span>
-            <h2 class="sample-name">DineVibe Studio</h2>
-            <span class="sample-desc">A live marketing site for a restaurant-growth agency — data-driven ads, social and influencer campaigns, CRM and platform optimisation, on a conversion-focused site that turns hungry browsers into loyal diners.</span>
-            <span class="sample-chips"><span class="sample-chip">data-driven ads</span><span class="sample-chip">social &amp; influencer</span><span class="sample-chip">CRM</span><span class="sample-chip">platform optimisation</span></span>
-            <span class="sample-view">Open the site <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+<section class="pf-sec pf-voyage" id="voyage">
+  <div class="pf-wrap">
+    <div class="pf-sec-head">
+      <h2>The work, one stop at a time.</h2>
+      <p class="pf-sec-sub">Client sites and in-house builds, laid out in order. Open any of them and look around.</p>
+    </div>
+    <!-- S4's trail SVG gets inserted here by the assembler -->
+    <svg class="pf-trail" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+  <path class="pf-trail-bg" fill="none"></path>
+  <path class="pf-trail-fg" fill="none"></path>
+</svg>
+    <div class="pf-islands">
 
-        <a class="sample-card is-eschool" href="samples/eschool365.html" aria-label="Open the E-School 365 school ERP sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/eschool365.jpg" alt="Preview of the E-School 365 admin dashboard — KPI cards, fee-collection and gender-mix charts" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>web app</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">product dashboard · school erp</span>
-            <h2 class="sample-name">E-School 365</h2>
-            <span class="sample-desc">A full School ERP — the logged-in product. Admins, teachers and parents each get their own workspace: students, attendance, fees, salary, exams and report cards, with live dashboards. Sign in as any role and click through it — your data persists in the browser.</span>
-            <span class="sample-chips"><span class="sample-chip">role-based logins</span><span class="sample-chip">fees &amp; salary</span><span class="sample-chip">attendance &amp; exams</span><span class="sample-chip">live dashboards</span></span>
-            <span class="sample-view">Open the app <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+      <article class="pf-island" data-ambient="#E0568A" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">01</span>
+            <h3 class="pf-island-name" data-reveal>Uptownie</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">live client site</span>
+            <span class="pf-island-industry">D2C fashion &middot; womenswear</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>A womenswear label shipping a new drop every Wednesday since 2015, sizes XS to plus, prices from &#8377;499, with the same inventory also selling on Myntra, Flipkart and Amazon. A catalog that changes that fast has to stay browsable, not overwhelming.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Multi-axis catalog navigation by product type, occasion, trend and price band</li>
+            <li>Deep category taxonomy across dresses, tops, co-ords, shirts, skirts, swimwear, jumpsuits and jackets</li>
+            <li>Product reviews surfaced on listing and detail pages</li>
+            <li>Bundle offers, COD, 7-day returns and app-discount prompts</li>
+          </ul>
+          <blockquote class="pf-island-cred" data-reveal>Running since 2015 &middot; 10 lakh+ customers &middot; new drop every Wednesday</blockquote>
+          <a class="pf-island-link" href="https://uptownie.com/" target="_blank" rel="noopener" data-reveal>Visit live site <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-shot="samples/previews/uptownie.jpg">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <i class="pf-dot pf-dot--close" aria-hidden="true"></i>
+                <i class="pf-dot pf-dot--min" aria-hidden="true"></i>
+                <a class="pf-dot pf-dot--zoom" href="https://uptownie.com/" target="_blank" rel="noopener" aria-label="Open uptownie.com"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>uptownie.com</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-shot" src="samples/previews/uptownie.jpg" alt="The Uptownie storefront, showing category navigation and the current drop" loading="lazy" width="1100" height="2200" />
+            </div>
+          </div>
+        </div>
+      </article>
 
-        <a class="sample-card is-redwood" href="samples/redwood.html" aria-label="Open the Redwood School website sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/redwood.jpg" alt="Preview of the Redwood Science Academy website — navy/gold hero, 'Where Curiosity Becomes Discovery'" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>school website</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">marketing site · premium school</span>
-            <h2 class="sample-name">Redwood School</h2>
-            <span class="sample-desc">A full website for a premium school — an IB World School. Families explore the curriculum and campus, meet the leadership, take a virtual tour, read school news, and start an application — the whole prospective-parent journey.</span>
-            <span class="sample-chips"><span class="sample-chip">admissions</span><span class="sample-chip">curriculum</span><span class="sample-chip">virtual tour</span><span class="sample-chip">school news</span></span>
-            <span class="sample-view">Open the site <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+      <article class="pf-island" data-ambient="#10A65A" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">02</span>
+            <h3 class="pf-island-name" data-reveal>DhanBoost</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">live client site</span>
+            <span class="pf-island-industry">FinTech &middot; digital lending (operated by NAVIX Finance Pvt Ltd)</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>A lending site has to do two things that pull against each other: convert a borrower in minutes, and disclose every cost, term and grievance channel a regulated lender must show. Most sites do one and skip the other.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Interactive loan calculator, amount x tenure returns interest, APR and total repayment</li>
+            <li>Repayment-date planner that previews exact cost before the borrower commits</li>
+            <li>Fully digital application flow: PAN, Aadhaar and bank details, about 2 minutes, no paperwork</li>
+            <li>Four-step process explainer, FAQ and grievance-redressal surface built for compliance</li>
+          </ul>
+          <blockquote class="pf-island-cred" data-reveal>&#8377;5,000&#8211;&#8377;10,00,000 &middot; 7&#8211;40 day tenures &middot; funds in 24&#8211;48h after e-sign + KYC</blockquote>
+          <a class="pf-island-link" href="https://dhanboost.com/" target="_blank" rel="noopener" data-reveal>Visit live site <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-shot="samples/previews/dhanboost.jpg">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <i class="pf-dot pf-dot--close" aria-hidden="true"></i>
+                <i class="pf-dot pf-dot--min" aria-hidden="true"></i>
+                <a class="pf-dot pf-dot--zoom" href="https://dhanboost.com/" target="_blank" rel="noopener" aria-label="Open dhanboost.com"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>dhanboost.com</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-shot" src="samples/previews/dhanboost.jpg" alt="The DhanBoost site, showing the loan calculator and repayment-date planner" loading="lazy" width="1100" height="2200" />
+            </div>
+          </div>
+        </div>
+      </article>
 
-        <a class="sample-card is-solene" href="samples/solene.html" aria-label="Open the Solène online skincare store sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/solene.jpg" alt="Preview of the Solène skincare storefront — product hero with shop navigation" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>online store</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">e-commerce · d2c skincare brand</span>
-            <h2 class="sample-name">Solène</h2>
-            <span class="sample-desc">A complete online store for a product brand. Customers shop by skin concern, build a guided routine, read the editorial journal, and check out — the full buy-online flow.</span>
-            <span class="sample-chips"><span class="sample-chip">shop by concern</span><span class="sample-chip">routine builder</span><span class="sample-chip">cart &amp; checkout</span><span class="sample-chip">journal</span></span>
-            <span class="sample-view">Open the store <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+      <article class="pf-island" data-ambient="#C9A227" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">03</span>
+            <h3 class="pf-island-name" data-reveal>Swashaa</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">live client site</span>
+            <span class="pf-island-industry">E-commerce &middot; demi-fine jewellery</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>700+ SKUs across five buyer groups (women, men, kids, mangalsutra, handbags) with several promotions live at once. Merchandising that many overlapping offers without confusing the shopper is the real engineering problem.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Collections segmented by gender, occasion and product type</li>
+            <li>Material filtering: 18K gold plated, silver, rose gold</li>
+            <li>Promotion engine surface: bundle pricing, BOGO, prepaid-order discounts</li>
+            <li>Order tracking, returns and exchange, plus 14+ care and sizing guides</li>
+          </ul>
+          <blockquote class="pf-island-cred" data-reveal>700+ designs &middot; 5 collections &middot; 1&#8211;3 day express delivery</blockquote>
+          <a class="pf-island-link" href="https://www.swashaa.com/" target="_blank" rel="noopener" data-reveal>Visit live site <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <i class="pf-dot pf-dot--close" aria-hidden="true"></i>
+                <i class="pf-dot pf-dot--min" aria-hidden="true"></i>
+                <a class="pf-dot pf-dot--zoom" href="https://www.swashaa.com/" target="_blank" rel="noopener" aria-label="Open www.swashaa.com"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>www.swashaa.com</span>
+            </div>
+            <div class="pf-screen">
+              <!-- swap point: drop samples/previews/swashaa.jpg in, replace this .pf-panel with the
+                   variant-B img.pf-shot markup (height="2200") and it upgrades with no other change -->
+              <div class="pf-panel" aria-hidden="true">
+                <span class="pf-panel-word">Swashaa</span>
+                <span class="pf-panel-stat">700+ designs &middot; 5 collections</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
 
-        <a class="sample-card is-vector" href="samples/vector.html" aria-label="Open the Vector SaaS marketing-site sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/vector.jpg" alt="Preview of the Vector developer-platform marketing site — 'Push to deploy' hero with a live deploy terminal" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>saas website</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">marketing site · developer platform</span>
-            <h2 class="sample-name">Vector</h2>
-            <span class="sample-desc">A marketing site built to sell a software product — here, a developer deploy platform. Bold hero, feature deep-dives, pricing tiers, customer proof and a docs / CLI focus.</span>
-            <span class="sample-chips"><span class="sample-chip">feature sections</span><span class="sample-chip">pricing tiers</span><span class="sample-chip">customer proof</span><span class="sample-chip">docs / cli</span></span>
-            <span class="sample-view">Open the site <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+      <article class="pf-island" data-ambient="#F26B21" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">04</span>
+            <h3 class="pf-island-name" data-reveal>DineVibe Studio</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">Hospitality &middot; restaurant growth</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>Restaurants live or die on covers per night, not likes or impressions. DineVibe Studio's site runs the ad spend, social presence and CRM as one system pointed at that number.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Data-driven ad campaigns across search and social, budget shifted toward what actually books tables</li>
+            <li>Social and influencer content calendar run in-house</li>
+            <li>CRM tracking repeat guests and follow-up, so a booking isn't a one-off</li>
+            <li>Platform-by-platform optimisation instead of one campaign copied everywhere</li>
+          </ul>
+          <a class="pf-island-link" href="samples/dinevibes.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="https://dinevibes.in" data-viewer="samples/dinevibes.html" data-title="DineVibe Studio, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live DineVibe Studio site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live DineVibe Studio site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/dinevibes.html" target="_blank" rel="noopener" aria-label="Open DineVibe Studio full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>dinevibes.in</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/dinevibes.jpg" alt="The DineVibe Studio marketing site homepage" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
 
-        <a class="sample-card is-atlas" href="samples/atlas.html" aria-label="Open the Atlas AI web-app dashboard sample">
-          <span class="sample-thumb">
-            <img class="sample-shot" src="samples/previews/atlas.jpg" alt="Preview of the Atlas AI workspace app — assistant summarising customer calls and drafting a reply" loading="lazy" width="1100" height="688" />
-            <span class="sample-tag"><span class="dot"></span>web app</span>
-          </span>
-          <span class="sample-body">
-            <span class="sample-cat">product dashboard · ai workspace</span>
-            <h2 class="sample-name">Atlas</h2>
-            <span class="sample-desc">The logged-in inside of a SaaS app — an AI assistant that reviews customer calls &amp; emails, summarises them with cited sources, and drafts replies, in a real workspace with sidebar, chat and tasks.</span>
-            <span class="sample-chips"><span class="sample-chip">app dashboard</span><span class="sample-chip">ai assistant</span><span class="sample-chip">cited sources</span><span class="sample-chip">drafts replies</span></span>
-            <span class="sample-view">Open the app <span class="arr" aria-hidden="true">→</span></span>
-          </span>
-        </a>
+      <article class="pf-island" data-ambient="#5B47E0" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">05</span>
+            <h3 class="pf-island-name" data-reveal>E-School 365</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">Education &middot; school ERP</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>A school runs fees, attendance, exams and salaries as separate paperwork trails unless something ties them together. E-School 365 is the one login administrators, teachers and accountants share instead.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Role-based logins separating admin, teacher, accountant and parent access</li>
+            <li>Fee collection and staff salary run through the same system, not a spreadsheet</li>
+            <li>Attendance and exam records entered once, visible everywhere they're needed</li>
+            <li>Live dashboards giving admins a same-day read on the school</li>
+          </ul>
+          <a class="pf-island-link" href="samples/eschool365.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="samples/sites/eschool365/index.html" data-viewer="samples/eschool365.html" data-title="E-School 365, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live E-School 365 site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live E-School 365 site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/eschool365.html" target="_blank" rel="noopener" aria-label="Open E-School 365 full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>eschool365.app</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/eschool365.jpg" alt="The E-School 365 admin dashboard" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
 
+      <article class="pf-island" data-ambient="#B08D57" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">06</span>
+            <h3 class="pf-island-name" data-reveal>Redwood School</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">Education &middot; school website</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>A parent evaluating a school checks the same handful of things — curriculum, campus, tour availability, what's on this term — often across separate PDFs and phone calls. Redwood School puts all of it on one site a parent can get through in a single visit.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Admissions information and process laid out up front</li>
+            <li>Curriculum pages by grade and subject</li>
+            <li>Virtual campus tours, so a visit isn't the only way to see the school</li>
+            <li>A running news and events feed instead of a static page</li>
+          </ul>
+          <a class="pf-island-link" href="samples/redwood.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="samples/sites/redwood/index.html" data-viewer="samples/redwood.html" data-title="Redwood School, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live Redwood School site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live Redwood School site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/redwood.html" target="_blank" rel="noopener" aria-label="Open Redwood School full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>redwoodscienceacademy.edu</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/redwood.jpg" alt="The Redwood School homepage" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-island" data-ambient="#EF9F27" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">07</span>
+            <h3 class="pf-island-name" data-reveal>Solène</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">E-commerce &middot; D2C skincare</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>Skincare shoppers rarely arrive knowing which of forty products they need. Solène starts from the skin concern, not the catalog, and narrows it to a routine before checkout even shows up.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Shop-by-concern navigation instead of a flat product grid</li>
+            <li>Guided routine builder that assembles a set from the answers given</li>
+            <li>Standard cart and checkout once the routine is chosen</li>
+            <li>Editorial journal content for concerns that need more than a product page</li>
+          </ul>
+          <a class="pf-island-link" href="samples/solene.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="samples/sites/solene.html" data-viewer="samples/solene.html" data-title="Solène, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live Solène site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live Solène site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/solene.html" target="_blank" rel="noopener" aria-label="Open Solène full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>solene.store</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/solene.jpg" alt="The Solène skincare homepage, shop by concern" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-island" data-ambient="#7C6CFF" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">08</span>
+            <h3 class="pf-island-name" data-reveal>Vector</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">SaaS &middot; developer platform</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>A developer deciding whether to trust a platform with their deploys checks the same three things in order: what it does, what it costs, who else already relies on it. Vector's site is built to answer all three before the developer bounces.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>Feature sections that explain what the platform actually does</li>
+            <li>Transparent pricing tiers instead of a "contact sales" wall</li>
+            <li>Customer proof placed where the decision actually gets made</li>
+            <li>Docs and CLI reference linked straight from the marketing site</li>
+          </ul>
+          <a class="pf-island-link" href="samples/vector.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="samples/sites/vector.html" data-viewer="samples/vector.html" data-title="Vector, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live Vector site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live Vector site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/vector.html" target="_blank" rel="noopener" aria-label="Open Vector full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>vector.dev</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/vector.jpg" alt="The Vector developer-platform marketing site homepage" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-island" data-ambient="#4EC98A" data-reveal data-reveal-group>
+        <span class="pf-node" aria-hidden="true"></span>
+        <div class="pf-island-text">
+          <div class="pf-island-head">
+            <span class="pf-island-num" aria-hidden="true">09</span>
+            <h3 class="pf-island-name" data-reveal>Atlas</h3>
+          </div>
+          <p class="pf-island-meta" data-reveal>
+            <span class="pf-kind">in-house build</span>
+            <span class="pf-island-industry">SaaS &middot; AI workspace</span>
+          </p>
+          <p class="pf-island-desc" data-reveal>Support and sales teams drown in calls and emails that all need a reply grounded in something real. Atlas reads them, cites its sources, and drafts the reply, so a human approves instead of writing from scratch.</p>
+          <ul class="pf-island-bullets" data-reveal>
+            <li>App dashboard surfacing incoming calls and emails in one queue</li>
+            <li>AI assistant that reads the message and drafts a response</li>
+            <li>Every drafted reply cites the source it pulled from</li>
+            <li>Human-in-the-loop approval before anything sends</li>
+          </ul>
+          <a class="pf-island-link" href="samples/atlas.html" target="_blank" rel="noopener" data-reveal>Open it full screen <span class="pf-island-arrow" aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="pf-island-stage" data-reveal>
+          <div class="pf-stage" data-embed="samples/sites/atlas.html" data-viewer="samples/atlas.html" data-title="Atlas, live site">
+            <div class="pf-chrome">
+              <span class="pf-dots">
+                <button type="button" class="pf-dot pf-dot--close" aria-label="Close the live Atlas site"></button>
+                <button type="button" class="pf-dot pf-dot--min" aria-label="Minimise the live Atlas site"></button>
+                <a class="pf-dot pf-dot--zoom" href="samples/atlas.html" target="_blank" rel="noopener" aria-label="Open Atlas full screen"></a>
+              </span>
+              <span class="pf-url"><svg class="pf-lock" viewBox="0 0 12 12" aria-hidden="true" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>app.atlas.ai</span>
+              <span class="pf-live" aria-hidden="true"><span class="pf-pulse"></span>live</span>
+            </div>
+            <div class="pf-screen">
+              <img class="pf-poster" src="samples/previews/atlas.jpg" alt="The Atlas AI workspace dashboard" loading="lazy" width="1100" height="688" />
+              <button type="button" class="pf-load" hidden>Load live site</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="pf-sec pf-how" aria-labelledby="pf-how-heading" data-reveal-group>
+  <div class="pf-wrap">
+    <div class="pf-sec-head">
+      <p class="eyebrow mono">how we work</p>
+      <h2 id="pf-how-heading" class="h2">What working with us actually looks like.</h2>
+    </div>
+    <ul class="pf-how-grid">
+      <li class="pf-how-item" data-reveal>
+        <p class="pf-how-label">first contact</p>
+        <ul class="pf-how-points">
+          <li>a WhatsApp message</li>
+          <li>an engineer replies, same day</li>
+          <li>a quote in writing</li>
+        </ul>
+      </li>
+      <li class="pf-how-item" data-reveal>
+        <p class="pf-how-label">design</p>
+        <ul class="pf-how-points">
+          <li>a clickable prototype, before we sign</li>
+          <li>you break it, we fix it</li>
+          <li>the same engineer who'll build it</li>
+        </ul>
+      </li>
+      <li class="pf-how-item" data-reveal>
+        <p class="pf-how-label">build</p>
+        <ul class="pf-how-points">
+          <li>Friday demos, weekly</li>
+          <li>a staging URL you can open anytime</li>
+          <li>direct WhatsApp to the engineers</li>
+          <li>your repo, your servers</li>
+        </ul>
+      </li>
+      <li class="pf-how-item" data-reveal>
+        <p class="pf-how-label">after launch</p>
+        <ul class="pf-how-points">
+          <li>the same team on WhatsApp</li>
+          <li>no tickets</li>
+          <li>break-it-we-fix-it</li>
+          <li>forever</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="pf-sec pf-cta" aria-labelledby="pf-cta-heading">
+  <div class="pf-wrap">
+    <div class="pf-cta-panel">
+      <div class="pf-glow" aria-hidden="true"></div>
+      <div class="pf-cta-inner">
+        <h2 id="pf-cta-heading" class="h2">Want one of these for your business?</h2>
+        <p class="pf-cta-sub body-lg">Tell us what's broken. An engineer replies — not a sales team.</p>
+        <div class="pf-cta-actions">
+          <a class="btn btn--primary" href="https://wa.me/919258494901?text=Hi%20%E2%80%94%20I'd%20like%20to%20talk%20to%20an%20engineer%20directly%20about%20a%20project." target="_blank" rel="noopener"><span class="dot"></span>Start on WhatsApp</a>
+          <a class="btn btn--ghost" href="mailto:info.softsolutionsai@gmail.com">Email us</a>
+        </div>
+        <p class="pf-cta-note mono muted-dark">An engineer replies, same day — or call <a href="tel:+919258494901">+91 92584 94901</a></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Selected work",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "CreativeWork",
+        "name": "Uptownie",
+        "url": "https://uptownie.com/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "CreativeWork",
+        "name": "DhanBoost",
+        "url": "https://dhanboost.com/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "CreativeWork",
+        "name": "Swashaa",
+        "url": "https://www.swashaa.com/"
+      }
+    }
+  ]
+}
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -477,21 +1178,322 @@ main{padding-top:68px;}
 </footer>
 
 <script>
-/* reveal cards on scroll (progressive enhancement; cards stay fully visible without JS) */
 (function(){
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.sample-card'));
-  if(!cards.length) return;
-  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  function reveal(c){ c.classList.add('in'); }
-  cards.forEach(function(c){ c.classList.add('reveal'); });
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }
+"use strict";
+
+/* ---- a) reveal-on-scroll ---- */
+var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if("IntersectionObserver" in window && !reduceMotion){
+  document.documentElement.classList.add("js-reveal");
+
+  var targets = document.querySelectorAll("[data-reveal]");
+
+  var groups = document.querySelectorAll("[data-reveal-group]");
+  groups.forEach(function(group){
+    var items = group.querySelectorAll("[data-reveal]");
+    items.forEach(function(el, i){
+      el.style.transitionDelay = Math.min(i * 60, 300) + "ms";
     });
-  }, { threshold:0.12 });
-  cards.forEach(function(c){ io.observe(c); });
-  /* failsafe: never leave a card hidden, even if the observer never fires */
-  setTimeout(function(){ cards.forEach(reveal); }, 1200);
+  });
+
+  var revealedAny = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add("pf-in");
+        revealedAny = true;
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach(function(el){ io.observe(el); });
+
+  setTimeout(function(){
+    if(!revealedAny){
+      targets.forEach(function(el){ el.classList.add("pf-in"); });
+    }
+  }, 1200);
+}
+
+/* ---- b) sticky header ---- */
+var header = document.querySelector(".site-header");
+if(header){
+  var ticking = false;
+  var applyHeaderState = function(){
+    header.classList.toggle("scrolled", window.scrollY > 80);
+    ticking = false;
+  };
+  applyHeaderState();
+  window.addEventListener("scroll", function(){
+    if(!ticking){
+      window.requestAnimationFrame(applyHeaderState);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+})();
+
+(function(){
+"use strict";
+var voyage = document.querySelector(".pf-voyage");
+var trail = document.querySelector(".pf-trail");
+if(!voyage || !trail) return;
+var bg = trail.querySelector(".pf-trail-bg");
+var fg = trail.querySelector(".pf-trail-fg");
+if(!bg || !fg) return;
+
+var islands = Array.prototype.slice.call(voyage.querySelectorAll(".pf-island"));
+if(!islands.length) return;
+
+var reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+var hasIO = "IntersectionObserver" in window;
+var points = [];
+
+// The trail's own rendered box IS the coordinate space (CSS: inset:0 on .pf-trail),
+// so reading trail.getBoundingClientRect() stays correct no matter which ancestor
+// establishes the positioning context.
+function layout(){
+  var tRect = trail.getBoundingClientRect();
+  var w = Math.round(tRect.width);
+  var h = Math.round(tRect.height);
+  if(!w || !h) return;
+
+  points = islands.map(function(isl){
+    var node = isl.querySelector(".pf-node");
+    if(!node) return null;
+    var r = node.getBoundingClientRect();
+    var ir = isl.getBoundingClientRect();
+    return { x: r.left + r.width / 2 - tRect.left, y: r.top + r.height / 2 - tRect.top,
+             top: ir.top - tRect.top, bottom: ir.bottom - tRect.top, node: node };
+  }).filter(Boolean);
+  if(!points.length) return;
+
+  /* Route down the rails and cross ONLY in the gap between two islands, with rounded
+     corners. Joining node centres directly would draw a diagonal straight through the
+     island's own text column, which is unreadable. */
+  var CORNER = 22;
+  var d = "M" + points[0].x.toFixed(1) + "," + points[0].y.toFixed(1);
+  for(var i = 1; i < points.length; i++){
+    var p0 = points[i - 1], p1 = points[i];
+    var dx = p1.x - p0.x;
+    if(Math.abs(dx) < 1){                     /* same rail (mobile): straight down */
+      d += " L" + p1.x.toFixed(1) + "," + p1.y.toFixed(1);
+      continue;
+    }
+    var yc = (p0.bottom + p1.top) / 2;        /* the inter-island gutter */
+    yc = Math.max(p0.y + CORNER + 1, Math.min(p1.y - CORNER - 1, yc));
+    var dir = dx > 0 ? 1 : -1;
+    var r = Math.min(CORNER, Math.abs(dx) / 2, Math.abs(yc - p0.y), Math.abs(p1.y - yc));
+    d += " L" + p0.x.toFixed(1) + "," + (yc - r).toFixed(1) +
+         " Q" + p0.x.toFixed(1) + "," + yc.toFixed(1) + " " + (p0.x + dir * r).toFixed(1) + "," + yc.toFixed(1) +
+         " L" + (p1.x - dir * r).toFixed(1) + "," + yc.toFixed(1) +
+         " Q" + p1.x.toFixed(1) + "," + yc.toFixed(1) + " " + p1.x.toFixed(1) + "," + (yc + r).toFixed(1) +
+         " L" + p1.x.toFixed(1) + "," + p1.y.toFixed(1);
+  }
+  bg.setAttribute("d", d);
+  fg.setAttribute("d", d);
+  trail.setAttribute("viewBox", "0 0 " + w + " " + h);
+  trail.style.height = h + "px";
+  draw();
+}
+
+function draw(){
+  if(!points.length) return;
+  var len = fg.getTotalLength();
+  if(reduced || !hasIO){
+    fg.style.strokeDasharray = "none";
+    fg.style.strokeDashoffset = "0";
+    return;
+  }
+  var vr = voyage.getBoundingClientRect();
+  var progress = vr.height ? (window.innerHeight / 2 - vr.top) / vr.height : 0;
+  progress = Math.max(0, Math.min(1, progress));
+  fg.style.strokeDasharray = String(len);
+  fg.style.strokeDashoffset = String(len * (1 - progress));
+}
+
+var pending = false;
+function schedule(fn){
+  if(pending) return;
+  pending = true;
+  requestAnimationFrame(function(){ pending = false; fn(); });
+}
+
+window.addEventListener("resize", function(){ schedule(layout); });
+if("ResizeObserver" in window){
+  new ResizeObserver(function(){ schedule(layout); }).observe(voyage);
+}
+if(!reduced){
+  window.addEventListener("scroll", function(){ schedule(draw); }, { passive: true });
+}
+
+layout();
+
+if(hasIO){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var active = entry.target;
+      var stillAhead = true;
+      islands.forEach(function(isl){
+        var node = isl.querySelector(".pf-node");
+        var isActive = isl === active;
+        isl.classList.toggle("is-active", isActive);
+        if(node) node.classList.toggle("is-passed", stillAhead && !isActive);
+        if(isActive) stillAhead = false;
+      });
+      var amb = active.getAttribute("data-ambient");
+      if(amb) document.documentElement.style.setProperty("--amb", amb);
+    });
+  }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+  islands.forEach(function(isl){ io.observe(isl); });
+} else {
+  fg.style.strokeDasharray = "none";
+  fg.style.strokeDashoffset = "0";
+}
+})();
+
+(function(){
+"use strict";
+
+/* ---- lazy iframe embed engine for .pf-stage[data-embed] ---- */
+var stages = document.querySelectorAll(".pf-stage[data-embed]");
+
+var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var holdBack = (window.matchMedia && window.matchMedia("(max-width:900px)").matches) ||
+  (navigator.connection && navigator.connection.saveData);
+
+var liveCount = 0;
+
+/* per-stage state, keyed by element via a WeakMap-ish array (small N, plain props are fine) */
+function getState(stage){
+  if(!stage._pf) stage._pf = { live:false, loading:false, dismissed:false, iframe:null };
+  return stage._pf;
+}
+
+function loadStage(stage){
+  var st = getState(stage);
+  if(st.live || st.loading) return;
+  if(liveCount >= 2) return;
+
+  var screen = stage.querySelector(".pf-screen");
+  if(!screen) return;
+
+  var iframe = document.createElement("iframe");
+  iframe.src = stage.getAttribute("data-embed");
+  iframe.title = stage.getAttribute("data-title") || "";
+  iframe.loading = "lazy";
+
+  st.loading = true;
+  st.iframe = iframe;
+  stage.classList.add("is-loading");
+  liveCount++;
+
+  iframe.addEventListener("load", function(){
+    st.loading = false;
+    st.live = true;
+    stage.classList.remove("is-loading");
+    stage.classList.add("is-live");
+  }, { once: true });
+
+  screen.appendChild(iframe);
+}
+
+function unloadStage(stage){
+  var st = getState(stage);
+  if(!st.iframe) return;
+  st.iframe.remove();
+  st.iframe = null;
+  if(st.live || st.loading) liveCount = Math.max(0, liveCount - 1);
+  st.live = false;
+  st.loading = false;
+  stage.classList.remove("is-live", "is-loading");
+}
+
+function wireLoadButton(stage){
+  var btn = stage.querySelector(".pf-load");
+  if(!btn) return;
+  btn.addEventListener("click", function(){
+    var st = getState(stage);
+    st.dismissed = false;
+    loadStage(stage);
+  });
+}
+
+function wireChrome(stage){
+  var closeBtn = stage.querySelector(".pf-dot--close");
+  var minBtn = stage.querySelector(".pf-dot--min");
+  [closeBtn, minBtn].forEach(function(btn){
+    if(!btn || btn.tagName !== "BUTTON") return;
+    btn.addEventListener("click", function(ev){
+      ev.preventDefault();
+      var st = getState(stage);
+      unloadStage(stage);
+      st.dismissed = true;
+    });
+  });
+}
+
+var canAutoLoad = stages.length && ("IntersectionObserver" in window) && !holdBack;
+
+stages.forEach(function(stage){
+  wireChrome(stage);
+  wireLoadButton(stage);
+  /* .pf-load stays visible as authored UNLESS we're about to auto-load for it;
+     JS is the only thing that ever adds `hidden`, so no-JS / hold-back / no-IO
+     clients keep the button reachable by default. */
+  var btn = stage.querySelector(".pf-load");
+  if(btn) btn.hidden = !!canAutoLoad;
+});
+
+if(canAutoLoad){
+  /* approach: near the stage -> load it (skip if user dismissed it while still on screen) */
+  var nearIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var st = getState(entry.target);
+      if(entry.isIntersecting && !st.dismissed) loadStage(entry.target);
+    });
+  }, { rootMargin: "200px 0px", threshold: 0 });
+
+  /* true viewport: once the stage actually leaves it, the dismissed flag can reset */
+  var viewIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) getState(entry.target).dismissed = false;
+    });
+  }, { threshold: 0 });
+
+  /* far away (~1.5 viewport heights): unload to free memory/network */
+  var farIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) unloadStage(entry.target);
+    });
+  }, { rootMargin: "150% 0px", threshold: 0 });
+
+  stages.forEach(function(stage){
+    nearIo.observe(stage);
+    viewIo.observe(stage);
+    farIo.observe(stage);
+  });
+}
+
+/* ---- client screenshot pan for .pf-stage[data-shot] ---- */
+if(!reduceMotion && "IntersectionObserver" in window){
+  var shotStages = document.querySelectorAll(".pf-stage[data-shot]");
+  if(shotStages.length){
+    var shotIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var img = entry.target.querySelector(".pf-shot");
+        if(!img) return;
+        img.classList.toggle("is-panning", entry.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    shotStages.forEach(function(stage){ shotIo.observe(stage); });
+  }
+}
+
 })();
 </script>
 </body>
